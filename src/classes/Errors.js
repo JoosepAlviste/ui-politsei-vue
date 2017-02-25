@@ -5,8 +5,18 @@ class Errors {
     }
 
     initialize() {
-        this.personData = { };
-        this.eventInfo = { };
+        // Need to fully declare these objects so vue can watch for changes successfully
+
+        this.person_data = {
+            'first-name': '',
+            'last-name': '',
+            'date-of-birth': '',
+            'citizenship': '',
+            'address': '',
+            'zip-code': '',
+            'is-legal-person': '',
+        };
+        this.event_info = { };
     }
 
     get(step, name) {
@@ -26,7 +36,7 @@ class Errors {
     }
 
     flush() {
-        this.initialize();
+        this.initialize()
     }
 }
 

@@ -8,7 +8,7 @@
 
         <keep-alive>
             <component :is="currentStep"
-                       :errors="errors"
+                       :form="form"
                        @step-was-activated="activateStep">
             </component>
         </keep-alive>
@@ -25,7 +25,7 @@
     export default {
 
         props: {
-            errors: { required: true },
+            form: { required: true },
         },
 
         components: {

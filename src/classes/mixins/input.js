@@ -32,10 +32,6 @@ module.exports = {
         hasHelp() {
             return this.help_text.length > 0;
         },
-
-        hasAddon() {
-            return typeof this.$slots['addon'] !== 'undefined';
-        }
     },
 
     watch: {

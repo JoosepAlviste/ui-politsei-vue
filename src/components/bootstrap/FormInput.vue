@@ -4,23 +4,7 @@
             {{ label }}
         </label>
 
-        <div v-if="hasAddon"
-             class="input-group">
-
-            <input type="text"
-                   class="form-control"
-                   :class="{ 'form-control-danger': hasError }"
-                   :name="name"
-                   :id="name"
-                   v-model="value">
-
-            <div class="input-group-addon">
-                <slot name="addon"></slot>
-            </div>
-        </div>
-
-        <input v-else
-               type="text"
+        <input type="text"
                class="form-control"
                :class="{ 'form-control-danger': hasError }"
                :name="name"
@@ -45,7 +29,7 @@
 
     export default {
         mixins: [ Input ],
-        
+
         props: {
             type: { required: false, default: 'text' },
         },

@@ -10,9 +10,9 @@
                 <form-input
                         name="first-name"
                         label="Eesnimi"
-                        :error="errors.get('personData', 'first-name')"
+                        :error="error('first-name')"
                         class_name="col"
-                        :input_value="first_name"
+                        :input_value="form.get('person_data', 'first-name')"
                         :required="true"
                         @input-was-changed="onFirstNameChanged">
                 </form-input>
@@ -20,9 +20,9 @@
                 <form-input
                         name="last-name"
                         label="Perenimi"
-                        :error="errors.get('personData', 'last-name')"
+                        :error="error('last-name')"
                         class_name="col"
-                        :input_value="last_name"
+                        :input_value="form.person_data['last-name']"
                         :required="true"
                         @input-was-changed="onLastNameChanged">
                 </form-input>
@@ -33,9 +33,9 @@
                 <form-input
                         name="date-of-birth"
                         label="Sünniaeg"
-                        :error="errors.get('personData', 'date-of-birth')"
+                        :error="error('date-of-birth')"
                         class_name="col-6"
-                        :input_value="date_of_birth"
+                        :input_value="form.person_data['date-of-birth']"
                         help_text="Formaadis pp.kk.aaaa"
                         @input-was-changed="onDateOfBirthChanged">
                 </form-input>
@@ -45,8 +45,8 @@
                 <form-select
                         name="citizenship"
                         label="Kodakondsus"
-                        :error="errors.get('personData', 'citizenship')"
-                        :input_value="citizenship"
+                        :error="error('citizenship')"
+                        :input_value="form.person_data['citizenship']"
                         :required="true"
                         :values="countries"
                         class_name="col col-auto"
@@ -61,11 +61,35 @@
                 <form-input
                         name="address"
                         label="Elukoha aadress (tänav, maja, korter, linn)"
-                        :error="errors.get('personData', 'address')"
+                        :error="error('address')"
                         class_name="col-12"
-                        :input_value="address"
+                        :input_value="form.person_data['address']"
                         @input-was-changed="onAddressChanged">
                 </form-input>
+            </div>
+
+            <div class="row">
+                <form-input
+                        name="zip-code"
+                        label="Postiindeks"
+                        :error="error('zip-code')"
+                        class_name="col-3"
+                        :input_value="form.person_data['zip-code']"
+                        @input-was-changed="onZipCodeChanged">
+                </form-input>
+            </div>
+
+        </card-section>
+
+        <card-section>
+            <div class="row">
+                <checkbox
+                    name="victim-is-legal-person"
+                    label="Kannatanu on juriidiline isik"
+                    class_name="custom-control-input"
+                    :input_value="form.get('person_data', 'is-legal-person')"
+                    @input-was-changed="onLegalPersonChanged">
+                </checkbox>
             </div>
         </card-section>
 
@@ -77,25 +101,25 @@
     import CardSection from '../components/CardSection.vue';
     import FormInput from '../components/bootstrap/FormInput.vue';
     import FormSelect from '../components/bootstrap/FormSelect.vue';
+    import Checkbox from '../components/bootstrap/Checkbox.vue';
+
+    import StepMixin from '../classes/mixins/step';
 
     export default {
 
-        components: { Step, CardSection, FormInput, FormSelect },
+        mixins: [ StepMixin ],
+
+        components: { Step, CardSection, FormInput, FormSelect, Checkbox },
 
         props: {
-            errors: { required: true },
+            form: { required: true },
         },
 
         data() {
             return {
-                first_name: '',
-                last_name: '',
-                date_of_birth: null,
-                address: '',
-                citizenship: '',
-
                 previous_step: '',
                 next_step: 'event_info',
+                this_step: 'person_data',
 
                 countries: [
                     { value: 'est', text: 'Estonia' },
@@ -106,38 +130,33 @@
         },
 
         methods: {
-            onFirstNameChanged(firstName) {
-                this.first_name = firstName;
 
-                // Validate
-                if (firstName.length === 0) {
-                    // TODO: Make validation better
-                    this.errors.add('personData', 'first-name', 'Eesnimi on kohustuslik!');
-                } else {
-                    this.errors.empty('personData', 'first-name');
-                }
+            onFirstNameChanged(firstName) {
+                this.set('first-name', firstName);
             },
 
             onLastNameChanged(lastName) {
-                this.last_name = lastName;
-
-                // Validate
+                this.set('last-name', lastName);
             },
 
             onDateOfBirthChanged(dateOfBirth) {
-                this.date_of_birth = dateOfBirth;
-
-                // Validate
+                this.set('date-of-birth', dateOfBirth);
             },
 
             onAddressChanged(address) {
-                this.address = address;
-
-                // Validate
+                this.set('address', address);
             },
 
             onCitizenshipChanged(citizenship) {
-                this.citizenship = citizenship;
+                this.set('citizenship', citizenship);
+            },
+
+            onZipCodeChanged(zipCode) {
+                this.set('zip-code', zipCode);
+            },
+
+            onLegalPersonChanged(isLegalPerson) {
+                this.set('is-legal-person', isLegalPerson);
             }
         }
     }

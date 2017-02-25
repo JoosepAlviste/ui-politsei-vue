@@ -2,7 +2,7 @@
     <div id="app">
 
         <div class="container-fluid d-flex justify-content-center">
-            <steps :errors="errors"></steps>
+            <steps :form="form"></steps>
         </div>
 
     </div>
@@ -10,7 +10,7 @@
 
 <script>
     import Steps from './components/Steps.vue';
-    import Errors from './classes/Errors';
+    import Form from './classes/Form';
 
     export default {
         name: 'app',
@@ -19,7 +19,7 @@
 
         data() {
             return {
-                errors: new Errors()
+                form: new Form()
             };
         }
     }
