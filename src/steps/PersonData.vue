@@ -20,7 +20,7 @@
                 <form-input
                         name="last-name"
                         label="Perenimi"
-                        :error="''"
+                        :error="errors.get('personData', 'last-name')"
                         class_name="col"
                         :input_value="last_name"
                         :required="true"
@@ -33,12 +33,25 @@
                 <form-input
                         name="date-of-birth"
                         label="Sünniaeg"
-                        :error="''"
+                        :error="errors.get('personData', 'date-of-birth')"
                         class_name="col-6"
                         :input_value="date_of_birth"
                         help_text="Formaadis pp.kk.aaaa"
                         @input-was-changed="onDateOfBirthChanged">
                 </form-input>
+            </div>
+
+            <div class="row">
+                <form-select
+                        name="citizenship"
+                        label="Kodakondsus"
+                        :error="errors.get('personData', 'citizenship')"
+                        :input_value="citizenship"
+                        :required="true"
+                        :values="countries"
+                        class_name="col col-auto"
+                        @input-was-changed="onCitizenshipChanged">
+                </form-select>
             </div>
 
         </card-section>
@@ -48,7 +61,7 @@
                 <form-input
                         name="address"
                         label="Elukoha aadress (tänav, maja, korter, linn)"
-                        :error="''"
+                        :error="errors.get('personData', 'address')"
                         class_name="col-12"
                         :input_value="address"
                         @input-was-changed="onAddressChanged">
@@ -63,10 +76,11 @@
     import Step from './Step.vue';
     import CardSection from '../components/CardSection.vue';
     import FormInput from '../components/bootstrap/FormInput.vue';
+    import FormSelect from '../components/bootstrap/FormSelect.vue';
 
     export default {
 
-        components: { Step, CardSection, FormInput },
+        components: { Step, CardSection, FormInput, FormSelect },
 
         props: {
             errors: { required: true },
@@ -78,8 +92,16 @@
                 last_name: '',
                 date_of_birth: null,
                 address: '',
+                citizenship: '',
+
                 previous_step: '',
                 next_step: 'event_info',
+
+                countries: [
+                    { value: 'est', text: 'Estonia' },
+                    { value: 'rus', text: 'Russia' },
+                    { value: 'other', text: 'Other' },
+                ],
             };
         },
 
@@ -112,6 +134,10 @@
                 this.address = address;
 
                 // Validate
+            },
+
+            onCitizenshipChanged(citizenship) {
+                this.citizenship = citizenship;
             }
         }
     }
