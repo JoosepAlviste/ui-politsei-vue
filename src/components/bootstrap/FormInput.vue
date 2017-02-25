@@ -1,6 +1,6 @@
 <template>
     <div class="form-group" :class="[ errorClass, customClass ]">
-        <label class="form-control-label" :for="name">
+        <label class="form-control-label" :for="name" :class="{ required: required }">
             {{ label }}
         </label>
 
@@ -25,6 +25,7 @@
                :class="{ 'form-control-danger': hasError }"
                :name="name"
                :id="name"
+               :required="true"
                v-model="value">
 
         <div v-if="hasError"
@@ -49,6 +50,7 @@
             help_text: { required: false, default: '' },
             type: { required: false, default: 'text' },
             input_value: { required: false, default: '' },
+            required: { required: false, default: '' },
         },
 
         data() {

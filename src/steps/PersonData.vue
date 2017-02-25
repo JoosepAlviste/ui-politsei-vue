@@ -10,6 +10,7 @@
                     :error="'Test error'"
                     class_name="col"
                     :input_value="first_name"
+                    :required="true"
                     @input-was-changed="onFirstNameChanged">
             </form-input>
 
@@ -19,11 +20,10 @@
                     :error="''"
                     class_name="col"
                     :input_value="last_name"
+                    :required="true"
                     @input-was-changed="onLastNameChanged">
             </form-input>
-        </card-section>
 
-        <card-section>
             <form-input
                     name="date-of-birth"
                     label="Sünniaeg"
@@ -32,6 +32,17 @@
                     :input_value="date_of_birth"
                     help_text="Formaadis pp.kk.aaaa"
                     @input-was-changed="onDateOfBirthChanged">
+            </form-input>
+        </card-section>
+
+        <card-section>
+            <form-input
+                    name="address"
+                    label="Elukoha aadress (tänav, maja, korter, linn)"
+                    :error="''"
+                    class_name="col-12"
+                    :input_value="address"
+                    @input-was-changed="onAddressChanged">
             </form-input>
         </card-section>
 
@@ -52,6 +63,7 @@
                 first_name: '',
                 last_name: '',
                 date_of_birth: null,
+                address: '',
                 previous_step: '',
                 next_step: 'event_info',
             };
@@ -68,6 +80,10 @@
 
             onDateOfBirthChanged(dateOfBirth) {
                 this.date_of_birth = dateOfBirth;
+            },
+
+            onAddressChanged(address) {
+                this.address = address;
             }
         }
     }
