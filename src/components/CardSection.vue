@@ -1,9 +1,7 @@
 <template>
     <div class="list-group-item">
         <div class="card-block">
-            <div class="row">
-                <slot></slot>
-            </div>
+            <slot></slot>
         </div>
     </div>
 </template>

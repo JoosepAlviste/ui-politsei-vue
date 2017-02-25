@@ -4,3 +4,8 @@
 .steps {
   margin-top: 40px;
 }
+
+.required:after {
+  content: '*';
+  color: $red;
+}

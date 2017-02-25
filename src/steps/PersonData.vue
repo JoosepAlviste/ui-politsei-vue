@@ -4,35 +4,56 @@
           @previous-step="$emit('step-was-activated', previous_step)">
 
         <card-section>
-            <form-input
-                    name="first-name"
-                    label="Eesnimi"
-                    :error="errors.get('personData', 'first-name')"
-                    class_name="col"
-                    :input_value="first_name"
-                    @input-was-changed="onFirstNameChanged">
-            </form-input>
 
-            <form-input
-                    name="last-name"
-                    label="Perenimi"
-                    :error="''"
-                    class_name="col"
-                    :input_value="last_name"
-                    @input-was-changed="onLastNameChanged">
-            </form-input>
+            <div class="row">
+
+                <form-input
+                        name="first-name"
+                        label="Eesnimi"
+                        :error="errors.get('personData', 'first-name')"
+                        class_name="col"
+                        :input_value="first_name"
+                        :required="true"
+                        @input-was-changed="onFirstNameChanged">
+                </form-input>
+
+                <form-input
+                        name="last-name"
+                        label="Perenimi"
+                        :error="''"
+                        class_name="col"
+                        :input_value="last_name"
+                        :required="true"
+                        @input-was-changed="onLastNameChanged">
+                </form-input>
+
+            </div>
+
+            <div class="row">
+                <form-input
+                        name="date-of-birth"
+                        label="Sünniaeg"
+                        :error="''"
+                        class_name="col-6"
+                        :input_value="date_of_birth"
+                        help_text="Formaadis pp.kk.aaaa"
+                        @input-was-changed="onDateOfBirthChanged">
+                </form-input>
+            </div>
+
         </card-section>
 
         <card-section>
-            <form-input
-                    name="date-of-birth"
-                    label="Sünniaeg"
-                    :error="''"
-                    class_name="col-6"
-                    :input_value="date_of_birth"
-                    help_text="Formaadis pp.kk.aaaa"
-                    @input-was-changed="onDateOfBirthChanged">
-            </form-input>
+            <div class="row">
+                <form-input
+                        name="address"
+                        label="Elukoha aadress (tänav, maja, korter, linn)"
+                        :error="''"
+                        class_name="col-12"
+                        :input_value="address"
+                        @input-was-changed="onAddressChanged">
+                </form-input>
+            </div>
         </card-section>
 
     </step>
@@ -56,6 +77,7 @@
                 first_name: '',
                 last_name: '',
                 date_of_birth: null,
+                address: '',
                 previous_step: '',
                 next_step: 'event_info',
             };
@@ -82,6 +104,12 @@
 
             onDateOfBirthChanged(dateOfBirth) {
                 this.date_of_birth = dateOfBirth;
+
+                // Validate
+            },
+
+            onAddressChanged(address) {
+                this.address = address;
 
                 // Validate
             }
