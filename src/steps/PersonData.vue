@@ -54,6 +54,31 @@
                         @input-was-changed="onAddressChanged">
                 </form-input>
             </div>
+
+            <div class="row">
+                <form-input
+                        name="zip-code"
+                        label="Postiindeks"
+                        :error="''"
+                        class_name="col-3"
+                        :input_value="zip_code"
+                        @input-was-changed="onZipCodeChanged">
+                </form-input>
+            </div>
+
+        </card-section>
+
+        <card-section>
+            <div class="row">
+                <checkbox
+                    name="victim-is-legal-person"
+                    label="Kannatanu on juriidiline isik"
+                    :error="''"
+                    class_name="custom-control-input"
+                    :input_value="is_legal_person"
+                    @input-was-changed="onLegalPersonChanged">
+                </checkbox>
+            </div>
         </card-section>
 
     </step>
@@ -63,10 +88,11 @@
     import Step from './Step.vue';
     import CardSection from '../components/CardSection.vue';
     import FormInput from '../components/bootstrap/FormInput.vue';
+    import Checkbox from '../components/bootstrap/Checkbox.vue';
 
     export default {
 
-        components: { Step, CardSection, FormInput },
+        components: { Step, CardSection, FormInput, Checkbox },
 
         props: {
             errors: { required: true },
@@ -78,6 +104,8 @@
                 last_name: '',
                 date_of_birth: null,
                 address: '',
+                zip_code: '',
+                is_legal_person: '',
                 previous_step: '',
                 next_step: 'event_info',
             };
@@ -112,6 +140,16 @@
                 this.address = address;
 
                 // Validate
+            },
+
+            onZipCodeChanged(zipCode) {
+                this.zip_code = zipCode;
+
+                // Validate
+            },
+
+            onLegalPersonChanged(isLegalPerson) {
+                this.is_legal_person = isLegalPerson;
             }
         }
     }
