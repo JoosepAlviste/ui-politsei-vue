@@ -1,5 +1,7 @@
 <template>
-    <step title="Isikuandmed">
+    <step title="Isikuandmed"
+          @next-step="$emit('step-was-activated', next_step)"
+          @previous-step="$emit('step-was-activated', previous_step)">
 
         <card-section>
             <form-input
@@ -22,18 +24,15 @@
         </card-section>
 
         <card-section>
-
             <form-input
                     name="date-of-birth"
                     label="Sünniaeg"
                     :error="''"
                     class_name="col-6"
                     :input_value="date_of_birth"
+                    help_text="Formaadis pp.kk.aaaa"
                     @input-was-changed="onDateOfBirthChanged">
-
-                <template slot="addon">COW</template>
             </form-input>
-
         </card-section>
 
     </step>
@@ -53,6 +52,8 @@
                 first_name: '',
                 last_name: '',
                 date_of_birth: null,
+                previous_step: '',
+                next_step: 'event_info',
             };
         },
 

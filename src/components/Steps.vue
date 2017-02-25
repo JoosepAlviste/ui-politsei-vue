@@ -1,10 +1,19 @@
 <template>
 
-    <keep-alive>
-        <component v-bind:is="currentStep">
-            <!-- component changes when vm.currentView changes! -->
-        </component>
-    </keep-alive>
+    <div class="steps col-6">
+
+        <div class="step-tabs">
+
+        </div>
+
+        <keep-alive>
+            <component :is="currentStep"
+                       @step-was-activated="activateStep">
+            </component>
+        </keep-alive>
+
+    </div>
+
 
 </template>
 
@@ -24,5 +33,12 @@
                 currentStep: 'person_data'
             };
         },
+
+        methods: {
+
+            activateStep(stepName) {
+                this.currentStep = stepName;
+            }
+        }
     }
 </script>
