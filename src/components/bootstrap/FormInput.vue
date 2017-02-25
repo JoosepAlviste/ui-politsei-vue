@@ -1,16 +1,17 @@
 <template>
-    <div class="form-group" :class="[ errorClass, customClass ]">
+    <div class="form-group" :class="[ errorClass, customClass, successClass ]">
         <label class="form-control-label" :for="name" :class="{ required: required }">
             {{ label }}
         </label>
 
         <input type="text"
                class="form-control"
-               :class="{ 'form-control-danger': hasError }"
+               :class="{ 'form-control-danger': hasError, 'form-control-success': !hasError && hasTyped }"
                :name="name"
                :id="name"
                :required="true"
-               v-model="value">
+               v-model="value"
+               @blur="onBlurred()">
 
         <div v-if="hasError"
              class="form-control-feedback">

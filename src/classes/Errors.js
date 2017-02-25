@@ -15,6 +15,7 @@ class Errors {
             'address': '',
             'zip-code': '',
             'is-legal-person': '',
+            'victim-registry-code': '',
         };
         this.event_info = { };
     }

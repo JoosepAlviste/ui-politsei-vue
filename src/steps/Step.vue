@@ -27,6 +27,12 @@
                        class="btn btn-primary" href="#">
                         Järgmine leht
                     </a>
+
+                    <a v-else
+                       @click.prevent="$emit('submit')"
+                       class="btn btn-primary" href="#">
+                        Esita avaldus
+                    </a>
                 </div>
 
             </card-section>

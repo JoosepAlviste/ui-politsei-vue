@@ -13,6 +13,7 @@ module.exports = {
     data() {
         return {
             value: null,
+            hasTyped: false,
         };
     },
 
@@ -23,6 +24,10 @@ module.exports = {
 
         errorClass() {
             return this.hasError ? 'has-danger' : '';
+        },
+
+        successClass() {
+            return !this.hasError && this.hasTyped ? 'has-success' : '';
         },
 
         customClass() {
@@ -40,6 +45,13 @@ module.exports = {
         },
 
         value() {
+            this.hasTyped = true;
+            this.$emit('input-was-changed', this.value);
+        },
+    },
+
+    methods: {
+        onBlurred() {
             this.$emit('input-was-changed', this.value);
         }
     }

@@ -1,7 +1,9 @@
 <template>
     <div class="form-group" :class="[ errorClass, customClass ]">
 
-        <label :for="name">Example select</label>
+        <label :for="name">
+            {{ label }}
+        </label>
 
         <select class="form-control" :id="name" :name="name" v-model="value">
             <option v-for="option in values" :value="option.value">

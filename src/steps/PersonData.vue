@@ -84,12 +84,23 @@
         <card-section>
             <div class="row">
                 <checkbox
-                    name="victim-is-legal-person"
-                    label="Kannatanu on juriidiline isik"
-                    class_name="custom-control-input"
-                    :input_value="form.get('person_data', 'is-legal-person')"
-                    @input-was-changed="onLegalPersonChanged">
+                        name="victim-is-legal-person"
+                        label="Kannatanu on juriidiline isik"
+                        class_name="custom-control-input"
+                        :input_value="form.get('person_data', 'is-legal-person')"
+                        @input-was-changed="onLegalPersonChanged">
                 </checkbox>
+            </div>
+
+            <div class="row" v-if="form.get('person_data', 'is-legal-person')">
+                <form-input
+                        name="victim-registry-code"
+                        label="Kannatanu registri kood"
+                        :error="error('victim-registry-code')"
+                        class_name="col-4"
+                        :input_value="form.get('person_data', 'victim-registry-code')"
+                        @input-was-changed="onVictimRegistryCodeChanged">
+                </form-input>
             </div>
         </card-section>
 
@@ -157,6 +168,10 @@
 
             onLegalPersonChanged(isLegalPerson) {
                 this.set('is-legal-person', isLegalPerson);
+            },
+
+            onVictimRegistryCodeChanged(victimRegistryCode) {
+                this.set('victim-registry-code', victimRegistryCode);
             }
         }
     }

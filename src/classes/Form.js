@@ -3,7 +3,16 @@ import Errors from './Errors';
 class Form {
 
     constructor() {
-        this.person_data = {};
+        this.person_data = {
+            'first-name': '',
+            'last-name': '',
+            'date-of-birth': '',
+            'citizenship': '',
+            'address': '',
+            'zip-code': '',
+            'is-legal-person': '',
+            'victim-registry-code': '',
+        };
         this.event_info = {};
         this.errors = new Errors();
     }
@@ -35,15 +44,15 @@ class Form {
 
         if (step === 'person_data') {
             if (name === 'first-name') {
-                if (this[step][name].length === 0) {
+                if (this[step][name] === null || this[step][name].length === 0) {
                     errorMessage = 'Eesnimi on kohustuslik!';
                 }
             } else if (name === 'last-name') {
-                if (this[step][name].length === 0) {
+                if (this[step][name] === null || this[step][name].length === 0) {
                     errorMessage = 'Perenimi on kohustuslik!';
                 }
             } else if (name === 'date-of-birth') {
-                if (this[step][name].length === 0) {
+                if (this[step][name] === null || this[step][name].length === 0) {
                     errorMessage = 'Sünniaeg on kohustuslik!';
                 }
                 // TODO: Check if past etc.

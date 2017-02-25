@@ -18,7 +18,7 @@
         components: { Step, CardSection },
 
         props: {
-            errors: { required: true },
+            form: { required: true },
         },
 
         data() {

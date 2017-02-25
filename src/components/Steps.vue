@@ -4,6 +4,16 @@
 
         <div class="step-tabs">
 
+            <button class="btn btn-primary"
+               @click.prevent="activateStep('person_data')">
+                Isikuandmed
+            </button>
+
+            <button class="btn btn-primary"
+               @click.prevent="activateStep('event_info')">
+                Toimumise info
+            </button>
+
         </div>
 
         <keep-alive>
