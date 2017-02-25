@@ -17,6 +17,10 @@
     export default {
         components: { Step, CardSection },
 
+        props: {
+            errors: { required: true },
+        },
+
         data() {
             return {
                 previous_step: 'person_data',

@@ -2,7 +2,7 @@
     <div id="app">
 
         <div class="container-fluid d-flex justify-content-center">
-            <steps></steps>
+            <steps :errors="errors"></steps>
         </div>
 
     </div>
@@ -10,10 +10,18 @@
 
 <script>
     import Steps from './components/Steps.vue';
+    import Errors from './classes/Errors';
 
     export default {
         name: 'app',
-        components: { Steps }
+
+        components: { Steps },
+
+        data() {
+            return {
+                errors: new Errors()
+            };
+        }
     }
 </script>
 

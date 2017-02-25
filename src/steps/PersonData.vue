@@ -7,7 +7,7 @@
             <form-input
                     name="first-name"
                     label="Eesnimi"
-                    :error="'Test error'"
+                    :error="errors.get('personData', 'first-name')"
                     class_name="col"
                     :input_value="first_name"
                     @input-was-changed="onFirstNameChanged">
@@ -47,6 +47,10 @@
 
         components: { Step, CardSection, FormInput },
 
+        props: {
+            errors: { required: true },
+        },
+
         data() {
             return {
                 first_name: '',
@@ -60,14 +64,26 @@
         methods: {
             onFirstNameChanged(firstName) {
                 this.first_name = firstName;
+
+                // Validate
+                if (firstName.length === 0) {
+                    // TODO: Make validation better
+                    this.errors.add('personData', 'first-name', 'Eesnimi on kohustuslik!');
+                } else {
+                    this.errors.empty('personData', 'first-name');
+                }
             },
 
             onLastNameChanged(lastName) {
                 this.last_name = lastName;
+
+                // Validate
             },
 
             onDateOfBirthChanged(dateOfBirth) {
                 this.date_of_birth = dateOfBirth;
+
+                // Validate
             }
         }
     }

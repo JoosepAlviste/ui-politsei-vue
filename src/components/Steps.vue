@@ -8,6 +8,7 @@
 
         <keep-alive>
             <component :is="currentStep"
+                       :errors="errors"
                        @step-was-activated="activateStep">
             </component>
         </keep-alive>
@@ -22,6 +23,10 @@
     import EventInfo from '../steps/EventInfo.vue';
 
     export default {
+
+        props: {
+            errors: { required: true },
+        },
 
         components: {
             person_data: PersonData,
