@@ -2,27 +2,10 @@
 
     <div class="steps col-6">
 
-        <ol class="step-tabs">
-
-            <li class="step-btn is-complete"
-                data-step="1"
-                @click.prevent="activateStep('person_data')">
-                Isikuandmed
-            </li>
-
-            <li class="step-btn is-active"
-                data-step="2"
-                @click.prevent="activateStep('event_info')">
-                Toimumise info
-            </li>
-
-            <li class="step-btn"
-                data-step="3"
-                @click.prevent="activateStep('stolen_properties')">
-                Varad
-            </li>
-
-        </ol>
+        <step-tabs
+                :active_tab="currentStep"
+                @tab-was-activated="activateStep">
+        </step-tabs>
 
         <keep-alive>
             <component :is="currentStep"
@@ -40,6 +23,7 @@
     import PersonData from '../steps/PersonData.vue';
     import EventInfo from '../steps/EventInfo.vue';
     import StolenProperties from '../steps/StolenProperties.vue';
+    import StepTabs from './StepTabs.vue';
 
     export default {
 
@@ -51,6 +35,8 @@
             person_data: PersonData,
             event_info: EventInfo,
             stolen_properties: StolenProperties,
+
+            StepTabs,
         },
 
         data() {
