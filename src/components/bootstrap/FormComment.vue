@@ -1,16 +1,14 @@
 <template>
-    <div class="form-group col-md-5" :class="[ errorClass, customClass, successClass ]">
+    <div class="form-group" :class="[ errorClass, customClass, successClass ]">
         <label class="form-control-label" :for="name" :class="{ required: required }">
             {{ label }}
         </label>
-        <div class="input-group ">
-          <span class="input-group-addon">€</span>
-          <input type="number"
-                 class="form-control"
+
+        <textarea type="text"
+                  class="form-control"
                  :name="name"
                  :id="name"
-                 v-model="value">
-        </div>
+                 v-model="value"></textarea>
         <div v-if="hasError"
              class="form-control-feedback">
             {{ error }}
