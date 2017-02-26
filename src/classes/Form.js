@@ -191,6 +191,7 @@ class Form {
 
     removePerpetrator(index) {
         this.perpetrators.splice(index, 1);
+        this.errors.perpetrators.splice(index, 1);
     }
 }
 
