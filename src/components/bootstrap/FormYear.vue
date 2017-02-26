@@ -1,11 +1,11 @@
 <template>
-    <div class="form-group col-md-5" :class="[ errorClass, customClass, successClass ]">
+    <div class="form-group " :class="[ errorClass, customClass, successClass ]">
         <label class="form-control-label" :for="name" :class="{ required: required }">
             {{ label }}
         </label>
 
         <input type="number"
-               class="form-control"
+               class="form-control col-md-2"
                :name="name"
                :id="name"
                v-model="value">

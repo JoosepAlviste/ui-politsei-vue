@@ -28,33 +28,33 @@
               </div>
               <div class="row">
                     <form-year
-                            :name="'property[' + nr + '][year_bought]'"
+                            :name="'property[' + nr + '][year_of_acquiring]'"
                             label="Soetamise aasta"
-                            :error="errors['year_bought']"
+                            :error="errors['year_of_acquiring']"
                             class_name="col"
-                            :input_value="property.year_bought"
+                            :input_value="property.year_of_acquiring"
                             :required="false"
                             @input-was-changed="onYearBoughtChanged">
                     </form-year>
                 </div>
               <div class="row">
                     <form-money
-                              :name="'property[' + nr + '][property_value]'"
+                              :name="'property[' + nr + '][value]'"
                             label="Ligikaudne hetkeväärtus"
-                            :error="errors['property_value']"
+                            :error="errors['value']"
                             class_name="col"
-                            :input_value="property.property_value"
+                            :input_value="property.value"
                             :required="false"
-                            @input-was-changed="onPropertyValueChanged">
+                            @input-was-changed="onValueChanged">
                     </form-money>
               </div>
               <div class="row">
                     <form-comment
-                              :name="'property[' + nr + '][special_features]'"
+                              :name="'property[' + nr + '][special_indicators]'"
                             label="Tundemärgid ja eritunnused (sh raaminumber, seerianumber, IMEI-kood jm)"
-                            :error="errors['special_features']"
+                            :error="errors['special_indicators']"
                             class_name="col"
-                            :input_value="property.special_features"
+                            :input_value="property.special_indicators"
                             :required="false"
                             @input-was-changed="onCommentChanged">
                     </form-comment>
@@ -94,17 +94,17 @@
                 this.property.name = name;
                 this.form.validate('stolen_properties', 'name', this.nr - 1);
             },
-            onYearBoughtChanged(year_bought){
-                this.property.year_bought = year_bought;
-                this.form.validate('stolen_properties', 'year_bought', this.nr - 1);
+            onYearBoughtChanged(year_of_acquiring){
+                this.property.year_of_acquiring = year_of_acquiring;
+                this.form.validate('stolen_properties', 'year_of_acquiring', this.nr - 1);
             },
-            onPropertyValueChanged(property_value){
-                this.property.property_value = property_value;
-                this.form.validate('stolen_properties', 'property_value', this.nr - 1);
+            onValueChanged(value){
+                this.property.value = value;
+                this.form.validate('stolen_properties', 'value', this.nr - 1);
             },
-            onCommentChanged(special_features){
-                this.property.special_features = special_features;
-                this.form.validate('stolen_properties', 'special_features', this.nr - 1);
+            onCommentChanged(special_indicators){
+                this.property.special_indicators = special_indicators;
+                this.form.validate('stolen_properties', 'special_indicators', this.nr - 1);
             }
         },
     }

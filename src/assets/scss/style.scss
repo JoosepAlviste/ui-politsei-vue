@@ -2,6 +2,14 @@
 $brand_primary: #007DC3;
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
 body {
   min-height: 100vh;
   background-color: $gray-lightest;
