@@ -17,3 +17,41 @@
 .steps-tabs {
   display: flex;
 }
+
+
+/*---------------------*\
+  #PROPERTIES
+\*---------------------*/
+
+.property-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .card-title {
+    flex-grow: 1;
+    margin-bottom: 0;
+  }
+}
+
+
+/*---------------------*\
+  #ANIMATIONS
+\*---------------------*/
+
+.slide-up-enter-active, .slide-up-leave-active {
+  transition: all 0.2s linear;
+
+  .row {
+    transition: all 0.2s linear;
+    transform: translateY(0);
+  }
+}
+
+.slide-up-enter, .slide-up-leave-to {
+  opacity: 0;
+
+  .row {
+    transform: translateY(-10px);
+  }
+}

@@ -15,7 +15,7 @@
             </button>
 
             <button class="btn btn-primary"
-                    @click.prevent="activateStep('stolen_property')">
+                    @click.prevent="activateStep('stolen_properties')">
                 Varad
             </button>
 
@@ -36,7 +36,7 @@
 <script>
     import PersonData from '../steps/PersonData.vue';
     import EventInfo from '../steps/EventInfo.vue';
-    import StolenProperty from '../steps/StolenProperty.vue';
+    import StolenProperties from '../steps/StolenProperties.vue';
 
     export default {
 
@@ -47,7 +47,7 @@
         components: {
             person_data: PersonData,
             event_info: EventInfo,
-            stolen_property: StolenProperty,
+            stolen_properties: StolenProperties,
         },
 
         data() {

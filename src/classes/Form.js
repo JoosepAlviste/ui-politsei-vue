@@ -31,7 +31,7 @@ class Form {
         // TODO: Loop through all fields and call validate
     }
 
-    validate(step, name) {
+    validate(step, name, index) {
         if (typeof step === 'undefined') {
             // Called validate()
             this.validateAll();
@@ -59,9 +59,19 @@ class Form {
                     errorMessage = 'Postiindeks peab olema number!';
                 }
             }
+        } else if (step === 'stolen_properties') {
+            if (name === 'name') {
+                if (!this.exists(this[step][index][name])) {
+                    errorMessage = 'Nimetus on kohustuslik!';
+                }
+            }
         }
 
-        this.errors.add(step, name, errorMessage);
+        if (typeof index !== 'undefined') {
+            this.errors[step][index][name] = errorMessage;
+        } else {
+            this.errors.add(step, name, errorMessage);
+        }
     }
 
     initializeCounties() {
@@ -95,7 +105,7 @@ class Form {
             'citizenship': 'EST',
             'address': '',
             'zip-code': '',
-            'is-legal-person': '',
+            'is-legal-person': false,
             'victim-registry-code': '',
             'county': '',
             'contact-option': 'email',
@@ -125,10 +135,20 @@ class Form {
             property_exists_time: null,
             property_lost_time: null,
         });
+        this.errors.stolen_properties.push({
+            name: '',
+            year_of_acquiring: '',
+            value: '',
+            in_locked_area: '',
+            special_indicators: '',
+            property_exists_time: '',
+            property_lost_time: '',
+        });
     }
 
     removeStolenProperty(index) {
         this.stolen_properties.splice(index, 1);
+        this.errors.stolen_properties.splice(index, 1);
     }
 
     addPerp() {

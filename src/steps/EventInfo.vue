@@ -24,7 +24,7 @@
         data() {
             return {
                 previous_step: 'person_data',
-                next_step: 'stolen_property',
+                next_step: 'stolen_properties',
                 this_step: 'event_info',
             };
         }

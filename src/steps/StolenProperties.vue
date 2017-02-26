@@ -5,29 +5,13 @@
 
         <card-section>
 
-            <div v-for="(properties, index) in form.stolen_properties"
-                 class="card">
-
-                <div class="card-header">
-                    <h4 class="card-title text-center">
-                        Vara #{{ index + 1 }}
-                    </h4>
-
-                    <button type="button" class="close" aria-label="Close"
-                            @click.prevent="removeProperty(index)">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <card-section>
-                    <div class="row">
-
-                        Hello World!
-
-                    </div>
-                </card-section>
-
-            </div>
+            <property v-for="(property, index) in form.stolen_properties"
+                      :property="property"
+                      :nr="index + 1"
+                      :errors="error(index)"
+                      :form="form"
+                      @property-was-removed="removeProperty(index)">
+            </property>
 
             <a href="" class="btn btn-primary" @click.prevent="addProperty">
                 Lisa vara
@@ -41,10 +25,13 @@
 <script>
     import Step from './Step.vue';
     import CardSection from '../components/CardSection.vue';
+    import Property from '../components/Property.vue';
+
+    import StepMixin from '../classes/mixins/step';
 
     export default {
 
-        components: { Step, CardSection },
+        components: { Step, CardSection, Property },
 
         props: {
             form: { required: true },
@@ -54,7 +41,7 @@
             return {
                 next_step: '',
                 previous_step: 'event_info',
-                this_step: 'stolen_property',
+                this_step: 'stolen_properties',
             };
         },
 
@@ -65,6 +52,11 @@
 
             removeProperty(index) {
                 this.form.removeStolenProperty(index);
+            },
+
+            error(index) {
+                console.log(this.form.errors.stolen_properties);
+                return this.form.errors.stolen_properties[index];
             }
         }
     }
