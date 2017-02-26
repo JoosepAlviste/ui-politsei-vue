@@ -4,9 +4,9 @@
 
         <div class="card-header">
 
-            <h4 class="card-title text-center">
+            <h2 class="card-title text-center">
                 {{ title }}
-            </h4>
+            </h2>
         </div>
 
         <div class="list-group list-group-flush">

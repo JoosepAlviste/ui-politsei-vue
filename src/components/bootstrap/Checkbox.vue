@@ -1,5 +1,5 @@
 <template>
-    <div class="form-group col-6" :class="[ errorClass ]">
+    <div class="form-group col-md-12" :class="[ errorClass ]">
         <label class="custom-control custom-checkbox" :for="name">
 
             <input type="checkbox"
