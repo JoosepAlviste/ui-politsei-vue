@@ -24,13 +24,13 @@
 
                     <a v-if="hasNext"
                        @click.prevent="$emit('next-step')"
-                       class="btn btn-primary" href="#">
+                       class="btn btn-success" href="#">
                         Järgmine leht
                     </a>
 
                     <a v-else
                        @click.prevent="$emit('submit')"
-                       class="btn btn-primary" href="#">
+                       class="btn btn-success" href="#">
                         Esita avaldus
                     </a>
                 </div>

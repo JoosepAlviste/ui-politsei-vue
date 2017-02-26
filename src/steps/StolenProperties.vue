@@ -13,9 +13,11 @@
                       @property-was-removed="removeProperty(index)">
             </property>
 
-            <a href="" class="btn btn-primary" @click.prevent="addProperty">
+            <div class="row addBtnContainer">
+                <a href="" class="btn btn-primary" @click.prevent="addProperty">
                 Lisa vara
-            </a>
+                </a>
+            </div>
 
         </card-section>
 

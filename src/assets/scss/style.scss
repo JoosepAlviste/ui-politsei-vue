@@ -10,22 +10,34 @@
   color: $gray-dark;
 }
 
-/*---------------------*\
-  #STEPS
-\*---------------------*/
-
-.steps {
-  margin-top: 40px;
+.card {
+  margin-bottom: 20px;
 }
 
-.step-tabs {
-  list-style: none;
-  margin: 0 0 20px 0;;
-  padding: 0;
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-  color: darken($gray-lighter, 40%);
+.card-header {
+  padding: 0.9rem 1.25rem;
+
+    .card-title {
+      margin-bottom: 0;
+    }
+}
+
+  /*---------------------*\
+    #STEPS
+  \*---------------------*/
+
+  .steps {
+    margin-top: 40px;
+  }
+
+  .step-tabs {
+    list-style: none;
+    margin: 0 0 20px 0;;
+    padding: 0;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    color: darken($gray-lighter, 40%);
 
     > li {
       position: relative;
@@ -59,8 +71,8 @@
         display: block;
         background: darken($gray-lighter, 5%);
         width: 100%;
-        height: 0.5em;
-        top: 1.25em;
+        height: 0.4em;
+        top: 1.3em;
         left: 50%;
         margin-left: 1.5em\9;
         z-index: -1;
@@ -100,42 +112,70 @@
       }
 
     }
-}
-
-
-/*---------------------*\
-  #PROPERTIES
-\*---------------------*/
-
-.property-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  .card-title {
-    flex-grow: 1;
-    margin-bottom: 0;
   }
-}
+
+  .addBtnContainer {
+    justify-content: center;
+
+    .btn {
+      color: #FFFFFF;
+
+      &:hover,
+      &:focus {
+        color: #FFFFFF;
+      }
+    }
+  }
+
+  .steps-buttons {
+    justify-content: space-between;
+
+    .btn-success {
+      color: #FFFFFF;
+      margin-left: auto;
+
+      &:hover,
+      &:focus {
+        color: #FFFFFF;
+      }
+    }
+  }
 
 
-/*---------------------*\
-  #ANIMATIONS
-\*---------------------*/
+  /*---------------------*\
+    #PROPERTIES
+  \*---------------------*/
 
-.slide-up-enter-active, .slide-up-leave-active {
-  transition: all 0.2s linear;
+  .property-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-  .row {
+    .card-title {
+      flex-grow: 1;
+      margin-bottom: 0;
+    }
+  }
+
+
+  /*---------------------*\
+    #ANIMATIONS
+  \*---------------------*/
+
+  .slide-up-enter-active, .slide-up-leave-active {
     transition: all 0.2s linear;
-    transform: translateY(0);
-  }
-}
 
-.slide-up-enter, .slide-up-leave-to {
-  opacity: 0;
-
-  .row {
-    transform: translateY(-10px);
+    .row {
+      transition: all 0.2s linear;
+      transform: translateY(0);
+    }
   }
-}
+
+  .slide-up-enter, .slide-up-leave-to {
+    opacity: 0;
+
+    .row {
+      transform: translateY(-10px);
+    }
+  }
+

@@ -50,7 +50,7 @@
                         :input_value="form.person_data['citizenship']"
                         :required="true"
                         :values="form.countries"
-                        class_name="col col-auto"
+                        class_name="col-4"
                         @input-was-changed="onCitizenshipChanged">
                 </form-select>
             </div>
@@ -77,7 +77,7 @@
                         :input_value="form.person_data['county']"
                         :required="true"
                         :values="form.counties"
-                        class_name="col col-auto"
+                        class_name="col-4"
                         @input-was-changed="onCountyChanged">
                 </form-select>
             </div>
