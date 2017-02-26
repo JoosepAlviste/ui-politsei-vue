@@ -1,4 +1,5 @@
 // Bootstrap
+$brand_primary: #007DC3;
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
 body {
@@ -88,30 +89,30 @@ body {
       }
 
       &.is-complete {
-        color: $green;
+        color: $brand-primary;
 
         &:hover {
-          color: darken($green, 10%);
+          color: darken($brand-primary, 15%);
         }
 
         &:before,
         &:after {
           color: #FFF;
-          background: $green;
+          background: $brand-primary;
         }
 
       }
 
       &.is-active {
-        color: $green;
+        color: $brand-primary;
 
         &:hover {
-          color: darken($green, 10%);
+          color: darken($brand-primary, 15%);
         }
 
         &:before {
           color: #FFF;
-          background: $green;
+          background: $brand-primary;
         }
 
       }
@@ -135,6 +136,7 @@ body {
   .steps-buttons {
     justify-content: space-between;
 
+    .btn-primary,
     .btn-success {
       color: #FFFFFF;
       margin-left: auto;
@@ -198,7 +200,8 @@ body {
     flex-direction: column;
     align-items: stretch;
 
-    .btn-success {
+    .btn-success,
+    .btn-primary {
       color: #FFFFFF;
       margin-top: 10px;
       margin-left: 0;
