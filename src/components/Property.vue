@@ -20,7 +20,7 @@
                             :name="'property[' + nr + '][name]'"
                             label="Nimetus"
                             :error="errors['name']"
-                            class_name="col"
+                            class_name="col-sm-12 col-md-8"
                             :input_value="property.name"
                             :required="true"
                             @input-was-changed="onNameChanged">

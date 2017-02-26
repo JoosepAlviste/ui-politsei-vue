@@ -11,7 +11,7 @@
                         name="first-name"
                         label="Eesnimi"
                         :error="error('first-name')"
-                        class_name="col"
+                        class_name="col-sm-12 col-md-6"
                         :input_value="form.get('person_data', 'first-name')"
                         :required="true"
                         @input-was-changed="onFirstNameChanged">
@@ -21,7 +21,7 @@
                         name="last-name"
                         label="Perenimi"
                         :error="error('last-name')"
-                        class_name="col"
+                        class_name="col-sm-12 col-md-6"
                         :input_value="form.person_data['last-name']"
                         :required="true"
                         @input-was-changed="onLastNameChanged">
@@ -34,7 +34,7 @@
                         name="date-of-birth"
                         label="Sünniaeg"
                         :error="error('date-of-birth')"
-                        class_name="col-6"
+                        class_name="col-sm-8 col-md-6"
                         :input_value="form.person_data['date-of-birth']"
                         :required="true"
                         help_text="Formaadis pp.kk.aaaa"
@@ -50,7 +50,7 @@
                         :input_value="form.person_data['citizenship']"
                         :required="true"
                         :values="form.countries"
-                        class_name="col-4"
+                        class_name="col-sm-8 col-md-4"
                         @input-was-changed="onCitizenshipChanged">
                 </form-select>
             </div>
@@ -63,7 +63,7 @@
                         name="address"
                         label="Elukoha aadress (tänav, maja, korter, linn)"
                         :error="error('address')"
-                        class_name="col-12"
+                        class_name="col-sm-12"
                         :input_value="form.person_data['address']"
                         @input-was-changed="onAddressChanged">
                 </form-input>
@@ -77,7 +77,7 @@
                         :input_value="form.person_data['county']"
                         :required="true"
                         :values="form.counties"
-                        class_name="col-4"
+                        class_name="col-sm-8 col-md-4"
                         @input-was-changed="onCountyChanged">
                 </form-select>
             </div>
@@ -87,8 +87,8 @@
                         name="zip-code"
                         label="Postiindeks"
                         :error="error('zip-code')"
-                        class_name="col"
-                        input_class="col-3"
+                        class_name="col-sm-6 col-md-4"
+                        input_class="col"
                         :input_value="form.person_data['zip-code']"
                         @input-was-changed="onZipCodeChanged">
                 </form-input>
@@ -104,7 +104,7 @@
                         :error="error('contact-option')"
                         :input_value="form.person_data['contact-option']"
                         :values="form.contact_options"
-                        class_name="col col-auto"
+                        class_name="col-sm-8 col-md-6"
                         @input-was-changed="onContactOptionChanged">
                 </form-select>
             </div>
@@ -126,8 +126,8 @@
                         name="victim-registry-code"
                         label="Kannatanu registri kood"
                         :error="error('victim-registry-code')"
-                        class_name="col"
-                        input_class="col-4"
+                        class_name="col-sm-12 col-md-6"
+                        input_class="col-sm-12 col-md-6"
                         :input_value="form.get('person_data', 'victim-registry-code')"
                         @input-was-changed="onVictimRegistryCodeChanged">
                 </form-input>

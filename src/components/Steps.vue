@@ -1,6 +1,6 @@
 <template>
 
-    <div class="steps col-6">
+    <div class="steps col-md-12">
 
         <ol class="step-tabs">
 
