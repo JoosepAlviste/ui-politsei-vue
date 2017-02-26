@@ -14,7 +14,18 @@ class Form {
             'victim-registry-code': '',
         };
         this.event_info = {};
-        this.errors = new Errors();
+        this.counties = [
+            { value: 1, text: 'Lääne-Virumaa' },
+            { value: 2, text: 'Harjumaa' },
+            { value: 3, text: 'Ida-Virumaa' },
+        ];
+        this.countries = [
+            { value: 'est', text: 'Estonia' },
+            { value: 'rus', text: 'Russia' },
+            { value: 'other', text: 'Other' },
+        ];
+
+        this.errors = new Errors(this);
     }
 
     set(step, name, value) {

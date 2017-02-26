@@ -36,6 +36,7 @@
                         :error="error('date-of-birth')"
                         class_name="col-6"
                         :input_value="form.person_data['date-of-birth']"
+                        :required="true"
                         help_text="Formaadis pp.kk.aaaa"
                         @input-was-changed="onDateOfBirthChanged">
                 </form-input>
@@ -48,7 +49,7 @@
                         :error="error('citizenship')"
                         :input_value="form.person_data['citizenship']"
                         :required="true"
-                        :values="countries"
+                        :values="form.countries"
                         class_name="col col-auto"
                         @input-was-changed="onCitizenshipChanged">
                 </form-select>
@@ -66,6 +67,19 @@
                         :input_value="form.person_data['address']"
                         @input-was-changed="onAddressChanged">
                 </form-input>
+            </div>
+
+            <div class="row">
+                <form-select
+                        name="county"
+                        label="Maakond"
+                        :error="error('county')"
+                        :input_value="form.person_data['county']"
+                        :required="true"
+                        :values="form.counties"
+                        class_name="col col-auto"
+                        @input-was-changed="onCountyChanged">
+                </form-select>
             </div>
 
             <div class="row">
@@ -128,15 +142,9 @@
 
         data() {
             return {
+                this_step: 'person_data',
                 previous_step: '',
                 next_step: 'event_info',
-                this_step: 'person_data',
-
-                countries: [
-                    { value: 'est', text: 'Estonia' },
-                    { value: 'rus', text: 'Russia' },
-                    { value: 'other', text: 'Other' },
-                ],
             };
         },
 
@@ -172,6 +180,10 @@
 
             onVictimRegistryCodeChanged(victimRegistryCode) {
                 this.set('victim-registry-code', victimRegistryCode);
+            },
+
+            onCountyChanged(county) {
+                this.set('county', county);
             }
         }
     }
