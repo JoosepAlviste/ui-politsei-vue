@@ -1,181 +1,181 @@
 // Bootstrap
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
+
 .required:after {
   content: '*';
   color: $red;
 }
 
+
 .has-success .form-control-label {
   color: $gray-dark;
 }
+
 
 .card {
   margin-bottom: 20px;
 }
 
+
 .card-header {
   padding: 0.9rem 1.25rem;
 
-    .card-title {
-      margin-bottom: 0;
-    }
+  .card-title {
+    margin-bottom: 0;
+  }
 }
 
-  /*---------------------*\
-    #STEPS
-  \*---------------------*/
 
-  .steps {
-    margin-top: 40px;
-  }
+/*---------------------*\
+  #STEPS
+\*---------------------*/
 
-  .step-tabs {
-    list-style: none;
-    margin: 0 0 20px 0;;
-    padding: 0;
-    display: table;
-    table-layout: fixed;
-    width: 100%;
-    color: darken($gray-lighter, 40%);
+.steps {
+  margin-top: 40px;
+}
 
-    > li {
+
+.step-tabs {
+  list-style: none;
+  margin: 0 0 20px 0;;
+  padding: 0;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  color: darken($gray-lighter, 40%);
+
+  > li {
+    position: relative;
+    display: table-cell;
+    text-align: center;
+    font-size: 0.8em;
+    cursor: pointer;
+
+    &:hover {
+      color: darken($gray-lighter, 50%);
+    }
+
+    &:before {
+      content: attr(data-step);
+      display: block;
+      margin: 0 auto;
+      background: darken($gray-lighter, 5%);
+      width: 3em;
+      height: 3em;
+      text-align: center; //IE8 doesn't inherit this style
+      margin-bottom: 0.25em;
+      line-height: 3em;
+      border-radius: 100%;
       position: relative;
-      display: table-cell;
-      text-align: center;
-      font-size: 0.8em;
-      cursor: pointer;
+      z-index: 2;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      background: darken($gray-lighter, 5%);
+      width: 100%;
+      height: 0.4em;
+      top: 1.3em;
+      left: 50%;
+      margin-left: 1.5em \9
+    ;
+      z-index: -1;
+    }
+
+    &:last-child:after {
+      display: none;
+    }
+
+    &.is-complete {
+      color: $green;
 
       &:hover {
-        color: darken($gray-lighter, 50%);
+        color: darken($green, 10%);
+
+        &:before {
+          background: darken($green, 10%);
+        }
+      }
+
+      &:before,
+      &:after {
+        color: #ffffff;
+        background: $green;
+      }
+
+    }
+
+    &.is-active {
+      color: $green;
+
+      &:hover {
+        color: darken($green, 10%);
+
+        &:before {
+          background: darken($green, 10%);
+        }
       }
 
       &:before {
-        content: attr(data-step);
-        display: block;
-        margin: 0 auto;
-        background: darken($gray-lighter, 5%);
-        width: 3em;
-        height: 3em;
-        text-align: center; //IE8 doesn't inherit this style
-        margin-bottom: 0.25em;
-        line-height: 3em;
-        border-radius: 100%;
-        position: relative;
-        z-index: 2;
-      }
-
-      &:after {
-        content: '';
-        position: absolute;
-        display: block;
-        background: darken($gray-lighter, 5%);
-        width: 100%;
-        height: 0.4em;
-        top: 1.3em;
-        left: 50%;
-        margin-left: 1.5em\9;
-        z-index: -1;
-      }
-
-      &:last-child:after {
-        display: none;
-      }
-
-      &.is-complete {
-        color: $green;
-
-        &:hover {
-          color: darken($green, 10%);
-        }
-
-        &:before,
-        &:after {
-          color: #FFF;
-          background: $green;
-        }
-
-      }
-
-      &.is-active {
-        color: $green;
-
-        &:hover {
-          color: darken($green, 10%);
-        }
-
-        &:before {
-          color: #FFF;
-          background: $green;
-        }
-
+        color: #ffffff;
+        background: $green;
       }
 
     }
+
   }
+}
 
-  .addBtnContainer {
-    justify-content: center;
 
-    .btn {
-      color: #FFFFFF;
+.addBtnContainer {
+  justify-content: center;
 
-      &:hover,
-      &:focus {
-        color: #FFFFFF;
-      }
+  .btn {
+    color: #ffffff;
+
+    &:hover,
+    &:focus {
+      color: #ffffff;
     }
   }
+}
 
-  .steps-buttons {
-    justify-content: space-between;
 
-    .btn-success {
-      color: #FFFFFF;
-      margin-left: auto;
+.steps-buttons {
+  justify-content: space-between;
 
-      &:hover,
-      &:focus {
-        color: #FFFFFF;
-      }
+  .btn-success {
+    color: #ffffff;
+    margin-left: auto;
+
+    &:hover,
+    &:focus {
+      color: #ffffff;
     }
   }
+}
 
 
-  /*---------------------*\
-    #PROPERTIES
-  \*---------------------*/
+/*---------------------*\
+  #PROPERTIES
+\*---------------------*/
 
-  .property-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.property-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    .card-title {
-      flex-grow: 1;
-      margin-bottom: 0;
-    }
+  .card-title {
+    flex-grow: 1;
+    margin-bottom: 0;
   }
+}
 
 
-  /*---------------------*\
-    #ANIMATIONS
-  \*---------------------*/
-
-  .slide-up-enter-active, .slide-up-leave-active {
-    transition: all 0.2s linear;
-
-    .row {
-      transition: all 0.2s linear;
-      transform: translateY(0);
-    }
-  }
-
-  .slide-up-enter, .slide-up-leave-to {
-    opacity: 0;
-
-    .row {
-      transform: translateY(-10px);
-    }
-  }
+/*---------------------*\
+  #ANIMATIONS
+\*---------------------*/
 

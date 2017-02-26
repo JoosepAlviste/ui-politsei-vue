@@ -15,7 +15,7 @@
 
             <div class="row addBtnContainer">
                 <a href="" class="btn btn-primary" @click.prevent="addProperty">
-                Lisa vara
+                    Lisa vara
                 </a>
             </div>
 
