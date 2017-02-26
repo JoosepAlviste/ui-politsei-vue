@@ -3,14 +3,13 @@
         <label class="form-control-label" :for="name" :class="{ required: required }">
             {{ label }}
         </label>
-        <div class="input-group ">
-          <span class="input-group-addon">€</span>
-          <input type="number"
-                 class="form-control"
-                 :name="name"
-                 :id="name"
-                 v-model="value">
-        </div>
+
+        <input type="number"
+               class="form-control"
+               :name="name"
+               :id="name"
+               v-model="value">
+
         <div v-if="hasError"
              class="form-control-feedback">
             {{ error }}
