@@ -2,24 +2,27 @@
 
     <div class="steps col-6">
 
-        <div class="step-tabs">
+        <ol class="step-tabs">
 
-            <button class="btn btn-primary"
-               @click.prevent="activateStep('person_data')">
+            <li class="step-btn is-complete"
+                data-step="1"
+                @click.prevent="activateStep('person_data')">
                 Isikuandmed
-            </button>
+            </li>
 
-            <button class="btn btn-primary"
-               @click.prevent="activateStep('event_info')">
+            <li class="step-btn is-active"
+                data-step="2"
+                @click.prevent="activateStep('event_info')">
                 Toimumise info
-            </button>
+            </li>
 
-            <button class="btn btn-primary"
-                    @click.prevent="activateStep('stolen_properties')">
+            <li class="step-btn"
+                data-step="3"
+                @click.prevent="activateStep('stolen_properties')">
                 Varad
-            </button>
+            </li>
 
-        </div>
+        </ol>
 
         <keep-alive>
             <component :is="currentStep"
