@@ -87,12 +87,27 @@
                         name="zip-code"
                         label="Postiindeks"
                         :error="error('zip-code')"
-                        class_name="col-3"
+                        class_name="col"
+                        input_class="col-3"
                         :input_value="form.person_data['zip-code']"
                         @input-was-changed="onZipCodeChanged">
                 </form-input>
             </div>
 
+        </card-section>
+
+        <card-section>
+            <div class="row">
+                <form-select
+                        name="contact-option"
+                        label="Sobiv viis kontakteerumiseks"
+                        :error="error('contact-option')"
+                        :input_value="form.person_data['contact-option']"
+                        :values="form.contact_options"
+                        class_name="col col-auto"
+                        @input-was-changed="onContactOptionChanged">
+                </form-select>
+            </div>
         </card-section>
 
         <card-section>
@@ -111,7 +126,8 @@
                         name="victim-registry-code"
                         label="Kannatanu registri kood"
                         :error="error('victim-registry-code')"
-                        class_name="col-4"
+                        class_name="col"
+                        input_class="col-4"
                         :input_value="form.get('person_data', 'victim-registry-code')"
                         @input-was-changed="onVictimRegistryCodeChanged">
                 </form-input>
@@ -184,6 +200,10 @@
 
             onCountyChanged(county) {
                 this.set('county', county);
+            },
+
+            onContactOptionChanged(contactOption) {
+                this.set('contact-option', contactOption);
             }
         }
     }

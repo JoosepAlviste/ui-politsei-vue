@@ -13,12 +13,12 @@ class Errors {
 
         for (let field in this.form.person_data) {
             if (this.form.person_data.hasOwnProperty(field)) {
-                this.person_data[field] = this.form.person_data[field];
+                this.person_data[field] = '';
             }
         }
         for (let field in this.form.event_info) {
             if (this.form.event_info.hasOwnProperty(field)) {
-                this.event_info[field] = this.form.event_info[field];
+                this.event_info[field] = '';
             }
         }
     }

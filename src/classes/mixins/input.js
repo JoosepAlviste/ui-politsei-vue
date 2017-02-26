@@ -8,11 +8,12 @@ module.exports = {
         help_text: { required: false, default: '' },
         input_value: { required: false, default: '' },
         required: { required: false, default: '' },
+        input_class: { required: false, default: '' },
     },
 
     data() {
         return {
-            value: null,
+            value: this.input_value,
             hasTyped: false,
         };
     },

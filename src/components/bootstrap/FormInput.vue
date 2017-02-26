@@ -6,7 +6,7 @@
 
         <input type="text"
                class="form-control"
-               :class="{ 'form-control-danger': hasError, 'form-control-success': !hasError && hasTyped }"
+               :class="inputClass"
                :name="name"
                :id="name"
                :required="true"
@@ -34,5 +34,16 @@
         props: {
             type: { required: false, default: 'text' },
         },
+
+        computed: {
+            inputClass() {
+                return (this.hasError
+                    ? 'form-control-danger'
+                    : this.hasTyped
+                        ? 'form-control-success'
+                        : ''
+                ) + ' ' + this.input_class;
+            }
+        }
     }
 </script>
