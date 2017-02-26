@@ -65,6 +65,11 @@ class Form {
                     errorMessage = 'Nimetus on kohustuslik!';
                 }
             }
+            if (name === 'year_bought'){
+                if (this[step][index][name] < 1800){
+                  errorMessage = 'Soetamise aasta peab olema suurem kui 1800';
+                }
+            }
         }
 
         if (typeof index !== 'undefined') {

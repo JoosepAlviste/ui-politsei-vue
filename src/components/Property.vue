@@ -25,6 +25,24 @@
                             :required="true"
                             @input-was-changed="onNameChanged">
                     </form-input>
+                    <form-input
+                            :name="'property[' + nr + '][year_bought]'"
+                            label="Soetamise aasta"
+                            :error="errors['year_bought']"
+                            class_name="col"
+                            :input_value="property.year_bought"
+                            :required="false"
+                            @input-was-changed="onYearBoughtChanged">
+                    </form-input>
+                    <form-money
+                              :name="'property[' + nr + '][property_value]'"
+                            label="Ligikaudne hetkeväärtus"
+                            :error="errors['property_value']"
+                            class_name="col"
+                            :input_value="property.property_value"
+                            :required="false"
+                            @input-was-changed="onValueChanged">
+                    </form-money>
 
                 </div>
             </card-section>
@@ -36,6 +54,7 @@
 <script>
     import CardSection from './CardSection.vue';
     import FormInput from './bootstrap/FormInput.vue';
+    import FormMoney from './bootstrap/FormMoney.vue';
 
     export default {
 
@@ -59,6 +78,10 @@
                 this.property.name = name;
                 this.form.validate('stolen_properties', 'name', this.nr - 1);
             },
+            onYearBoughtChanged(year_bought){
+                this.property.year_bought = year_bought;
+                this.form.validate('stolen_properties', 'year_bought', this.nr - 1);
+            }
         },
     }
 </script>
