@@ -1,9 +1,9 @@
 <template>
-    <div class="form-group" :class="[ errorClass, customClass, successClass ]">
+    <div class="form-group col-md-5" :class="[ errorClass, customClass, successClass ]">
         <label class="form-control-label" :for="name" :class="{ required: required }">
             {{ label }}
         </label>
-        <div class="input-group">
+        <div class="input-group ">
           <span class="input-group-addon">€</span>
           <input type="number"
                  class="form-control"
@@ -28,6 +28,15 @@
 
     export default {
         mixins: [ Input ],
-
+        computed: {
+            inputClass() {
+                return (this.hasError
+                    ? 'form-control-danger'
+                    : this.hasTyped
+                        ? 'form-control-success'
+                        : ''
+                ) + ' ' + this.input_class;
+            }
+        }
     }
 </script>

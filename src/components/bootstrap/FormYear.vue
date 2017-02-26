@@ -9,7 +9,7 @@
                :name="name"
                :id="name"
                v-model="value">
-      
+
         <div v-if="hasError"
              class="form-control-feedback">
             {{ error }}
