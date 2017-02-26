@@ -4,9 +4,9 @@
 
         <div class="card-header">
 
-            <h4 class="card-title text-center">
+            <h2 class="card-title text-center">
                 {{ title }}
-            </h4>
+            </h2>
         </div>
 
         <div class="list-group list-group-flush">
@@ -24,7 +24,7 @@
 
                     <a v-if="hasNext"
                        @click.prevent="$emit('next-step')"
-                       class="btn btn-success" href="#">
+                       class="btn btn-primary" href="#">
                         Järgmine leht
                     </a>
 

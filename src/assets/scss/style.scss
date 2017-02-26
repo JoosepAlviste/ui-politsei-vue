@@ -1,5 +1,11 @@
 // Bootstrap
+$brand_primary: #007DC3;
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+
+body {
+  min-height: 100vh;
+  background-color: $gray-lightest;
+}
 
 .required:after {
   content: '*';
@@ -83,30 +89,30 @@
       }
 
       &.is-complete {
-        color: $green;
+        color: $brand-primary;
 
         &:hover {
-          color: darken($green, 10%);
+          color: darken($brand-primary, 15%);
         }
 
         &:before,
         &:after {
           color: #FFF;
-          background: $green;
+          background: $brand-primary;
         }
 
       }
 
       &.is-active {
-        color: $green;
+        color: $brand-primary;
 
         &:hover {
-          color: darken($green, 10%);
+          color: darken($brand-primary, 15%);
         }
 
         &:before {
           color: #FFF;
-          background: $green;
+          background: $brand-primary;
         }
 
       }
@@ -130,6 +136,7 @@
   .steps-buttons {
     justify-content: space-between;
 
+    .btn-primary,
     .btn-success {
       color: #FFFFFF;
       margin-left: auto;
@@ -179,3 +186,52 @@
     }
   }
 
+  /*----------------------*\
+    #RESPONSIVENESS
+  \*----------------------*/
+
+@media (max-width: 768px) {
+
+  .steps {
+    padding: 0;
+  }
+
+  .steps-buttons {
+    flex-direction: column;
+    align-items: stretch;
+
+    .btn-success,
+    .btn-primary {
+      color: #FFFFFF;
+      margin-top: 10px;
+      margin-left: 0;
+      order: 1;
+
+      &:hover,
+      &:focus {
+        color: #FFFFFF;
+      }
+    }
+
+    .btn-secondary {
+      order: 2;
+      margin-top: 10px;
+    }
+  }
+
+  .card-header {
+    padding: 0.5rem 1rem;
+
+    .card-title {
+      margin-bottom: 0;
+    }
+
+    .close {
+      padding: 8px;
+    }
+  }
+
+  .list-group-item .card-block {
+    padding: 0;
+  }
+}

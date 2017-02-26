@@ -1,6 +1,6 @@
 <template>
 
-    <div class="steps col-6">
+    <div class="steps col-sm-12 col-md-6">
 
         <step-tabs
                 :active_tab="currentStep"
