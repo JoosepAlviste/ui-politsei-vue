@@ -14,6 +14,11 @@
                 Toimumise info
             </button>
 
+            <button class="btn btn-primary"
+                    @click.prevent="activateStep('stolen_property')">
+                Varad
+            </button>
+
         </div>
 
         <keep-alive>
@@ -31,6 +36,7 @@
 <script>
     import PersonData from '../steps/PersonData.vue';
     import EventInfo from '../steps/EventInfo.vue';
+    import StolenProperty from '../steps/StolenProperty.vue';
 
     export default {
 
@@ -40,7 +46,8 @@
 
         components: {
             person_data: PersonData,
-            event_info: EventInfo
+            event_info: EventInfo,
+            stolen_property: StolenProperty,
         },
 
         data() {

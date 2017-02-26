@@ -10,6 +10,9 @@ class Errors {
 
         this.person_data = { };
         this.event_info = { };
+        this.stolen_properties = [ ];
+        this.perps = [ ];
+        this.witnesses = [ ];
 
         for (let field in this.form.person_data) {
             if (this.form.person_data.hasOwnProperty(field)) {

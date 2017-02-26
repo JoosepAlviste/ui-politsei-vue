@@ -101,6 +101,10 @@ class Form {
             'contact-option': 'email',
         };
         this.event_info = { };
+
+        this.stolen_properties = [ ];
+        this.perps = [ ];
+        this.witnesses = [ ];
     }
 
     exists(val) {
@@ -109,6 +113,41 @@ class Form {
 
     isNumeric(val) {
         return val === null || val.length === 0 || /^\d+$/.test(val);
+    }
+
+    addStolenProperty() {
+        this.stolen_properties.push({
+            name: '',
+            year_of_acquiring: null,
+            value: null,
+            in_locked_area: false,
+            special_indicators: '',
+            property_exists_time: null,
+            property_lost_time: null,
+        });
+    }
+
+    removeStolenProperty(index) {
+        this.stolen_properties.splice(index, 1);
+    }
+
+    addPerp() {
+        this.perps.push({
+            first_name: '',
+            last_name: '',
+            date_of_birth: null,
+            personal_code: null,
+            citizenship: null,
+            profession: '',
+            address: '',
+            email: '',
+            phone: '',
+            special_indicators: '',
+        });
+    }
+
+    removePerp(index) {
+        this.perps.splice(index, 1);
     }
 }
 
