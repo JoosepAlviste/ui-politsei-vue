@@ -169,6 +169,18 @@ class Form {
             phone: '',
             special_indicators: '',
         });
+        this.errors.perpetrators.push({
+            first_name: '',
+            last_name: '',
+            date_of_birth: '',
+            personal_code: '',
+            citizenship: '',
+            profession: '',
+            address: '',
+            email: '',
+            phone: '',
+            special_indicators: '',
+        });
     }
 
     removePerpetrator(index) {

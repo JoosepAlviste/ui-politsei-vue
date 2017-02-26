@@ -57,7 +57,6 @@
             },
 
             error(index) {
-                console.log(this.form.errors.perpetrators);
                 return this.form.errors.perpetrators[index];
             }
         }
