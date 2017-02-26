@@ -35,6 +35,10 @@
                     {
                         slug: 'stolen_properties',
                         name: 'Varad',
+                    },
+                    {
+                        slug: 'perpetrators',
+                        name: 'Süüdistatavad'
                     }
                 ],
             };

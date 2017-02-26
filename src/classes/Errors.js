@@ -11,7 +11,7 @@ class Errors {
         this.person_data = { };
         this.event_info = { };
         this.stolen_properties = [ ];
-        this.perps = [ ];
+        this.perpetrators = [ ];
         this.witnesses = [ ];
 
         for (let field in this.form.person_data) {

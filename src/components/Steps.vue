@@ -24,6 +24,7 @@
     import EventInfo from '../steps/EventInfo.vue';
     import StolenProperties from '../steps/StolenProperties.vue';
     import StepTabs from './StepTabs.vue';
+    import Perpetrators from '../steps/Perpetrators.vue';
 
     export default {
 
@@ -35,7 +36,7 @@
             person_data: PersonData,
             event_info: EventInfo,
             stolen_properties: StolenProperties,
-
+            perpetrators: Perpetrators,
             StepTabs,
         },
 

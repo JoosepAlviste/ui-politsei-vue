@@ -118,7 +118,7 @@ class Form {
         this.event_info = { };
 
         this.stolen_properties = [ ];
-        this.perps = [ ];
+        this.perpetrators = [ ];
         this.witnesses = [ ];
     }
 
@@ -156,8 +156,8 @@ class Form {
         this.errors.stolen_properties.splice(index, 1);
     }
 
-    addPerp() {
-        this.perps.push({
+    addPerpetrator() {
+        this.perpetrators.push({
             first_name: '',
             last_name: '',
             date_of_birth: null,
@@ -171,8 +171,8 @@ class Form {
         });
     }
 
-    removePerp(index) {
-        this.perps.splice(index, 1);
+    removePerpetrator(index) {
+        this.perpetrators.splice(index, 1);
     }
 }
 
