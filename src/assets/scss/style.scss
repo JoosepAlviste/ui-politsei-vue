@@ -1,4 +1,5 @@
 // Bootstrap
+$brand_primary: #007DC3;
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
 body {
@@ -94,48 +95,55 @@ body {
     }
 
     &.is-complete {
-      color: $green;
+      color: $brand-primary;
 
       &:hover {
-        color: darken($green, 10%);
+        color: darken($brand-primary, 10%);
 
         &:before {
-          background: darken($green, 10%);
+          background: darken($brand-primary, 10%);
         }
       }
 
       &:before,
       &:after {
         color: #ffffff;
-        background: $green;
+        background: $brand-primary;
       }
-
     }
 
     &.is-active {
-      color: $green;
+      color: $brand-primary;
 
       &:hover {
-        color: darken($green, 10%);
+        color: darken($brand-primary, 15%);
 
         &:before {
-          background: darken($green, 10%);
+          background: darken($brand-primary, 10%);
         }
       }
 
       &:before {
-        color: #ffffff;
-        background: $green;
+        color: #FFF;
+        background: $brand-primary;
       }
-
     }
 
+    &:before {
+      background: $gray-lighter;
+    }
   }
 }
 
 
 .addBtnContainer {
   justify-content: center;
+
+  .btn-primary,
+  .btn-success {
+    color: #ffffff;
+    margin-left: auto;
+  }
 
   .btn {
     color: #ffffff;
@@ -198,7 +206,8 @@ body {
     flex-direction: column;
     align-items: stretch;
 
-    .btn-success {
+    .btn-success,
+    .btn-primary {
       color: #FFFFFF;
       margin-top: 10px;
       margin-left: 0;
