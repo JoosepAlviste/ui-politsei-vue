@@ -34,16 +34,5 @@
         props: {
             type: { required: false, default: 'text' },
         },
-
-        computed: {
-            inputClass() {
-                return (this.hasError
-                    ? 'form-control-danger'
-                    : this.hasTyped
-                        ? 'form-control-success'
-                        : ''
-                ) + ' ' + this.input_class;
-            }
-        }
     }
 </script>

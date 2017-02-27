@@ -20,7 +20,7 @@ module.exports = {
 
     computed: {
         hasError() {
-            return this.error !== null && this.error.length > 0;
+            return this.error !== null && this.error.length > 0 && this.error !== 'dont-show-success';
         },
 
         errorClass() {
@@ -28,7 +28,7 @@ module.exports = {
         },
 
         successClass() {
-            return !this.hasError && this.hasTyped ? 'has-success' : '';
+            return !this.hasError && this.hasTyped && this.error !== 'dont-show-success' ? 'has-success' : '';
         },
 
         customClass() {
@@ -38,6 +38,15 @@ module.exports = {
         hasHelp() {
             return this.help_text.length > 0;
         },
+
+        inputClass() {
+            return (this.hasError
+                        ? 'form-control-danger'
+                        : this.hasTyped && this.error !== 'dont-show-success'
+                            ? 'form-control-success'
+                            : ''
+                ) + ' ' + this.input_class;
+        }
     },
 
     watch: {
