@@ -57,7 +57,6 @@
             },
 
             error(index) {
-                console.log(this.form.errors.stolen_properties);
                 return this.form.errors.stolen_properties[index];
             }
         }

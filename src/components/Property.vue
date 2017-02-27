@@ -1,7 +1,7 @@
 <template>
     <div class="card">
 
-        <div class="card-header property-header" @click="isOpen = !isOpen">
+        <div class="card-header removable-header property-header" @click="isOpen = !isOpen">
             <h4 class="card-title text-center">
                 Vara #{{ nr }}
             </h4>
@@ -14,7 +14,7 @@
 
         <div v-if="isOpen">
             <card-section>
-              <div class="row">
+                <div class="row">
 
                     <form-input
                             :name="'property[' + nr + '][name]'"
@@ -25,21 +25,22 @@
                             :required="true"
                             @input-was-changed="onNameChanged">
                     </form-input>
-              </div>
-              <div class="row">
+                </div>
+                <div class="row">
                     <form-year
                             :name="'property[' + nr + '][year_of_acquiring]'"
                             label="Soetamise aasta"
                             :error="errors['year_of_acquiring']"
                             class_name="col"
+                            input_class="col-md-4 col-sm-6"
                             :input_value="property.year_of_acquiring"
                             :required="false"
                             @input-was-changed="onYearBoughtChanged">
                     </form-year>
                 </div>
-              <div class="row">
+                <div class="row">
                     <form-money
-                              :name="'property[' + nr + '][value]'"
+                            :name="'property[' + nr + '][value]'"
                             label="Ligikaudne hetkeväärtus"
                             :error="errors['value']"
                             class_name="col"
@@ -47,10 +48,10 @@
                             :required="false"
                             @input-was-changed="onValueChanged">
                     </form-money>
-              </div>
-              <div class="row">
+                </div>
+                <div class="row">
                     <form-comment
-                              :name="'property[' + nr + '][special_indicators]'"
+                            :name="'property[' + nr + '][special_indicators]'"
                             label="Tundemärgid ja eritunnused (sh raaminumber, seerianumber, IMEI-kood jm)"
                             :error="errors['special_indicators']"
                             class_name="col"
@@ -58,7 +59,7 @@
                             :required="false"
                             @input-was-changed="onCommentChanged">
                     </form-comment>
-              </div>
+                </div>
             </card-section>
         </div>
 
@@ -74,13 +75,13 @@
 
     export default {
 
-        components: { CardSection, FormInput, FormMoney, FormYear, FormComment },
+        components: {CardSection, FormInput, FormMoney, FormYear, FormComment},
 
         props: {
-            property: { required: true },
-            nr: { required: true },
-            errors: { required: true },
-            form: { required: true },
+            property: {required: true},
+            nr: {required: true},
+            errors: {required: true},
+            form: {required: true},
         },
 
         data() {

@@ -1,7 +1,7 @@
 <template>
     <div class="card">
 
-        <div class="card-header perpetrator-header" @click="isOpen = !isOpen">
+        <div class="card-header removable-header perpetrator-header" @click="isOpen = !isOpen">
             <h4 class="card-title text-center">
                 Süüteo toime pannud isik #{{ nr }}
             </h4>

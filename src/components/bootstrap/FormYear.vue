@@ -5,7 +5,8 @@
         </label>
 
         <input type="number"
-               class="form-control col-md-2"
+               class="form-control"
+               :class="inputClass"
                :name="name"
                :id="name"
                v-model="value">
@@ -27,6 +28,7 @@
 
     export default {
         mixins: [ Input ],
+
         computed: {
             inputClass() {
                 return (this.hasError

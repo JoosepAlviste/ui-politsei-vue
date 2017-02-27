@@ -20,7 +20,7 @@ module.exports = {
 
     computed: {
         hasError() {
-            return this.error.length > 0;
+            return this.error !== null && this.error.length > 0;
         },
 
         errorClass() {

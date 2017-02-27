@@ -137,23 +137,14 @@ class Form {
     }
 
     addStolenProperty() {
-        this.stolen_properties.push({
+        this.addToList('stolen_properties', {
             name: '',
-            year_of_acquiring: null,
+            year_of_acquiring: '',
             value: null,
             in_locked_area: false,
             special_indicators: '',
             property_exists_time: null,
             property_lost_time: null,
-        });
-        this.errors.stolen_properties.push({
-            name: '',
-            year_of_acquiring: '',
-            value: '',
-            in_locked_area: '',
-            special_indicators: '',
-            property_exists_time: '',
-            property_lost_time: '',
         });
     }
 
@@ -163,7 +154,7 @@ class Form {
     }
 
     addPerpetrator() {
-        this.perpetrators.push({
+        this.addToList('perpetrators', {
             first_name: '',
             last_name: '',
             date_of_birth: null,
@@ -175,13 +166,20 @@ class Form {
             phone: '',
             special_indicators: '',
         });
-        this.errors.perpetrators.push({
+    }
+
+    removePerpetrator(index) {
+        this.perpetrators.splice(index, 1);
+        this.errors.perpetrators.splice(index, 1);
+    }
+
+    addWitness() {
+        this.addToList('witnesses', {
             first_name: '',
             last_name: '',
-            date_of_birth: '',
-            personal_code: '',
-            citizenship: '',
-            profession: '',
+            date_of_birth: null,
+            personal_code: null,
+            citizenship: null,
             address: '',
             email: '',
             phone: '',
@@ -189,9 +187,15 @@ class Form {
         });
     }
 
-    removePerpetrator(index) {
-        this.perpetrators.splice(index, 1);
-        this.errors.perpetrators.splice(index, 1);
+    addToList(listName, object) {
+        this[listName].push(object);
+        let errorObj = { };
+
+        for (let property in object) {
+            errorObj[property] = '';
+        }
+
+        this.errors[listName].push(errorObj);
     }
 }
 
