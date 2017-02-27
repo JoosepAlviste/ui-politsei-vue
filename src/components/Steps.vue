@@ -1,34 +1,23 @@
 <template>
 
     <div class="container-fluid d-flex justify-content-center">
-        <div class="steps col-sm-12 col-md-8">
+        <div class="steps col-sm-12 col-md-8" v-if="!isSubmittedStep">
 
-            <step-tabs v-if="!formSubmitted"
-                    :active_tab="currentStep"
-                    @tab-was-activated="activateStep">
-            </step-tabs>
+            <step-tabs></step-tabs>
 
         </div>
 
         <div class="cardContainer justify-content-center col-sm-12 col-md-6">
-            <keep-alive>
-                <transition name="steps-swipe"
-                            enter-active-class="animated fadeInRight"
-                            leave-active-class="animated fadeOutLeft">
-                    <component class="step"
-                               :is="currentStep"
-                               :form="form"
-                               @step-was-activated="activateStep"
-                               @form-was-submitted="submitForm">
-                    </component>
-                </transition>
-            </keep-alive>
+
+            <transition name="steps-swipe"
+                        enter-active-class="animated fadeInRight"
+                        leave-active-class="animated fadeOutLeft">
+                <router-view class="step" :form="form"></router-view>
+            </transition>
+
 
             <!-- TODO: Fix absolute height somehow better -->
-            <component class="step hidden"
-                       :is="currentStep"
-                       :form="form">
-            </component>
+            <router-view class="step hidden" :form="form"></router-view>
 
         </div>
     </div>
@@ -68,24 +57,12 @@
         data() {
             return {
                 currentStep: 'intro',
-                formSubmitted: false
             };
         },
 
-        methods: {
-
-            activateStep(stepName) {
-                this.currentStep = stepName;
-                setTimeout(() => {
-                    window.jump('body', {
-                        duration: 200,
-                    });
-                }, 100);
-            },
-
-            submitForm() {
-                this.activateStep('submitted_step');
-                this.formSubmitted = true;
+        computed: {
+            isSubmittedStep() {
+                return this.$route.path === '/submitted_step';
             }
         }
     }

@@ -16,23 +16,25 @@
             <card-section>
 
                 <div class="col form-inline steps-buttons">
-                    <a v-if="hasPrevious"
-                       @click.prevent="$emit('previous-step')"
-                       class="btn btn-secondary" href="#">
+
+                    <router-link v-if="hasPrevious"
+                                 :to="previousLink"
+                                 class="btn btn-secondary">
                         Tagasi
-                    </a>
+                    </router-link>
 
-                    <a v-if="hasNext"
-                       @click.prevent="$emit('next-step')"
-                       class="btn btn-primary" href="#">
+                    <router-link v-if="hasNext"
+                                 :to="nextLink"
+                                 class="btn btn-primary">
                         Edasi
-                    </a>
+                    </router-link>
 
-                    <a v-else
-                       @click.prevent="$emit('submit')"
-                       class="btn btn-success" href="#">
+                    <router-link v-else
+                                 to="submitted_step"
+                                 class="btn btn-success">
                         Kinnita
-                    </a>
+                    </router-link>
+
                 </div>
 
             </card-section>
@@ -61,6 +63,14 @@
 
             hasNext() {
                 return this.$parent.next_step.length > 0;
+            },
+
+            previousLink() {
+                return this.$parent.previous_step;
+            },
+
+            nextLink() {
+                return this.$parent.next_step;
             }
         }
     }

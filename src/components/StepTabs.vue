@@ -1,58 +1,26 @@
 <template>
-
     <ol class="step-tabs">
 
-        <li v-for="(tab, index) in tabs"
-            class="step-btn"
-            :class="{ 'is-active': active_tab === tab.slug, 'is-complete': isComplete(tab) }"
-            :data-step="index + 1"
-            @click.prevent="$emit('tab-was-activated', tab.slug)">
-            {{ tab.name }}
-        </li>
+        <router-link v-for="(tab, index) in tabs" v-if="tab.name !== 'submitted_step'"
+                     :to="tab.path"
+                     class="step-btn"
+                     :class="{ 'is-complete': isComplete(tab) }"
+                     :data-step="index + 1"
+                     tag="li">
+            {{ tab.title }}
+        </router-link>
 
     </ol>
-
 </template>
 
 <script>
-    export default {
+    import routes from '../routes';
 
-        props: {
-            active_tab: { required: true },
-        },
+    export default {
 
         data() {
             return {
-                tabs: [
-                    {
-                        slug: 'intro',
-                        name: 'Alusta',
-                    },
-                    {
-                        slug: 'person_data',
-                        name: 'Isikuandmed',
-                    },
-                    {
-                        slug: 'event_info',
-                        name: 'Toimunu info',
-                    },
-                    {
-                        slug: 'stolen_properties',
-                        name: 'Varad',
-                    },
-                    {
-                        slug: 'perpetrators',
-                        name: 'Süüdistatavad'
-                    },
-                    {
-                        slug: 'witnesses',
-                        name: 'Tunnistajad'
-                    },
-                    {
-                        slug: 'confirm_step',
-                        name: 'Kinnita'
-                    }
-                ],
+                tabs: routes
             };
         },
 
@@ -61,11 +29,11 @@
                 let complete = false;
                 let activeSeen = false;
                 this.tabs.forEach(tabLoop => {
-                    if (tabLoop.slug === this.active_tab) {
+                    if (tabLoop.path === this.$route.path || tabLoop.alias ===  this.$route.path) {
                         activeSeen = true;
                     }
 
-                    if (!activeSeen && tab.slug === tabLoop.slug) {
+                    if (!activeSeen && tab.name === tabLoop.name) {
                         complete = true;
                     }
                 });
