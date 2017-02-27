@@ -570,6 +570,9 @@ class Form {
             'victim-registry-code': '',
             'county': '',
             'contact-option': 'email',
+            'email': '',
+            'phone': '',
+            'contact-time': ''
         };
         this.event_info = {};
 

@@ -108,6 +108,35 @@
                         @input-was-changed="onContactOptionChanged">
                 </form-select>
             </div>
+            <div class="row">
+                <form-input v-if="form.person_data['contact-option'] == 'email'"
+                        name="email"
+                        label="E-mail"
+                        :error="error('email')"
+                        class_name="col-sm-12 col-md-6"
+                        input_class="col"
+                        :input_value="form.person_data['email']"
+                        @input-was-changed="onEmailChanged">
+                </form-input>
+                <form-input v-if="form.person_data['contact-option'] == 'phone'"
+                        name="phone"
+                        label="Telefon"
+                        :error="error('phone')"
+                        class_name="col-sm-12 col-md-6"
+                        input_class="col"
+                        :input_value="form.person_data['phone']"
+                        @input-was-changed="onPhoneChanged">
+                </form-input>
+                <form-input v-if="form.person_data['contact-option'] == 'phone'"
+                        name="contact-time"
+                        label="Sobiv aeg kontakteerumiseks"
+                        :error="error('contact-time')"
+                        class_name="col-sm-12 col-md-6"
+                        input_class="col"
+                        :input_value="form.person_data['contact-time']"
+                        @input-was-changed="onContactTimeChanged">
+                </form-input>
+            </div>
         </card-section>
 
         <card-section>
@@ -204,7 +233,19 @@
 
             onContactOptionChanged(contactOption) {
                 this.set('contact-option', contactOption);
-            }
+            },
+
+            onEmailChanged(email) {
+                this.set('email', email);
+            },
+
+            onPhoneChanged(phone) {
+                this.set('phone', phone);
+            },
+
+            onContactTimeChanged(contactTime) {
+                this.set('contact-time', contactTime);
+            },
         }
     }
 </script>
