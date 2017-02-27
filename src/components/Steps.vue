@@ -18,6 +18,13 @@
                 </component>
             </transition>
         </keep-alive>
+        
+        <!-- TODO: Fix absolute height somehow better -->
+        <component class="step hidden"
+                   :is="currentStep"
+                   :form="form"
+                   @step-was-activated="activateStep">
+        </component>
 
     </div>
 
