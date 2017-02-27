@@ -3,7 +3,7 @@
 
         <div class="card-header removable-header property-header" @click="isOpen = !isOpen">
             <h4 class="card-title text-center">
-                Vara #{{ nr }}
+                Vara #{{ nr }} <span v-if="property.name != ''"> - {{property.name}}</span>
             </h4>
 
             <button type="button" class="close" aria-label="Close"
@@ -60,6 +60,26 @@
                             @input-was-changed="onCommentChanged">
                     </form-comment>
                 </div>
+                <form-input
+                        name="property_exists_time"
+                        label="Vara valdus olemas (viimati kannatanul/teatajal ese/asi olemas)"
+                        :error="errors['property_exists_time']"
+                        class_name=""
+                        :input_value="property.property_exists_time"
+                        :required="false"
+                        help_text="Formaadis pp.kk.aaaa mm:hh"
+                        @input-was-changed="onPropertyExistsChanged">
+                </form-input>
+                <form-input
+                        name="property_lost_time"
+                        label="Vara valdusest väljaminek on tuvastatud"
+                        :error="errors['property_lost_time']"
+                        class_name=""
+                        :input_value="property.property_lost_time"
+                        :required="false"
+                        help_text="Formaadis pp.kk.aaaa mm:hh"
+                        @input-was-changed="onPropertyLostChanged">
+                </form-input>
             </card-section>
         </div>
 
@@ -106,7 +126,16 @@
             onCommentChanged(special_indicators){
                 this.property.special_indicators = special_indicators;
                 this.form.validate('stolen_properties', 'special_indicators', this.nr - 1);
+            },
+            onPropertyExistsChanged(time){
+                this.property.property_exists_time = time;
+                this.form.validate('stolen_properties', 'property_exists_time', this.nr - 1);
+            },
+            onPropertyLostChanged(time){
+                this.property.property_lost_time = time;
+                this.form.validate('stolen_properties', 'property_lost_time', this.nr - 1);
             }
+
         },
     }
 </script>
