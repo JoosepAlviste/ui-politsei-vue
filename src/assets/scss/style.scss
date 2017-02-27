@@ -67,6 +67,10 @@ body {
 
     &:hover {
       color: darken($gray-lighter, 50%);
+
+      &:before {
+        background: darken($gray-lighter, 5%);
+      }
     }
 
     &:before {
