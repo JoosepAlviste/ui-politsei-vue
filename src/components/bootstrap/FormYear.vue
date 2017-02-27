@@ -9,7 +9,8 @@
                :class="inputClass"
                :name="name"
                :id="name"
-               v-model="value">
+               v-model="value"
+               @blur="onBlurred">
 
         <div v-if="hasError"
              class="form-control-feedback">
@@ -37,6 +38,12 @@
                         ? 'form-control-success'
                         : ''
                 ) + ' ' + this.input_class;
+            }
+        },
+
+        methods: {
+            onBlurred() {
+                this.$emit('was-blurred', this.value);
             }
         }
     }

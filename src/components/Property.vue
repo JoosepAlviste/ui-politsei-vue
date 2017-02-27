@@ -35,7 +35,8 @@
                             input_class="col-md-4 col-sm-6"
                             :input_value="property.year_of_acquiring"
                             :required="false"
-                            @input-was-changed="onYearBoughtChanged">
+                            @input-was-changed="onYearBoughtChanged"
+                            @was-blurred="onYearBoughtBlurred">
                     </form-year>
                 </div>
                 <div class="row">
@@ -117,6 +118,10 @@
             },
             onYearBoughtChanged(year_of_acquiring){
                 this.property.year_of_acquiring = year_of_acquiring;
+            },
+            onYearBoughtBlurred(yearOfAcquiring) {
+                console.log('blurred');
+                this.property.year_of_acquiring = yearOfAcquiring;
                 this.form.validate('stolen_properties', 'year_of_acquiring', this.nr - 1);
             },
             onValueChanged(value){
