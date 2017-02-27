@@ -1,6 +1,7 @@
 // Bootstrap
 $brand_primary: #007DC3;
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+@import '~animate.css';
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -201,6 +202,60 @@ body {
   #ANIMATIONS
 \*---------------------*/
 
+.modal,
+.modal-dialog {
+  animation-duration: 0.35s;
+}
+
+.step {
+  animation-duration: 0.3s;
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(40px, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-40px, 0, 0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -20%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -20%, 0);
+  }
+}
 
 /*----------------------*\
   #RESPONSIVENESS
@@ -251,3 +306,4 @@ body {
     padding: 0;
   }
 }
+

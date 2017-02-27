@@ -8,10 +8,15 @@
         </step-tabs>
 
         <keep-alive>
-            <component :is="currentStep"
-                       :form="form"
-                       @step-was-activated="activateStep">
-            </component>
+            <transition name="steps-swipe"
+                        enter-active-class="animated fadeInRight"
+                        leave-active-class="animated fadeOutLeft">
+                <component class="step"
+                           :is="currentStep"
+                           :form="form"
+                           @step-was-activated="activateStep">
+                </component>
+            </transition>
         </keep-alive>
 
     </div>
@@ -58,3 +63,12 @@
         }
     }
 </script>
+
+<style lang="scss">
+
+    .step {
+        position: absolute;
+        width: 100%;
+    }
+
+</style>
