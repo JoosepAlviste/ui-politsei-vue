@@ -1,7 +1,8 @@
 <template>
     <step title="Tunnistajad"
           @next-step="$emit('step-was-activated', next_step)"
-          @previous-step="$emit('step-was-activated', previous_step)">
+          @previous-step="$emit('step-was-activated', previous_step)"
+          @submit="$emit('form-was-submitted')">
 
         <card-section>
 

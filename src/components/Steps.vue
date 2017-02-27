@@ -14,7 +14,8 @@
                 <component class="step"
                            :is="currentStep"
                            :form="form"
-                           @step-was-activated="activateStep">
+                           @step-was-activated="activateStep"
+                           @form-was-submitted="submitForm">
                 </component>
             </transition>
         </keep-alive>
@@ -22,8 +23,7 @@
         <!-- TODO: Fix absolute height somehow better -->
         <component class="step hidden"
                    :is="currentStep"
-                   :form="form"
-                   @step-was-activated="activateStep">
+                   :form="form">
         </component>
 
     </div>
@@ -32,13 +32,14 @@
 </template>
 
 <script>
+    import StepTabs from './StepTabs.vue';
+    import Intro from '../steps/Intro.vue';
     import PersonData from '../steps/PersonData.vue';
     import EventInfo from '../steps/EventInfo.vue';
     import StolenProperties from '../steps/StolenProperties.vue';
-    import StepTabs from './StepTabs.vue';
     import Perpetrators from '../steps/Perpetrators.vue';
     import Witnesses from '../steps/Witnesses.vue';
-    import Intro from '../steps/Intro.vue';
+    import SubmittedStep from '../steps/SubmittedStep.vue';
 
     export default {
 
@@ -53,6 +54,7 @@
             stolen_properties: StolenProperties,
             perpetrators: Perpetrators,
             witnesses: Witnesses,
+            submitted_step: SubmittedStep,
             StepTabs,
         },
 
@@ -71,6 +73,10 @@
                         duration: 200,
                     });
                 }, 100);
+            },
+
+            submitForm() {
+                this.activateStep('submitted_step');
             }
         }
     }
