@@ -9,7 +9,8 @@
                :class="inputClass"
                :name="name"
                :id="name"
-               v-model="value">
+               v-model="value"
+               @blur="onBlurred">
 
         <div v-if="hasError"
              class="form-control-feedback">
@@ -29,14 +30,9 @@
     export default {
         mixins: [ Input ],
 
-        computed: {
-            inputClass() {
-                return (this.hasError
-                    ? 'form-control-danger'
-                    : this.hasTyped
-                        ? 'form-control-success'
-                        : ''
-                ) + ' ' + this.input_class;
+        methods: {
+            onBlurred() {
+                this.$emit('was-blurred', this.value);
             }
         }
     }

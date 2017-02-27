@@ -19,13 +19,13 @@
                     <a v-if="hasPrevious"
                        @click.prevent="$emit('previous-step')"
                        class="btn btn-secondary" href="#">
-                        Eelmine leht
+                        Tagasi
                     </a>
 
                     <a v-if="hasNext"
                        @click.prevent="$emit('next-step')"
                        class="btn btn-primary" href="#">
-                        Järgmine leht
+                        Edasi
                     </a>
 
                     <a v-else

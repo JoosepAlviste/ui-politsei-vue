@@ -27,7 +27,7 @@
                     </form-input>
                 </div>
                 <div class="row">
-                    <form-year
+                    <form-number
                             :name="'property[' + nr + '][year_of_acquiring]'"
                             label="Soetamise aasta"
                             :error="errors['year_of_acquiring']"
@@ -35,8 +35,9 @@
                             input_class="col-md-4 col-sm-6"
                             :input_value="property.year_of_acquiring"
                             :required="false"
-                            @input-was-changed="onYearBoughtChanged">
-                    </form-year>
+                            @input-was-changed="onYearBoughtChanged"
+                            @was-blurred="onYearBoughtBlurred">
+                    </form-number>
                 </div>
                 <div class="row">
                     <form-money
@@ -90,12 +91,12 @@
     import CardSection from './CardSection.vue';
     import FormInput from './bootstrap/FormInput.vue';
     import FormMoney from './bootstrap/FormMoney.vue';
-    import FormYear from './bootstrap/FormYear.vue';
+    import FormNumber from './bootstrap/FormNumber.vue';
     import FormComment from './bootstrap/FormComment.vue';
 
     export default {
 
-        components: {CardSection, FormInput, FormMoney, FormYear, FormComment},
+        components: {CardSection, FormInput, FormMoney, FormNumber, FormComment},
 
         props: {
             property: {required: true},
@@ -117,7 +118,10 @@
             },
             onYearBoughtChanged(year_of_acquiring){
                 this.property.year_of_acquiring = year_of_acquiring;
-                this.form.validate('stolen_properties', 'year_of_acquiring', this.nr - 1);
+                this.form.validateOnTheGo('stolen_properties', 'year_of_acquiring', this.nr - 1);
+            },
+            onYearBoughtBlurred(yearOfAcquiring) {
+//                this.form.validate('stolen_properties', 'year_of_acquiring', this.nr - 1);
             },
             onValueChanged(value){
                 this.property.value = value;

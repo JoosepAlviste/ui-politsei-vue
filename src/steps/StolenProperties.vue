@@ -41,7 +41,7 @@
 
         data() {
             return {
-                next_step: '',
+                next_step: 'perpetrators',
                 previous_step: 'event_info',
                 this_step: 'stolen_properties',
             };

@@ -18,7 +18,7 @@
 
                     <form-input
                             :name="'perpetrator[' + nr + '][first_name]'"
-                            label="Nimetus"
+                            label="Eesnimi"
                             :error="errors['first_name']"
                             class_name="col-sm-12 col-md-8"
                             :input_value="perpetrator.first_name"
