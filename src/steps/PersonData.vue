@@ -159,7 +159,7 @@
         data() {
             return {
                 this_step: 'person_data',
-                previous_step: '',
+                previous_step: 'intro',
                 next_step: 'event_info',
             };
         },

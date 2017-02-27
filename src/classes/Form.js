@@ -201,6 +201,17 @@ class Form {
 
         this.errors[listName].push(errorObj);
     }
+
+    loggedInWithIdCard() {
+        this.person_data['first-name'] = 'Juhan';
+        this.person_data['last-name'] = 'Lumi';
+        this.person_data['date-of-birth'] = '04.12.1990';
+        this.person_data['citizenship'] = 'EST';
+        this.validate('person_data', 'first-name');
+        this.validate('person_data', 'last-name');
+        this.validate('person_data', 'date-of-birth');
+        this.validate('person_data', 'citizenship');
+    }
 }
 
 export default Form;

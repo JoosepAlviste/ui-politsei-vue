@@ -25,6 +25,10 @@
             return {
                 tabs: [
                     {
+                        slug: 'intro',
+                        name: 'Alusta',
+                    },
+                    {
                         slug: 'person_data',
                         name: 'Isikuandmed',
                     },
