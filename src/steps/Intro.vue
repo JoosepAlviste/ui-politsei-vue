@@ -73,7 +73,7 @@
                 this.modalShowing = false;
                 this.form.loggedInWithIdCard();
                 setTimeout(() => {
-                    this.$emit('step-was-activated', this.next_step);
+                    this.$router.push('person_data');
                 }, 300);
             }
         }
