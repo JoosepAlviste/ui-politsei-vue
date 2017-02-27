@@ -125,29 +125,51 @@ class Form {
                         errorMessage = 'Vara ei saa olla soetatud hiljem kui ' + currentYear;
                     }
                 }
+            } else if ((name === 'property_exists_time' || name === 'property_lost_time') && this.exists(this[step][index][name])){
+                let checkedVal = this[step][index][name];
+                // check format http://stackoverflow.com/questions/15491894/regex-to-validate-date-format-dd-mm-yyyy
+                if ((!checkedVal) || /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d$/.test(checkedVal)){
+                    let dateArr = checkedVal.split(".");
+    
+                    let date = new Date(dateArr[2],dateArr[1],dateArr[0]);
+                    if (date < new Date("1800-1-1")) {
+                      errorMessage = 'Kuupäev ei saa olla varem kui 01.01.1800';
+                    } else if (date > new Date()) {
+                      errorMessage = 'Kuupäev ei saa olla tulevikus';
+                    }
+                } else {
+                    errorMessage = 'Kuupäev peab olema formaadis pp.kk.aaaa'
+                }
             }
         } else if (step === 'witnesses' || step === 'perpetrators'){
-          if (name == 'personal_code'){
-            if (!/[0-9]{2}[0,1,2,4][0-9][0-9]{2}[0-9]{4}/.test(this[step][index][name]) && this[step][index][name] ){
-              errorMessage = "Ei vasta Eesti isikukoodile";
-            }
-          }else if (name === 'date_of_birth'){
-            let checkedVal = this[step][index][name];
-            // check format http://stackoverflow.com/questions/15491894/regex-to-validate-date-format-dd-mm-yyyy
-            if ((!checkedVal) || /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d$/.test(checkedVal)){
-                let dateArr = checkedVal.split(".");
-
-                let date = new Date(dateArr[2],dateArr[1],dateArr[0]);
-                if (date < new Date("1800-1-1")) {
-                  errorMessage = 'Ei sa olla sündinud varem kui 1800';
-                } else if (date > new Date()) {
-                  errorMessage = 'Vara ei saa olla sündinud tulevikus';
-                }
-            } else {
-              errorMessage = 'Sünnikuupäev peab olema formaadiss pp.kk.aaaa'
-            }
+                  if (name == 'email' && this.exists(this[step][index][name])){
+                      if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(this[step][index][name])){
+                          errorMessage = "Ebakorrektne email"
+                      }
+                  } else if (name == 'personal_code'){
+                      if (!/[0-9]{2}[0,1,2,4][0-9][0-9]{2}[0-9]{4}/.test(this[step][index][name]) && this[step][index][name] ){
+                        errorMessage = "Ei vasta Eesti isikukoodile";
+                      }
+  
+                  } else if (name === 'date_of_birth'){
+                      let checkedVal = this[step][index][name];
+                      // check format http://stackoverflow.com/questions/15491894/regex-to-validate-date-format-dd-mm-yyyy
+                      if (this.exists(checkedVal)){
+                          if (/^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d$/.test(checkedVal)){
+                              let dateArr = checkedVal.split(".");
+        
+                              let date = new Date(dateArr[2],dateArr[1],dateArr[0]);
+                              if (date < new Date("1800-1-1")) {
+                                  errorMessage = 'Ei saa olla sündinud varem kui 1800';
+                              } else if (date > new Date()) {
+                                  errorMessage = 'Ei saa olla sündinud tulevikus';
+                              }
+                          } else {
+                              errorMessage = 'Kuupäev peab olema formaadis pp.kk.aaaa'
+                          }
+                      }
+                  }
           }
-        }
 
         if (typeof index !== 'undefined') {
             this.errors[step][index][name] = errorMessage;
