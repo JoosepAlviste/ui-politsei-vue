@@ -142,12 +142,16 @@ class Form {
                 }
             }
         } else if (step === 'witnesses' || step === 'perpetrators'){
-                  if (name == 'email' && this.exists(this[step][index][name])){
+                  if (name == 'phone'){
+                      if (this.exists(this[step][index][name]) && !/^[+0-9 ]{3,20}$/.test(this[step][index][name])){
+                          errorMessage = "Palun kasutage numbreid, tühikuid ning '+' märki. 3-20 märki"
+                      }
+                  } else if (name == 'email' && this.exists(this[step][index][name])){
                       if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(this[step][index][name])){
                           errorMessage = "Ebakorrektne email"
                       }
                   } else if (name == 'personal_code'){
-                      if (!/[0-9]{2}[0,1,2,4][0-9][0-9]{2}[0-9]{4}/.test(this[step][index][name]) && this[step][index][name] ){
+                      if (!/^[1-6][0-9]{2}[0-1][0-9][0-9]{2}[0-9]{4}$/.test(this[step][index][name]) && this.exists(this[step][index][name]) ){
                         errorMessage = "Ei vasta Eesti isikukoodile";
                       }
   
