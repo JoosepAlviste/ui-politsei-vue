@@ -1,31 +1,36 @@
 <template>
 
-    <div class="steps col-sm-12 col-md-6">
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="steps col-sm-12 col-md-8">
 
-        <step-tabs
-                :active_tab="currentStep"
-                @tab-was-activated="activateStep">
-        </step-tabs>
+            <step-tabs
+                    :active_tab="currentStep"
+                    @tab-was-activated="activateStep">
+            </step-tabs>
 
-        <keep-alive>
-            <transition name="steps-swipe"
-                        enter-active-class="animated fadeInRight"
-                        leave-active-class="animated fadeOutLeft">
-                <component class="step"
-                           :is="currentStep"
-                           :form="form"
-                           @step-was-activated="activateStep"
-                           @form-was-submitted="submitForm">
-                </component>
-            </transition>
-        </keep-alive>
+        </div>
 
-        <!-- TODO: Fix absolute height somehow better -->
-        <component class="step hidden"
-                   :is="currentStep"
-                   :form="form">
-        </component>
+        <div class="cardContainer justify-content-center col-sm-12 col-md-6">
+            <keep-alive>
+                <transition name="steps-swipe"
+                            enter-active-class="animated fadeInRight"
+                            leave-active-class="animated fadeOutLeft">
+                    <component class="step"
+                               :is="currentStep"
+                               :form="form"
+                               @step-was-activated="activateStep"
+                               @form-was-submitted="submitForm">
+                    </component>
+                </transition>
+            </keep-alive>
 
+            <!-- TODO: Fix absolute height somehow better -->
+            <component class="step hidden"
+                       :is="currentStep"
+                       :form="form">
+            </component>
+
+        </div>
     </div>
 
 
@@ -40,6 +45,7 @@
     import Perpetrators from '../steps/Perpetrators.vue';
     import Witnesses from '../steps/Witnesses.vue';
     import SubmittedStep from '../steps/SubmittedStep.vue';
+    import ConfirmStep from '../steps/ConfirmStep.vue';
 
     export default {
 
@@ -54,6 +60,7 @@
             stolen_properties: StolenProperties,
             perpetrators: Perpetrators,
             witnesses: Witnesses,
+            confirm_step: ConfirmStep,
             submitted_step: SubmittedStep,
             StepTabs,
         },

@@ -1,8 +1,7 @@
 <template>
     <step title="Tunnistajad"
           @next-step="$emit('step-was-activated', next_step)"
-          @previous-step="$emit('step-was-activated', previous_step)"
-          @submit="$emit('form-was-submitted')">
+          @previous-step="$emit('step-was-activated', previous_step)">
 
         <card-section>
 
@@ -41,7 +40,7 @@
 
         data() {
             return {
-                next_step: '',
+                next_step: 'confirm_step',
                 previous_step: 'perpetrators',
                 this_step: 'witnesses',
             };

@@ -25,6 +25,10 @@ body {
   color: $red;
 }
 
+#app .d-flex {
+  flex-direction: column;
+  align-items: center;
+}
 
 .has-success .form-control-label,
 .has-danger .form-control-label {
@@ -46,6 +50,10 @@ body {
     margin-bottom: 0;
     font-family: $title-font;
   }
+}
+
+.confirm-text {
+  margin-bottom: 20px;
 }
 
 

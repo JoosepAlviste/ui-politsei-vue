@@ -579,6 +579,11 @@ class Form {
         this.stolen_properties = [];
         this.perpetrators = [];
         this.witnesses = [];
+
+        this.options = {
+            'ok-with-deal': false,
+            'info-e-toimik': false,
+        }
     }
 }
 

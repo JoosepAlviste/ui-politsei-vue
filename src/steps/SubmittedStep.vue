@@ -1,16 +1,16 @@
 <template>
     <div class="card">
 
-        <div class="card-block">
+        <div class="card-header">
             <h2 class="card-title">
-                Täname avalduse esitamast!
+                Täname!
             </h2>
 
-            <div class="card-text">
+            <div class="card-block">
 
-                <p>
-                    Teiega kontakteerutakse hiljemalt 2 tööpäeva jooksul!
-                </p>
+               <card-section>
+
+               </card-section>
 
             </div>
         </div>

@@ -1,9 +1,7 @@
 <template>
     <div id="app">
 
-        <div class="container-fluid d-flex justify-content-center">
-            <steps :form="form"></steps>
-        </div>
+        <steps :form="form"></steps>
 
     </div>
 </template>

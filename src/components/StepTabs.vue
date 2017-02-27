@@ -47,6 +47,10 @@
                     {
                         slug: 'witnesses',
                         name: 'Tunnistajad'
+                    },
+                    {
+                        slug: 'confirm',
+                        name: 'Kinnita'
                     }
                 ],
             };

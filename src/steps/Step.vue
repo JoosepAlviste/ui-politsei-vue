@@ -30,8 +30,8 @@
 
                     <a v-else
                        @click.prevent="$emit('submit')"
-                       class="btn btn-primary" href="#">
-                        Esita avaldus
+                       class="btn btn-success" href="#">
+                        Kinnita
                     </a>
                 </div>
 
