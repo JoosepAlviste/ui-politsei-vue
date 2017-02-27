@@ -58,7 +58,18 @@
         methods: {
 
             activateStep(stepName) {
+                let currentOffset = window.pageYOffset;
+                let stepsOffset = document.getElementsByClassName('step')[0].getBoundingClientRect().top;
+
                 this.currentStep = stepName;
+                if (currentOffset > stepsOffset - 20) {
+
+                    setTimeout(() => {
+                        window.jump('body', {
+                            duration: 200,
+                        });
+                    }, 100);
+                }
             }
         }
     }
