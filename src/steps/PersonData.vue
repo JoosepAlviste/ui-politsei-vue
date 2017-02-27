@@ -188,7 +188,7 @@
         data() {
             return {
                 this_step: 'person_data',
-                previous_step: 'intro',
+                previous_step: '/',
                 next_step: 'event_info',
             };
         },
