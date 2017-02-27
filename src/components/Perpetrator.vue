@@ -34,6 +34,7 @@
                             @input-was-changed="onLastNameChanged">
                     </form-input>
                 </div>
+
                 <div class="row">
                     <form-input
                             name="'perpetrator[' + nr + '][date_of_birth]'"

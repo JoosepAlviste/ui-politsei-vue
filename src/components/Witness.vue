@@ -34,6 +34,7 @@
                             @input-was-changed="onLastNameChanged">
                     </form-input>
                 </div>
+
                 <div class="row">
                     <form-input
                             name="'witness[' + nr + '][date_of_birth]'"
@@ -55,6 +56,7 @@
                               @input-was-changed="onPersonalCodeChanged">
                       </form-input>
                 </div>
+
 
                 <div class="row">
                     <form-select
