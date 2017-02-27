@@ -14,8 +14,7 @@
 
         <div v-if="isOpen">
             <card-section>
-                 <div class="row">
-
+                <div class="row">
                     <form-input
                             :name="'perpetrator[' + nr + '][first_name]'"
                             label="Eesnimi"
@@ -35,99 +34,90 @@
                             @input-was-changed="onLastNameChanged">
                     </form-input>
                 </div>
-              <div class="row">
-                <form-input
-                        name="'perpetrator[' + nr + '][date_of_birth]'"
-                        label="Sünnikuupäev"
-                        :error="errors['date_of_birth']"
-                        class_name="col-sm-8 col-md-6"
-                        :input_value="perpetrator.date_of_birth"
-                        :required="false"
-                        help_text="Formaadis pp.kk.aaaa"
-                        @input-was-changed="onDateOfBirthChanged">
-                 </form-input>
-              </div>
 
-              <div class="row">
-                <form-input
-                name="'perpetrator[' + nr + '][personal_code]'"
-                label="Isikukood"
-                :error="errors['personal_code']"
-                class_name="col-sm-8 col-md-6"
-                :input_value="perpetrator.personal_code"
-                :required="false"
-                @input-was-changed="onPersonalCodeChanged">
-              </form-input>
-              </div>
+                <div class="row">
+                    <form-input
+                            name="'perpetrator[' + nr + '][date_of_birth]'"
+                            label="Sünniaeg"
+                            :error="errors['date_of_birth']"
+                            class_name="col-sm-8 col-md-6"
+                            :input_value="perpetrator.date_of_birth"
+                            :required="false"
+                            help_text="Formaadis pp.kk.aaaa"
+                            @input-was-changed="onDateOfBirthChanged">
+                     </form-input>
+                    <form-input
+                          name="'perpetrator[' + nr + '][personal_code]'"
+                          label="Isikukood"
+                          :error="errors['personal_code']"
+                          class_name="col-sm-8 col-md-6"
+                          :input_value="perpetrator.personal_code"
+                          :required="false"
+                          @input-was-changed="onPersonalCodeChanged">
+                  </form-input>
+                </div>
+                <div class="row">
+                    <form-select
+                            name="'perpetrator[' + nr + '][citizenship]'"
+                            label="Kodakondsus"
+                            :error="errors['citizenship']"
+                            :input_value="perpetrator.citizenship"
+                            :required="false"
+                            :values="form.countries"
+                            class_name="col-sm-8 col-md-4"
+                            @input-was-changed="onCitizenshipChanged">
+                    </form-select>
+                </div>
+            </card-section>
 
-              <div class="row">
-                <form-select
-                        name="'perpetrator[' + nr + '][citizenship]'"
-                        label="Kodakondsus"
-                        :error="errors['citizenship']"
-                        :input_value="perpetrator.citizenship"
-                        :required="false"
-                        :values="form.countries"
-                        class_name="col-sm-8 col-md-4"
-                        @input-was-changed="onCitizenshipChanged">
-                </form-select>
-              </div>
-              <div class="row">
-                <form-input
-                        name="'perpetrator[' + nr + '][profession]'"
-                        label="Amet"
-                        :error="errors['profession']"
-                        class_name="col-sm-12 col-md-8"
-                        :input_value="perpetrator.profession"
-                        :required="false"
-                        @input-was-changed="onProfessionChanged">
-                 </form-input>
-              </div>
-              <div class="row">
-                <form-input
-                        name="'perpetrator[' + nr + '][address]'"
-                        label="Aadress"
-                        :error="errors['profession']"
-                        class_name="col-sm-12 col-md-8"
-                        :input_value="perpetrator.address"
-                        :required="false"
-                        @input-was-changed="onAddressChanged">
-                 </form-input>
-              </div>
-              <div class="row">
-                <form-input
-                        name="'perpetrator[' + nr + '][email]'"
-                        label="Email"
-                        :error="errors['email']"
-                        class_name="col-sm-12 col-md-8"
-                        :input_value="perpetrator.email"
-                        :required="false"
-                        @input-was-changed="onEmailChanged">
-                 </form-input>
-              </div>
-              <div class="row">
-                <form-input
-                        name="'perpetrator[' + nr + '][phone]'"
-                        label="Telefoninumber"
-                        :error="errors['phone']"
-                        class_name="col-sm-12 col-md-8"
-                        :input_value="perpetrator.phone"
-                        :required="false"
-                        @input-was-changed="onPhoneChanged">
-                 </form-input>
-              </div>
-              <div class="row">
-                <form-comment
-                        name="'perpetrator[' + nr + '][special_indicators]'"
-                        label="Eritunnused"
-                        :error="errors['special_indicators']"
-                        class_name="col"
-                        :input_value="perpetrator.special_indicators"
-                        :required="false"
-                        @input-was-changed="onSpecialIndicatorsChanged">
-                 </form-comment>
-              </div>
+            <card-section>
+                <div class="row">
+                    <form-input
+                            name="'perpetrator[' + nr + '][address]'"
+                            label="Aadress"
+                            :error="errors['profession']"
+                            class_name="col-sm-12 col-md-12"
+                            :input_value="perpetrator.address"
+                            :required="false"
+                            @input-was-changed="onAddressChanged">
+                    </form-input>
+                </div>
+                <div class="row">
+                    <form-input
+                            name="'perpetrator[' + nr + '][email]'"
+                            label="Email"
+                            :error="errors['email']"
+                            class_name="col-sm-12 col-md-8"
+                            :input_value="perpetrator.email"
+                            :required="false"
+                            @input-was-changed="onEmailChanged">
+                    </form-input>
+                </div>
+                <div class="row">
+                    <form-input
+                            name="'perpetrator[' + nr + '][phone]'"
+                            label="Telefoninumber"
+                            :error="errors['phone']"
+                            class_name="col-sm-12 col-md-6"
+                            :input_value="perpetrator.phone"
+                            :required="false"
+                            @input-was-changed="onPhoneChanged">
+                    </form-input>
+                </div>
+            </card-section>
 
+            <card-section>
+                <div class="row">
+                    <form-comment
+                            name="'perpetrator[' + nr + '][special_indicators]'"
+                            label="Eritunnused"
+                            :error="errors['special_indicators']"
+                            class_name="col"
+                            :input_value="perpetrator.special_indicators"
+                            :required="false"
+                            @input-was-changed="onSpecialIndicatorsChanged">
+                    </form-comment>
+                </div>
             </card-section>
         </div>
 
