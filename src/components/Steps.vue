@@ -2,9 +2,9 @@
 
     <div class="steps col-sm-12 col-md-6">
 
-        <step-tabs
-                :active_tab="currentStep"
-                @tab-was-activated="activateStep">
+        <step-tabs v-if="!formSubmitted"
+                   :active_tab="currentStep"
+                   @tab-was-activated="activateStep">
         </step-tabs>
 
         <keep-alive>
@@ -60,7 +60,8 @@
 
         data() {
             return {
-                currentStep: 'intro'
+                currentStep: 'intro',
+                formSubmitted: false
             };
         },
 
@@ -77,6 +78,7 @@
 
             submitForm() {
                 this.activateStep('submitted_step');
+                this.formSubmitted = true;
             }
         }
     }
