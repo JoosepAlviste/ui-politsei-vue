@@ -20,7 +20,7 @@
                             :name="'witness[' + nr + '][first_name]'"
                             label="Eesnimi"
                             :error="errors['first_name']"
-                            class_name="col-sm-12 col-md-8"
+                            class_name="col-sm-12 col-md-6"
                             :input_value="witness.first_name"
                             :required="false"
                             @input-was-changed="onFirstNameChanged">
@@ -29,7 +29,7 @@
                             :name="'witness[' + nr + '][last_name]'"
                             label="Perenimi"
                             :error="errors['last_name']"
-                            class_name="col-sm-12 col-md-8"
+                            class_name="col-sm-12 col-md-6"
                             :input_value="witness.last_name"
                             :required="false"
                             @input-was-changed="onLastNameChanged">
@@ -116,17 +116,7 @@
                         @input-was-changed="onPhoneChanged">
                  </form-input>
               </div>
-              <div class="row">
-                <form-comment
-                        name="'witness[' + nr + '][special_indicators]'"
-                        label="Eritunnused"
-                        :error="errors['special_indicators']"
-                        class_name="col"
-                        :input_value="witness.special_indicators"
-                        :required="false"
-                        @input-was-changed="onSpecialIndicatorsChanged">
-                 </form-comment>
-              </div>
+
 
             </card-section>
         </div>
@@ -138,11 +128,11 @@
     import CardSection from './CardSection.vue';
     import FormInput from './bootstrap/FormInput.vue';
     import FormSelect from './bootstrap/FormSelect.vue';
-    import FormComment from './bootstrap/FormComment.vue';
+
 
     export default {
 
-        components: { CardSection, FormInput, FormSelect, FormComment },
+        components: { CardSection, FormInput, FormSelect},
 
         props: {
             witness: { required: true },
@@ -185,10 +175,6 @@
           onEmailChanged(newVal) {
                 this.witness.email = newVal;
                 this.form.validate('witnesses', 'email', this.nr - 1);
-            },
-          onSpecialIndicatorsChanged(newVal) {
-                this.witness.special_indicators = newVal;
-                this.form.validate('witnesses', 'special_indicators', this.nr - 1);
             },
           onPhoneChanged(newVal) {
                 this.witness.phone = newVal;
