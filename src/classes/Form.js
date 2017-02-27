@@ -27,8 +27,13 @@ class Form {
         return '';
     }
 
-    validateAll() {
+    validateAll(step) {
         // TODO: Loop through all fields and call validate
+        if (typeof step === 'undefined') {
+            // Loop through all values
+        } else {
+            // Loop through all values on given step
+        }
     }
 
     validateOnTheGo(step, name, index) {
@@ -77,6 +82,9 @@ class Form {
         if (typeof step === 'undefined') {
             // Called validate()
             this.validateAll();
+        } else if (typeof name === 'undefined') {
+            // Validate all on the given step
+            this.validateAll(step);
         }
 
         let errorMessage = '';
