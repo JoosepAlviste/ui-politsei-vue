@@ -49,7 +49,7 @@
                         name: 'Tunnistajad'
                     },
                     {
-                        slug: 'confirm',
+                        slug: 'confirm_step',
                         name: 'Kinnita'
                     }
                 ],

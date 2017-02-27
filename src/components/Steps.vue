@@ -3,7 +3,7 @@
     <div class="container-fluid d-flex justify-content-center">
         <div class="steps col-sm-12 col-md-8">
 
-            <step-tabs
+            <step-tabs v-if="!formSubmitted"
                     :active_tab="currentStep"
                     @tab-was-activated="activateStep">
             </step-tabs>
@@ -67,7 +67,8 @@
 
         data() {
             return {
-                currentStep: 'intro'
+                currentStep: 'intro',
+                formSubmitted: false
             };
         },
 
@@ -84,6 +85,7 @@
 
             submitForm() {
                 this.activateStep('submitted_step');
+                this.formSubmitted = true;
             }
         }
     }
