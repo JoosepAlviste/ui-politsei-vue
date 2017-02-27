@@ -38,13 +38,14 @@
               <div class="row">
                 <form-input
                         name="'witness[' + nr + '][date_of_birth]'"
-                        label="Sünniaeg"
+                        label="Sünnikuupäev"
                         :error="errors['date_of_birth']"
                         class_name="col-sm-8 col-md-6"
                         :input_value="witness.date_of_birth"
                         :required="false"
                         help_text="Formaadis pp.kk.aaaa"
                         @input-was-changed="onDateOfBirthChanged">
+
                  </form-input>
               </div>
 

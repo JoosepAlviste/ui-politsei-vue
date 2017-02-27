@@ -38,7 +38,7 @@
               <div class="row">
                 <form-input
                         name="'perpetrator[' + nr + '][date_of_birth]'"
-                        label="Sünniaeg"
+                        label="Sünnikuupäev"
                         :error="errors['date_of_birth']"
                         class_name="col-sm-8 col-md-6"
                         :input_value="perpetrator.date_of_birth"
