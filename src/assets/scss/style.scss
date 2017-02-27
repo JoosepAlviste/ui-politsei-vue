@@ -134,7 +134,7 @@ body {
         color: darken($brand-primary, 10%);
 
         &:before {
-          background: darken($brand-primary, 10%);
+          background: darken($brand-primary, 5%);
         }
       }
 
@@ -149,10 +149,10 @@ body {
       color: $brand-primary;
 
       &:hover {
-        color: darken($brand-primary, 15%);
+        color: darken($brand-primary, 10%);
 
         &:before {
-          background: darken($brand-primary, 10%);
+          background: darken($brand-primary, 5%);
         }
       }
 
