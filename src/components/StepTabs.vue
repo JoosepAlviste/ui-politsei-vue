@@ -34,7 +34,7 @@
                     },
                     {
                         slug: 'event_info',
-                        name: 'Toimumise info',
+                        name: 'Toimunu info',
                     },
                     {
                         slug: 'stolen_properties',

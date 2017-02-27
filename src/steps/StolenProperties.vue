@@ -1,5 +1,5 @@
 <template>
-    <step title="Ära võetud/viidud/saamata jäänud vara"
+    <step title="Ära võetud/saamata jäänud vara"
           @next-step="$emit('step-was-activated', next_step)"
           @previous-step="$emit('step-was-activated', previous_step)">
 
