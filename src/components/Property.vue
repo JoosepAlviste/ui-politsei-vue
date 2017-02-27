@@ -61,26 +61,30 @@
                             @input-was-changed="onCommentChanged">
                     </form-comment>
                 </div>
-                <form-input
-                        name="property_exists_time"
-                        label="Vara valdus olemas (viimati kannatanul/teatajal ese/asi olemas)"
-                        :error="errors['property_exists_time']"
-                        class_name=""
-                        :input_value="property.property_exists_time"
-                        :required="false"
-                        help_text="Formaadis pp.kk.aaaa mm:hh"
-                        @input-was-changed="onPropertyExistsChanged">
-                </form-input>
-                <form-input
-                        name="property_lost_time"
-                        label="Vara valdusest väljaminek on tuvastatud"
-                        :error="errors['property_lost_time']"
-                        class_name=""
-                        :input_value="property.property_lost_time"
-                        :required="false"
-                        help_text="Formaadis pp.kk.aaaa mm:hh"
-                        @input-was-changed="onPropertyLostChanged">
-                </form-input>
+                <div class="row">
+                    <form-input
+                            name="property_exists_time"
+                            label="Vara valdus olemas (viimati kannatanul/teatajal ese/asi olemas)"
+                            :error="errors['property_exists_time']"
+                            class_name="col-sm-6"
+                            :input_value="property.property_exists_time"
+                            :required="false"
+                            help_text="Formaadis pp.kk.aaaa mm:hh"
+                            @input-was-changed="onPropertyExistsChanged">
+                    </form-input>
+                </div>
+                <div class="row">
+                    <form-input
+                            name="property_lost_time"
+                            label="Vara valdusest väljaminek on tuvastatud"
+                            :error="errors['property_lost_time']"
+                            class_name="col-sm-6"
+                            :input_value="property.property_lost_time"
+                            :required="false"
+                            help_text="Formaadis pp.kk.aaaa mm:hh"
+                            @input-was-changed="onPropertyLostChanged">
+                    </form-input>
+                </div>
             </card-section>
         </div>
 
