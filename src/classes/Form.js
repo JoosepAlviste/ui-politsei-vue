@@ -128,14 +128,13 @@ class Form {
             }
         } else if (step === 'witnesses' || step === 'perpetrators'){
           if (name == 'personal_code'){
-            if (!/[0-9]{2}[0,1,2,4][0-9][0-9]{2}[0-9]{4}/.test(this[step][index][name])){
+            if (!/[0-9]{2}[0,1,2,4][0-9][0-9]{2}[0-9]{4}/.test(this[step][index][name]) && this[step][index][name] ){
               errorMessage = "Ei vasta Eesti isikukoodile";
             }
-          }
-          if (name === 'date_of_birth'){
+          }else if (name === 'date_of_birth'){
             let checkedVal = this[step][index][name];
             // check format http://stackoverflow.com/questions/15491894/regex-to-validate-date-format-dd-mm-yyyy
-            if ((checkedVal === '') || /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d$/.test(checkedVal)){
+            if ((!checkedVal) || /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d$/.test(checkedVal)){
                 let dateArr = checkedVal.split(".");
 
                 let date = new Date(dateArr[2],dateArr[1],dateArr[0]);
