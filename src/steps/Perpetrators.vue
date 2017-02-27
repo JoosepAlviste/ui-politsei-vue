@@ -27,7 +27,6 @@
 <script>
     import Step from './Step.vue';
     import CardSection from '../components/CardSection.vue';
-    import Property from '../components/Property.vue';
     import Perpetrator from '../components/Perpetrator.vue';
     import StepMixin from '../classes/mixins/step';
 
@@ -41,7 +40,7 @@
 
         data() {
             return {
-                next_step: '',
+                next_step: 'witnesses',
                 previous_step: 'stolen_properties',
                 this_step: 'perpetrators',
             };

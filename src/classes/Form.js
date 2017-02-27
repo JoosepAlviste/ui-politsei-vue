@@ -183,8 +183,12 @@ class Form {
             address: '',
             email: '',
             phone: '',
-            special_indicators: '',
         });
+    }
+
+    removeWitness(index) {
+        this.witnesses.splice(index, 1);
+        this.errors.witnesses.splice(index, 1);
     }
 
     addToList(listName, object) {

@@ -39,6 +39,10 @@
                     {
                         slug: 'perpetrators',
                         name: 'Süüdistatavad'
+                    },
+                    {
+                        slug: 'witnesses',
+                        name: 'Tunnistajad'
                     }
                 ],
             };
