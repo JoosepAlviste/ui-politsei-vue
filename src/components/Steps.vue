@@ -63,12 +63,3 @@
         }
     }
 </script>
-
-<style lang="scss">
-
-    .step {
-        position: absolute;
-        width: 100%;
-    }
-
-</style>

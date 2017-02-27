@@ -5,17 +5,19 @@
                 leave-active-class="animated fadeOut">
 
         <div class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true"
-             v-show="active">
+             v-show="active" @click="$emit('closed')">
 
             <transition name="modal-transition"
                         enter-active-class="animated fadeInDown"
                         leave-active-class="animated fadeOutUp">
 
-                <div class="modal-dialog col" role="document" v-if="active">
+                <div class="modal-dialog col" role="document" v-if="active" @click.prevent="handleModalClick">
                     <div class="modal-content">
 
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                <slot name="title"></slot>
+                            </h5>
 
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"
                                     @click="$emit('closed')">
@@ -53,16 +55,11 @@
         props: {
             active: { required: true },
         },
+
+        methods: {
+            handleModalClick(event) {
+                event.stopPropagation();
+            }
+        }
     }
 </script>
-
-<style lang="scss">
-
-    .modal {
-        background: rgba(0, 0, 0, 0.4);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-</style>

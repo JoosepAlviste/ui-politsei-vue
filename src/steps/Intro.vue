@@ -32,7 +32,11 @@
         <modal :active="modalShowing"
                @confirmed="onIdCardLogin"
                @closed="modalShowing = false">
-            Testing testing
+            <template slot="title">
+                Logi sisse ID kaardiga
+            </template>
+
+            ID kaardiga sisse logimise mock värk!
         </modal>
 
     </step>

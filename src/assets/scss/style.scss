@@ -22,7 +22,8 @@ body {
 }
 
 
-.has-success .form-control-label {
+.has-success .form-control-label,
+.has-danger .form-control-label {
   color: $gray-dark;
 }
 
@@ -37,6 +38,22 @@ body {
 
   .card-title {
     margin-bottom: 0;
+  }
+}
+
+
+/*---------------------*\
+  #MODAL
+\*---------------------*/
+
+.modal {
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .btn {
+    cursor: pointer;
   }
 }
 
@@ -83,7 +100,7 @@ body {
       height: 3em;
       text-align: center;
       margin-bottom: 0.25em;
-      line-height: 3em;
+      line-height: 39px;
       border-radius: 100%;
       position: relative;
       z-index: 2;
@@ -147,6 +164,10 @@ body {
   }
 }
 
+.step {
+  position: absolute;
+  width: 100%;
+}
 
 .addBtnContainer {
   justify-content: center;
