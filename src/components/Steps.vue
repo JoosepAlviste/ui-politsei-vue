@@ -26,6 +26,7 @@
     import StepTabs from './StepTabs.vue';
     import Perpetrators from '../steps/Perpetrators.vue';
     import Witnesses from '../steps/Witnesses.vue';
+    import Intro from '../steps/Intro.vue';
 
     export default {
 
@@ -34,6 +35,7 @@
         },
 
         components: {
+            intro: Intro,
             person_data: PersonData,
             event_info: EventInfo,
             stolen_properties: StolenProperties,
@@ -44,7 +46,7 @@
 
         data() {
             return {
-                currentStep: 'person_data'
+                currentStep: 'intro'
             };
         },
 
