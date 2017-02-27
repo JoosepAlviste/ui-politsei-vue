@@ -71,7 +71,62 @@
                         class_name="col-sm-8 col-md-4"
                         @input-was-changed="onCitizenshipChanged">
                 </form-select>
-            </div>
+              </div>
+              <div class="row">
+                <form-input
+                        name="'witness[' + nr + '][profession]'"
+                        label="Amet"
+                        :error="errors['profession']"
+                        class_name="col-sm-12 col-md-8"
+                        :input_value="witness.profession"
+                        :required="false"
+                        @input-was-changed="onProfessionChanged">
+                 </form-input>
+              </div>
+              <div class="row">
+                <form-input
+                        name="'witness[' + nr + '][address]'"
+                        label="Aadress"
+                        :error="errors['profession']"
+                        class_name="col-sm-12 col-md-8"
+                        :input_value="witness.address"
+                        :required="false"
+                        @input-was-changed="onAddressChanged">
+                 </form-input>
+              </div>
+              <div class="row">
+                <form-input
+                        name="'witness[' + nr + '][email]'"
+                        label="Email"
+                        :error="errors['email']"
+                        class_name="col-sm-12 col-md-8"
+                        :input_value="witness.email"
+                        :required="false"
+                        @input-was-changed="onEmailChanged">
+                 </form-input>
+              </div>
+              <div class="row">
+                <form-input
+                        name="'witness[' + nr + '][phone]'"
+                        label="Telefoninumber"
+                        :error="errors['phone']"
+                        class_name="col-sm-12 col-md-8"
+                        :input_value="witness.phone"
+                        :required="false"
+                        @input-was-changed="onPhoneChanged">
+                 </form-input>
+              </div>
+              <div class="row">
+                <form-comment
+                        name="'witness[' + nr + '][special_indicators]'"
+                        label="Eritunnused"
+                        :error="errors['special_indicators']"
+                        class_name="col"
+                        :input_value="witness.special_indicators"
+                        :required="false"
+                        @input-was-changed="onSpecialIndicatorsChanged">
+                 </form-comment>
+              </div>
 
             </card-section>
         </div>
@@ -83,10 +138,11 @@
     import CardSection from './CardSection.vue';
     import FormInput from './bootstrap/FormInput.vue';
     import FormSelect from './bootstrap/FormSelect.vue';
+    import FormComment from './bootstrap/FormComment.vue';
 
     export default {
 
-        components: { CardSection, FormInput, FormSelect },
+        components: { CardSection, FormInput, FormSelect, FormComment },
 
         props: {
             witness: { required: true },
@@ -121,6 +177,26 @@
           onCitizenshipChanged(citizenship) {
                 this.witness.citizenship = citizenship;
                 this.form.validate('witnesses', 'citizenship', this.nr - 1);
+            },
+          onProfessionChanged(newVal) {
+                this.witness.profession = newVal;
+                this.form.validate('witnesses', 'profession', this.nr - 1);
+            },
+          onEmailChanged(newVal) {
+                this.witness.email = newVal;
+                this.form.validate('witnesses', 'email', this.nr - 1);
+            },
+          onSpecialIndicatorsChanged(newVal) {
+                this.witness.special_indicators = newVal;
+                this.form.validate('witnesses', 'special_indicators', this.nr - 1);
+            },
+          onPhoneChanged(newVal) {
+                this.witness.phone = newVal;
+                this.form.validate('witnesses', 'phone', this.nr - 1);
+            },
+          onAddressChanged(newVal) {
+                this.witness.address = newVal;
+                this.form.validate('witnesses', 'address', this.nr - 1);
             }
         },
     }
