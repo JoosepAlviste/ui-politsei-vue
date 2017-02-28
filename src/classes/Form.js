@@ -31,8 +31,22 @@ class Form {
         // TODO: Loop through all fields and call validate
         if (typeof step === 'undefined') {
             // Loop through all values
+            ['person_data', 'event_info', 'witnesses', 'stolen_properties', 'perpetrators'].forEach(stepNew => {
+                this.validateAll(stepNew);
+            });
         } else {
             // Loop through all values on given step
+            if (step === 'witnesses' || step === 'stolen_properties' || step === 'perpetrators') {
+                for (let index in this[step]) {
+                    for (let name in this[step][index]) {
+                        this.validate(step, name, index);
+                    }
+                }
+            } else {
+                for (let name in this[step]) {
+                    this.validate(step, name);
+                }
+            }
         }
     }
 
@@ -130,7 +144,7 @@ class Form {
                 // check format http://stackoverflow.com/questions/15491894/regex-to-validate-date-format-dd-mm-yyyy
                 if ((!checkedVal) || /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d$/.test(checkedVal)){
                     let dateArr = checkedVal.split(".");
-    
+
                     let date = new Date(dateArr[2],dateArr[1],dateArr[0]);
                     if (date < new Date("1800-1-1")) {
                       errorMessage = 'Kuupäev ei saa olla varem kui 01.01.1800';
@@ -154,14 +168,14 @@ class Form {
                       if (!/^[1-6][0-9]{2}[0-1][0-9][0-9]{2}[0-9]{4}$/.test(this[step][index][name]) && this.exists(this[step][index][name]) ){
                         errorMessage = "Ei vasta Eesti isikukoodile";
                       }
-  
+
                   } else if (name === 'date_of_birth'){
                       let checkedVal = this[step][index][name];
                       // check format http://stackoverflow.com/questions/15491894/regex-to-validate-date-format-dd-mm-yyyy
                       if (this.exists(checkedVal)){
                           if (/^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d$/.test(checkedVal)){
                               let dateArr = checkedVal.split(".");
-        
+
                               let date = new Date(dateArr[2],dateArr[1],dateArr[0]);
                               if (date < new Date("1800-1-1")) {
                                   errorMessage = 'Ei saa olla sündinud varem kui 1800';
