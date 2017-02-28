@@ -136,14 +136,14 @@ class Form {
                     let dateArr = checkedVal.split(".");
                     let date = new Date(dateArr[2],dateArr[1],dateArr[0]);
                     if (date.getFullYear() < currentDate.getFullYear() - 10) {
-                        errorMessage = 'Sündmust, mis toimus rohkem kui 10 aastat tagasi, ei saa registreerida!';  
+                        errorMessage = 'Sündmust, mis toimus rohkem kui 10 aastat tagasi, ei saa registreerida!';
                     }
                     else if (date > currentDate) {
                         errorMessage = 'Kuupäev ei saa olla tulevikus!';
                     }
                 }
                 else {
-                    errorMessage = 'Kuupäev peab olema formaadis pp.kk.aaaa'   
+                    errorMessage = 'Kuupäev peab olema formaadis pp.kk.aaaa'
                 }
             } else if (name === 'event-location') {
                 if (!this.exists(this[step][name])) {
@@ -178,8 +178,9 @@ class Form {
             } else if ((name === 'property_exists_time' || name === 'property_lost_time') && this.exists(this[step][index][name])){
                 let checkedVal = this[step][index][name];
                 // check format http://stackoverflow.com/questions/15491894/regex-to-validate-date-format-dd-mm-yyyy
-                if ((!checkedVal) || /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d$/.test(checkedVal)){
-                    let dateArr = checkedVal.split(".");
+                if ((!checkedVal) || /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d( [0-2]\d\:[0-5]\d)?$/.test(checkedVal)){
+                    
+                    let dateArr = checkedVal.split(" ")[0].split(".");
 
                     let date = new Date(dateArr[2],dateArr[1],dateArr[0]);
                     if (date < new Date("1800-1-1")) {
