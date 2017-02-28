@@ -1,7 +1,5 @@
 <template>
-    <step title="Süüteo toime pannud isiku(te) andmed"
-          @next-step="$emit('step-was-activated', next_step)"
-          @previous-step="$emit('step-was-activated', previous_step)">
+    <step title="Süüteo toime pannud isiku(te) andmed">
 
         <card-section>
 

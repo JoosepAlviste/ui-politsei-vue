@@ -1,7 +1,5 @@
 <template>
-    <step title="Süüteost teatamise avaldus"
-          @next-step="$emit('step-was-activated', next_step)"
-          @previous-step="$emit('step-was-activated', previous_step)">
+    <step title="Süüteost teatamise avaldus">
 
         <card-section>
 
