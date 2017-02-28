@@ -12,7 +12,7 @@
                         class_name="col-sm-8 col-md-6"
                         :input_value="form.event_info['event-date']"
                         :required="true"
-                        help_text="Formaadis pp.kk.aaaa mm:hh"
+                        help_text="Formaadis pp.kk.aaaa (täpsem aeg täpsustada toimunu kirjelduses)"
                         @input-was-changed="onEventDateChanged">
                 </form-input>
             </div>

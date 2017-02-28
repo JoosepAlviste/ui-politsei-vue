@@ -128,12 +128,36 @@ class Form {
         } else if (step === 'event_info') {
             if (name === 'event-date') {
                 let checkedVal = this[step][name];
-                let currentYear = new Date();
+                let currentDate = new Date();
                 if (!this.exists(checkedVal)) {
-                    errorMessage = 'Toimunu aeg on kohustuslik!'
+                    errorMessage = 'Toimunu aeg on kohustuslik!';
+                }
+                else if ((!checkedVal) || /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d$/.test(checkedVal)) {
+                    let dateArr = checkedVal.split(".");
+                    let date = new Date(dateArr[2],dateArr[1],dateArr[0]);
+                    if (date.getFullYear() < currentDate.getFullYear() - 10) {
+                        errorMessage = 'Sündmust, mis toimus rohkem kui 10 aastat tagasi, ei saa registreerida!';  
+                    }
+                    else if (date > currentDate) {
+                        errorMessage = 'Kuupäev ei saa olla tulevikus!';
+                    }
                 }
                 else {
                     errorMessage = 'Kuupäev peab olema formaadis pp.kk.aaaa'   
+                }
+            } else if (name === 'event-location') {
+                if (!this.exists(this[step][name])) {
+                    errorMessage = 'Toimumise koht on kohustuslik!';
+                }
+            } else if (name === 'event-description') {
+                if (!this.exists(this[step][name])) {
+                    console.log("event-description")
+                    errorMessage = 'Toimunu kirjeldus on kohustuslik!';
+                }
+            } else if (name === 'pecuniary-loss') {
+                if (!this.exists(this[step][name])) {
+                    console.log("pecuniary-loss")
+                    errorMessage = 'Tekitatud varaline kahju on kohustuslik!';
                 }
             }
         } else if (step === 'stolen_properties') {
@@ -623,6 +647,7 @@ class Form {
             'event-location' : '',
             'event-description' : '',
             'pecuniary-loss' : ''
+            
         };
 
         this.stolen_properties = [];
