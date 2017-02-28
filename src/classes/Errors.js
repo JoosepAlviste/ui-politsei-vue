@@ -45,6 +45,16 @@ class Errors {
     flush() {
         this.initialize()
     }
+
+    has(step) {
+        for (let name in this[step]) {
+            if (this[step][name].length > 0 && this[step][name] !== 'dont-show-success') {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
 
 export default Errors;

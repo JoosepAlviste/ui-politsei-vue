@@ -244,6 +244,16 @@
             onContactTimeChanged(contactTime) {
                 this.set('contact-time', contactTime);
             },
+        },
+
+        beforeRouteLeave (to, from, next) {
+            this.form.validateAll(this.this_step);
+
+            if (this.form.errors.has(this.this_step)) {
+                return next(false);
+            }
+
+            next();
         }
     }
 </script>
