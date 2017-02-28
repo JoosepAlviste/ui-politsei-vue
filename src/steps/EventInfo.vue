@@ -66,7 +66,7 @@
                 <form-comment
                         name="event-description"
                         label="Toimunu kirjeldus"
-                        :error="error['event-description']"
+                        :error="error('event-description')"
                         class_name="col"
                         :input_value="form.event_info['event-description']"
                         :required="true"
@@ -77,7 +77,7 @@
                 <form-money
                         name="pecuniary-loss"
                         label="Tekitatud varaline kahju"
-                        :error="error['pecuniary-loss']"
+                        :error="error('pecuniary-loss')"
                         class_name="col"
                         :input_value="form.event_info['pecuniary-loss']"
                         :required="true"
