@@ -56,6 +56,26 @@
             error(index) {
                 return this.form.errors.perpetrators[index];
             }
+        },
+
+        beforeRouteLeave (to, from, next) {
+            this.form.validateAll(this.this_step);
+
+            if (this.form.errors.has(this.this_step)) {
+
+                // Wait with scroll because the form errors have not been rendered yet!
+                // Must wait for Vue to update the HTML
+                setTimeout(() => {
+                    window.jump('.form-control-danger', {
+                        duration: 200,
+                        offset: -60,
+                    });
+                }, 100);
+
+                return next(false);
+            }
+
+            next();
         }
     }
 </script>

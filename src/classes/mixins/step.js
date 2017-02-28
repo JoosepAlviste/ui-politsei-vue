@@ -10,6 +10,6 @@ module.exports = {
 
         set(name, value) {
             this.form.set(this.this_step, name, value);
-        }
-    }
+        },
+    },
 };

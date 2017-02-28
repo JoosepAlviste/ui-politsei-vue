@@ -79,7 +79,6 @@ class Form {
                 } else if (('' + this[step][index][name]).length < 4) {
                     errorMessage = 'dont-show-success';
                 } else if (('' + this[step][index][name]).length >= 4) {
-                    console.log('validating');
                     // Do validation only if the user has typed in 4 or more numbers
                     return this.validate(step, name, index);
                 }
@@ -151,12 +150,10 @@ class Form {
                 }
             } else if (name === 'event-description') {
                 if (!this.exists(this[step][name])) {
-                    console.log("event-description")
                     errorMessage = 'Toimunu kirjeldus on kohustuslik!';
                 }
             } else if (name === 'pecuniary-loss') {
                 if (!this.exists(this[step][name])) {
-                    console.log("pecuniary-loss")
                     errorMessage = 'Tekitatud varaline kahju on kohustuslik!';
                 }
             }

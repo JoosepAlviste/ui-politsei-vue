@@ -47,9 +47,19 @@ class Errors {
     }
 
     has(step) {
-        for (let name in this[step]) {
-            if (this[step][name].length > 0 && this[step][name] !== 'dont-show-success') {
-                return true;
+        if (['witnesses', 'stolen_properties', 'perpetrators'].includes(step)) {
+            for (let index in this[step]) {
+                for (let name in this[step][index]) {
+                    if (this[name][index][step].length > 0 && this[step][index][name] !== 'dont-show-success') {
+                        return true;
+                    }
+                }
+            }
+        } else {
+            for (let name in this[step]) {
+                if (this[step][name].length > 0 && this[step][name] !== 'dont-show-success') {
+                    return true;
+                }
             }
         }
 

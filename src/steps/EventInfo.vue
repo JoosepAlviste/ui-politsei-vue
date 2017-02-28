@@ -1,7 +1,5 @@
 <template>
-    <step title="Toimumise info"
-          @next-step="$emit('step-was-activated', next_step)"
-          @previous-step="$emit('step-was-activated', previous_step)">
+    <step title="Toimumise info">
 
         <card-section>
             <div class="row">
@@ -142,6 +140,26 @@
             onPecuniaryLossChanged (pecuniaryLoss) {
                 this.set('pecuniary-loss', pecuniaryLoss);
             }
+        },
+
+        beforeRouteLeave (to, from, next) {
+            this.form.validateAll(this.this_step);
+
+            if (this.form.errors.has(this.this_step)) {
+
+                // Wait with scroll because the form errors have not been rendered yet!
+                // Must wait for Vue to update the HTML
+                setTimeout(() => {
+                    window.jump('.form-control-danger', {
+                        duration: 200,
+                        offset: -60,
+                    });
+                }, 100);
+
+                return next(false);
+            }
+
+            next();
         }
     }
 </script>
