@@ -231,7 +231,7 @@ class Form {
     }
 
     exists(val) {
-        return val !== null && val.length > 0;
+        return val !== null && ('' + val).length > 0;
     }
 
     isNumeric(val) {
