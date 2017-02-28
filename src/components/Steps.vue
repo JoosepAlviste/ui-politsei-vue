@@ -1,11 +1,15 @@
 <template>
 
     <div class="container-fluid d-flex justify-content-center">
-        <div class="steps col-sm-12 col-md-8" v-if="!isSubmittedStep">
 
-            <step-tabs></step-tabs>
-
-        </div>
+        <transition name="step-tabs-fade"
+                    enter-active-class="animated fadeIn"
+                    leave-active-class="animated fadeOut">
+            <div class="steps col-sm-12 col-md-8" v-if="!isSubmittedStep">
+                <step-tabs></step-tabs>
+            </div>
+            <div class="submitted-card-top" v-else></div>
+        </transition>
 
         <div class="cardContainer justify-content-center col-sm-12 col-md-6">
 
@@ -14,7 +18,6 @@
                         leave-active-class="animated fadeOutLeft">
                 <router-view class="step" :form="form"></router-view>
             </transition>
-
 
             <!-- TODO: Fix absolute height somehow better -->
             <router-view class="step hidden" :form="form"></router-view>

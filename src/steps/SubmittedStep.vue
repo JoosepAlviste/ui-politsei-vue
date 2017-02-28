@@ -1,5 +1,5 @@
 <template>
-    <div class="card text-center">
+    <div class="card text-center submitted-card">
 
         <div class="card-header">
             <h2 class="card-title">

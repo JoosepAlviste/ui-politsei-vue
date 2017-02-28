@@ -13,7 +13,9 @@
             <div class="row">
                 <div class="form-group col-md-12 d-flex justify-content-center">
                     <label class="custom-control custom-checkbox">
-                        <input type="checkbox" name="ok-with-deal" class="custom-control-input">
+                        <input type="checkbox" name="ok-with-deal"
+                               class="custom-control-input"
+                               v-model="ok_with_deal">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Olen nõus kokkuleppemenetlusega</span>
                     </label>
@@ -22,7 +24,9 @@
             <div class="row">
                 <div class="form-group col-md-12 d-flex justify-content-center">
                     <label class="custom-control custom-checkbox">
-                        <input type="checkbox" name="info-e-toimik" class="custom-control-input">
+                        <input type="checkbox" name="info-e-toimik"
+                               class="custom-control-input"
+                               v-model="info_e_file">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Soovin teavet <a href="https://www.e-toimik.ee/">E-Toimiku</a> kaudu </span>
                     </label>
@@ -54,17 +58,25 @@
                 this_step: 'confirm',
                 previous_step: 'witnesses',
                 next_step: '',
+
+                ok_with_deal: false,
+                info_e_file: false
             };
         },
 
-        methods: {
-            onDealChanged(deal) {
-                this.set('ok-with-deal', deal);
+        watch: {
+            ok_with_deal() {
+                this.form.options['ok-with-deal'] = this.ok_with_deal;
             },
 
-            onInfoToimikChanged(option) {
-                this.set('info-e-toimik', option);
+            info_e_file() {
+                this.form.options['info-e-file'] = this.info_e_file;
             }
+        },
+
+        mounted() {
+            this.ok_with_deal = this.form.options['ok-with-deal'];
+            this.info_e_file = this.form.options['info-e-file'];
         }
     }
 </script>

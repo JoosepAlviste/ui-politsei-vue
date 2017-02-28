@@ -13,6 +13,8 @@
 
             <p>Vajadusel tuleb menetleja kutsel tulla politseijaoskonda täiendavate ütluste andmiseks.</p>
 
+            <p>Tärniga (<span class="required"></span>) tähistatud väljad on kohustuslikud.</p>
+
         </card-section>
 
         <card-section class="text-center">

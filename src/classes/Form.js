@@ -586,7 +586,7 @@ class Form {
 
         this.options = {
             'ok-with-deal': false,
-            'info-e-toimik': false,
+            'info-e-file': false,
         }
     }
 }
