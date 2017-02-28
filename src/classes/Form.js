@@ -10,6 +10,7 @@ class Form {
     initialize() {
         this.initializeFields();
         this.initializeCountries();
+        this.initializePrefectures();
         this.initializeCounties();
         this.initializeContactOptions();
     }
@@ -122,6 +123,17 @@ class Form {
             } else if (name === 'zip-code') {
                 if (!this.isNumeric(this[step][name])) {
                     errorMessage = 'Postiindeks peab olema number!';
+                }
+            }
+        } else if (step === 'event_info') {
+            if (name === 'event-date') {
+                let checkedVal = this[step][name];
+                let currentYear = new Date();
+                if (!this.exists(checkedVal)) {
+                    errorMessage = 'Toimunu aeg on kohustuslik!'
+                }
+                else {
+                    errorMessage = 'Kuupäev peab olema formaadis pp.kk.aaaa'   
                 }
             }
         } else if (step === 'stolen_properties') {
@@ -283,6 +295,7 @@ class Form {
 
     initializeCounties() {
         this.counties = [
+            {value: "Vali maakond", text: "Vali maakond"},
             {value: "Harju maakond", text: "Harju maakond"},
             {value: "Hiiu maakond", text: "Hiiu maakond"},
             {value: "Ida-Viru maakond", text: "Ida-Viru maakond"},
@@ -298,6 +311,16 @@ class Form {
             {value: "Valga maakond", text: "Valga maakond"},
             {value: "Viljandi maakond", text: "Viljandi maakond"},
             {value: "Võru maakond", text: "Võru maakond"},
+        ];
+    }
+    
+    initializePrefectures() {
+        this.prefectures = [
+            {value: "Üldine kontakt", text: "Üldine kontakt"},
+            {value: "Põhja Prefektuur", text: "Põhja Prefektuur"},
+            {value: "Lõuna Prefektuur", text: "Lõuna Prefektuur"},
+            {value: "Ida Prefektuur", text: "Ida Prefektuur"},
+            {value: "Lääne Prefektuur", text: "Lääne Prefektuur"}
         ];
     }
 
@@ -586,13 +609,21 @@ class Form {
             'zip-code': '',
             'is-legal-person': false,
             'victim-registry-code': '',
-            'county': '',
+            'county': 'Vali maakond',
             'contact-option': 'email',
             'email': '',
             'phone': '',
             'contact-time': ''
         };
-        this.event_info = {};
+        this.event_info = {
+            'event-date': '',
+            'event-country' : 'Eesti Vabariik',
+            'event-county' : 'Vali maakond',
+            'prefecture' : 'Üldine kontakt',
+            'event-location' : '',
+            'event-description' : '',
+            'pecuniary-loss' : ''
+        };
 
         this.stolen_properties = [];
         this.perpetrators = [];

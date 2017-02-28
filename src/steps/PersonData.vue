@@ -1,5 +1,7 @@
 <template>
-    <step title="Isikuandmed">
+    <step title="Isikuandmed"
+          @next-step="$emit('step-was-activated', next_step)"
+          @previous-step="$emit('step-was-activated', previous_step)">
 
         <card-section>
 
@@ -81,7 +83,7 @@
             </div>
 
             <div class="row">
-                <form-input
+                <form-number
                         name="zip-code"
                         label="Postiindeks"
                         :error="error('zip-code')"
@@ -89,7 +91,7 @@
                         input_class="col"
                         :input_value="form.person_data['zip-code']"
                         @input-was-changed="onZipCodeChanged">
-                </form-input>
+                </form-number>
             </div>
 
         </card-section>
@@ -170,6 +172,7 @@
     import FormInput from '../components/bootstrap/FormInput.vue';
     import FormSelect from '../components/bootstrap/FormSelect.vue';
     import Checkbox from '../components/bootstrap/Checkbox.vue';
+    import FormNumber from '../components/bootstrap/FormNumber.vue';
 
     import StepMixin from '../classes/mixins/step';
 
@@ -177,7 +180,7 @@
 
         mixins: [ StepMixin ],
 
-        components: { Step, CardSection, FormInput, FormSelect, Checkbox },
+        components: { Step, CardSection, FormInput, FormSelect, Checkbox, FormNumber },
 
         props: {
             form: { required: true },
