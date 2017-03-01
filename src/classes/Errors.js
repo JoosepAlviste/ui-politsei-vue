@@ -48,12 +48,16 @@ class Errors {
 
     has(step) {
         if (['witnesses', 'stolen_properties', 'perpetrators'].includes(step)) {
-            for (let index in this[step]) {
-                for (let name in this[step][index]) {
-                    if (this[name][index][step].length > 0 && this[step][index][name] !== 'dont-show-success') {
+            let hasErrors = this[step].some(stepElem => {
+                for (let name in stepElem) {
+                    if (stepElem[name].length > 0 && stepElem[name] !== 'dont-show-success') {
                         return true;
                     }
                 }
+                return false;
+            });
+            if (hasErrors) {
+                return true;
             }
         } else {
             for (let name in this[step]) {

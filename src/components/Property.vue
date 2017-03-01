@@ -3,7 +3,7 @@
 
         <div class="card-header removable-header property-header" @click="isOpen = !isOpen">
             <h4 class="card-title text-center">
-                Vara #{{ nr }} <span v-if="property.name != ''"> - {{property.name}}</span>
+                Vara #{{ nr }} <span v-if="property.name != ''"> - {{ property.name }}</span>
             </h4>
 
             <button type="button" class="close" aria-label="Close"
@@ -23,7 +23,8 @@
                             class_name="col-sm-12 col-md-8"
                             :input_value="property.name"
                             :required="true"
-                            @input-was-changed="onNameChanged">
+                            @input-was-changed="onInputChange('name', $event)"
+                            @input-was-blurred="onInputBlurred('name', $event)">
                     </form-input>
                 </div>
                 <div class="row">
@@ -35,8 +36,8 @@
                             input_class="col-md-4 col-sm-6"
                             :input_value="property.year_of_acquiring"
                             :required="false"
-                            @input-was-changed="onYearBoughtChanged"
-                            @was-blurred="onYearBoughtBlurred">
+                            @input-was-changed="onInputChange('year_of_acquiring', $event)"
+                            @input-was-blurred="onInputBlurred('year_of_acquiring', $event)">
                     </form-number>
                 </div>
                 <div class="row">
@@ -47,7 +48,8 @@
                             class_name="col"
                             :input_value="property.value"
                             :required="false"
-                            @input-was-changed="onValueChanged">
+                            @input-was-changed="onInputChange('value', $event)"
+                            @input-was-blurred="onInputBlurred('value', $event)">
                     </form-money>
                 </div>
                 <div class="row">
@@ -58,7 +60,8 @@
                             class_name="col"
                             :input_value="property.special_indicators"
                             :required="false"
-                            @input-was-changed="onCommentChanged">
+                            @input-was-changed="onInputChange('special_indicators', $event)"
+                            @input-was-blurred="onInputBlurred('special_indicators', $event)">
                     </form-comment>
                 </div>
                 <div class="row">
@@ -70,7 +73,8 @@
                             :input_value="property.property_exists_time"
                             :required="false"
                             help_text="Formaadis pp.kk.aaaa mm:hh"
-                            @input-was-changed="onPropertyExistsChanged">
+                            @input-was-changed="onInputChange('property_exists_time', $event)"
+                            @input-was-blurred="onInputBlurred('property_exists_time', $event)">
                     </form-input>
                 </div>
                 <div class="row">
@@ -82,7 +86,8 @@
                             :input_value="property.property_lost_time"
                             :required="false"
                             help_text="Formaadis pp.kk.aaaa mm:hh"
-                            @input-was-changed="onPropertyLostChanged">
+                            @input-was-changed="onInputChange('property_lost_time', $event)"
+                            @input-was-blurred="onInputBlurred('property_lost_time', $event)">
                     </form-input>
                 </div>
             </card-section>
@@ -98,52 +103,16 @@
     import FormNumber from './bootstrap/FormNumber.vue';
     import FormComment from './bootstrap/FormComment.vue';
 
+    import StepListingItemMixin from '../classes/mixins/stepListingItem';
+
     export default {
 
-        components: {CardSection, FormInput, FormMoney, FormNumber, FormComment},
+        mixins: [ StepListingItemMixin ],
+
+        components: { CardSection, FormInput, FormMoney, FormNumber, FormComment },
 
         props: {
-            property: {required: true},
-            nr: {required: true},
-            errors: {required: true},
-            form: {required: true},
-        },
-
-        data() {
-            return {
-                isOpen: true
-            };
-        },
-
-        methods: {
-            onNameChanged(name) {
-                this.property.name = name;
-                this.form.validate('stolen_properties', 'name', this.nr - 1);
-            },
-            onYearBoughtChanged(year_of_acquiring){
-                this.property.year_of_acquiring = year_of_acquiring;
-                this.form.validateOnTheGo('stolen_properties', 'year_of_acquiring', this.nr - 1);
-            },
-            onYearBoughtBlurred(yearOfAcquiring) {
-//                this.form.validate('stolen_properties', 'year_of_acquiring', this.nr - 1);
-            },
-            onValueChanged(value){
-                this.property.value = value;
-                this.form.validate('stolen_properties', 'value', this.nr - 1);
-            },
-            onCommentChanged(special_indicators){
-                this.property.special_indicators = special_indicators;
-                this.form.validate('stolen_properties', 'special_indicators', this.nr - 1);
-            },
-            onPropertyExistsChanged(time){
-                this.property.property_exists_time = time;
-                this.form.validate('stolen_properties', 'property_exists_time', this.nr - 1);
-            },
-            onPropertyLostChanged(time){
-                this.property.property_lost_time = time;
-                this.form.validate('stolen_properties', 'property_lost_time', this.nr - 1);
-            }
-
+            property: { required: true },
         },
     }
 </script>

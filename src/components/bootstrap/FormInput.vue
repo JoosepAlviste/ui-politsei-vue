@@ -11,7 +11,7 @@
                :id="name"
                :required="true"
                v-model="value"
-               @blur="onBlurred()">
+               @blur="$emit('input-was-blurred', value)">
 
         <div v-if="hasError"
              class="form-control-feedback">

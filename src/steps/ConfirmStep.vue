@@ -26,7 +26,9 @@
                                class="custom-control-input"
                                v-model="info_e_file">
                         <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Soovin teavet <a href="https://www.e-toimik.ee/">E-Toimiku</a> kaudu </span>
+                        <span class="custom-control-description">
+                            Soovin teavet <a href="https://www.e-toimik.ee/">E-Toimiku</a> kaudu
+                        </span>
                     </label>
                 </div>
             </div>
@@ -39,11 +41,12 @@
     import CardSection from '../components/CardSection.vue';
     import Checkbox from '../components/bootstrap/Checkbox.vue';
 
+    import StepGenericMixin from '../classes/mixins/stepGeneric';
     import StepMixin from '../classes/mixins/step';
 
     export default {
 
-        mixins: [ StepMixin ],
+        mixins: [ StepGenericMixin, StepMixin ],
 
         components: { Step, CardSection, Checkbox },
 
@@ -78,23 +81,12 @@
         },
 
         beforeRouteLeave (to, from, next) {
-            this.form.validateAll(this.this_step);
 
-            if (this.form.errors.has(this.this_step)) {
-
-                // Wait with scroll because the form errors have not been rendered yet!
-                // Must wait for Vue to update the HTML
-                setTimeout(() => {
-                    window.jump('.form-control-danger', {
-                        duration: 200,
-                        offset: -60,
-                    });
-                }, 100);
-
+            if (this.checkErrors(to, from)) {
                 return next(false);
             }
 
-            next();
+            return next();
         }
     }
 </script>

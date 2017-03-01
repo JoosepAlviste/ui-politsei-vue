@@ -9,6 +9,7 @@ import routes from "./routes";
 
 window.jump = jump;
 window.moment = moment;
+window.routes = routes;
 
 Vue.use(VueRouter);
 

@@ -62,7 +62,7 @@ module.exports = {
 
     methods: {
         onBlurred() {
-            this.$emit('input-was-changed', this.value);
+            this.$emit('input-was-blurred', this.value);
         }
     }
 };

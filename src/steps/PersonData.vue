@@ -12,9 +12,10 @@
                         label="Eesnimi"
                         :error="error('first-name')"
                         class_name="col-sm-12 col-md-6"
-                        :input_value="form.get('person_data', 'first-name')"
+                        :input_value="get('first-name')"
                         :required="true"
-                        @input-was-changed="onFirstNameChanged">
+                        @input-was-changed="onValueChanged('first-name', $event)"
+                        @input-was-blurred="onInputBlurred('first-name', $event)">
                 </form-input>
 
                 <form-input
@@ -22,9 +23,10 @@
                         label="Perenimi"
                         :error="error('last-name')"
                         class_name="col-sm-12 col-md-6"
-                        :input_value="form.person_data['last-name']"
+                        :input_value="get('last-name')"
                         :required="true"
-                        @input-was-changed="onLastNameChanged">
+                        @input-was-changed="onValueChanged('last-name', $event)"
+                        @input-was-blurred="onInputBlurred('last-name', $event)">
                 </form-input>
 
             </div>
@@ -35,10 +37,11 @@
                         label="Sünniaeg"
                         :error="error('date-of-birth')"
                         class_name="col-sm-8 col-md-6"
-                        :input_value="form.person_data['date-of-birth']"
+                        :input_value="get('date-of-birth')"
                         :required="true"
                         help_text="Formaadis pp.kk.aaaa"
-                        @input-was-changed="onDateOfBirthChanged">
+                        @input-was-changed="onValueChanged('date-of-birth', $event)"
+                        @input-was-blurred="onInputBlurred('date-of-birth', $event)">
                 </form-input>
             </div>
 
@@ -47,11 +50,11 @@
                         name="citizenship"
                         label="Kodakondsus"
                         :error="error('citizenship')"
-                        :input_value="form.person_data['citizenship']"
+                        :input_value="get('citizenship')"
                         :required="true"
                         :values="form.countries"
                         class_name="col-sm-8 col-md-4"
-                        @input-was-changed="onCitizenshipChanged">
+                        @input-was-changed="onValueChanged('citizenship', $event)">
                 </form-select>
             </div>
 
@@ -64,8 +67,9 @@
                         label="Elukoha aadress (tänav, maja, korter, linn)"
                         :error="error('address')"
                         class_name="col-sm-12"
-                        :input_value="form.person_data['address']"
-                        @input-was-changed="onAddressChanged">
+                        :input_value="get('address')"
+                        @input-was-changed="onValueChanged('address', $event)"
+                        @input-was-blurred="onInputBlurred('address', $event)">
                 </form-input>
             </div>
 
@@ -74,11 +78,11 @@
                         name="county"
                         label="Maakond"
                         :error="error('county')"
-                        :input_value="form.person_data['county']"
+                        :input_value="get('county')"
                         :required="true"
                         :values="form.counties"
                         class_name="col-sm-8 col-md-4"
-                        @input-was-changed="onCountyChanged">
+                        @input-was-changed="onValueChanged('county', $event)">
                 </form-select>
             </div>
 
@@ -89,8 +93,9 @@
                         :error="error('zip-code')"
                         class_name="col-sm-6 col-md-4"
                         input_class="col"
-                        :input_value="form.person_data['zip-code']"
-                        @input-was-changed="onZipCodeChanged">
+                        :input_value="get('zip-code')"
+                        @input-was-changed="onValueChanged('zip-code', $event)"
+                        @input-was-blurred="onInputBlurred('zip-code', $event)">
                 </form-number>
             </div>
 
@@ -102,39 +107,42 @@
                         name="contact-option"
                         label="Sobiv viis kontakteerumiseks"
                         :error="error('contact-option')"
-                        :input_value="form.person_data['contact-option']"
+                        :input_value="get('contact-option')"
                         :values="form.contact_options"
                         class_name="col-sm-8 col-md-6"
-                        @input-was-changed="onContactOptionChanged">
+                        @input-was-changed="onValueChanged('contact-option', $event)">
                 </form-select>
             </div>
             <div class="row">
-                <form-input v-if="form.person_data['contact-option'] == 'email'"
+                <form-input v-if="get('contact-option') == 'email'"
                         name="email"
                         label="E-mail"
                         :error="error('email')"
                         class_name="col-sm-12 col-md-6"
                         input_class="col"
-                        :input_value="form.person_data['email']"
-                        @input-was-changed="onEmailChanged">
+                        :input_value="get('email')"
+                        @input-was-changed="onValueChanged('email', $event)"
+                        @input-was-blurred="onInputBlurred('email', $event)">
                 </form-input>
-                <form-input v-if="form.person_data['contact-option'] == 'phone'"
+                <form-input v-if="get('contact-option') == 'phone'"
                         name="phone"
                         label="Telefon"
                         :error="error('phone')"
                         class_name="col-sm-12 col-md-6"
                         input_class="col"
-                        :input_value="form.person_data['phone']"
-                        @input-was-changed="onPhoneChanged">
+                        :input_value="get('phone')"
+                        @input-was-changed="onValueChanged('phone', $event)"
+                        @input-was-blurred="onInputBlurred('phone', $event)">
                 </form-input>
-                <form-input v-if="form.person_data['contact-option'] == 'phone'"
+                <form-input v-if="get('contact-option') == 'phone'"
                         name="contact-time"
                         label="Sobiv aeg kontakteerumiseks"
                         :error="error('contact-time')"
                         class_name="col-sm-12 col-md-6"
                         input_class="col"
-                        :input_value="form.person_data['contact-time']"
-                        @input-was-changed="onContactTimeChanged">
+                        :input_value="get('contact-time')"
+                        @input-was-changed="onValueChanged('contact-time', $event)"
+                        @input-was-blurred="onInputBlurred('contact-time', $event)">
                 </form-input>
             </div>
         </card-section>
@@ -145,20 +153,21 @@
                         name="victim-is-legal-person"
                         label="Kannatanu on juriidiline isik"
                         class_name="custom-control-input"
-                        :input_value="form.get('person_data', 'is-legal-person')"
-                        @input-was-changed="onLegalPersonChanged">
+                        :input_value="get('is-legal-person', $event)"
+                        @input-was-changed="onValueChanged('is-legal-person', $event)">
                 </checkbox>
             </div>
 
-            <div class="row" v-if="form.get('person_data', 'is-legal-person')">
+            <div class="row" v-if="get('is-legal-person')">
                 <form-input
                         name="victim-registry-code"
                         label="Kannatanu registri kood"
                         :error="error('victim-registry-code')"
                         class_name="col-sm-12 col-md-6"
                         input_class="col-sm-12 col-md-6"
-                        :input_value="form.get('person_data', 'victim-registry-code')"
-                        @input-was-changed="onVictimRegistryCodeChanged">
+                        :input_value="get('victim-registry-code')"
+                        @input-was-changed="onValueChanged('victim-registry-code', $event)"
+                        @input-was-blurred="onInputBlurred('victim-registry-code', $event)">
                 </form-input>
             </div>
         </card-section>
@@ -174,11 +183,12 @@
     import Checkbox from '../components/bootstrap/Checkbox.vue';
     import FormNumber from '../components/bootstrap/FormNumber.vue';
 
+    import StepGenericMixin from '../classes/mixins/stepGeneric';
     import StepMixin from '../classes/mixins/step';
 
     export default {
 
-        mixins: [ StepMixin ],
+        mixins: [ StepGenericMixin, StepMixin ],
 
         components: { Step, CardSection, FormInput, FormSelect, Checkbox, FormNumber },
 
@@ -194,79 +204,13 @@
             };
         },
 
-        methods: {
-
-            onFirstNameChanged(firstName) {
-                this.set('first-name', firstName);
-            },
-
-            onLastNameChanged(lastName) {
-                this.set('last-name', lastName);
-            },
-
-            onDateOfBirthChanged(dateOfBirth) {
-                this.set('date-of-birth', dateOfBirth);
-            },
-
-            onAddressChanged(address) {
-                this.set('address', address);
-            },
-
-            onCitizenshipChanged(citizenship) {
-                this.set('citizenship', citizenship);
-            },
-
-            onZipCodeChanged(zipCode) {
-                this.set('zip-code', zipCode);
-            },
-
-            onLegalPersonChanged(isLegalPerson) {
-                this.set('is-legal-person', isLegalPerson);
-            },
-
-            onVictimRegistryCodeChanged(victimRegistryCode) {
-                this.set('victim-registry-code', victimRegistryCode);
-            },
-
-            onCountyChanged(county) {
-                this.set('county', county);
-            },
-
-            onContactOptionChanged(contactOption) {
-                this.set('contact-option', contactOption);
-            },
-
-            onEmailChanged(email) {
-                this.set('email', email);
-            },
-
-            onPhoneChanged(phone) {
-                this.set('phone', phone);
-            },
-
-            onContactTimeChanged(contactTime) {
-                this.set('contact-time', contactTime);
-            },
-        },
-
         beforeRouteLeave (to, from, next) {
-            this.form.validateAll(this.this_step);
 
-            if (this.form.errors.has(this.this_step)) {
-
-                // Wait with scroll because the form errors have not been rendered yet!
-                // Must wait for Vue to update the HTML
-                setTimeout(() => {
-                    window.jump('.form-control-danger', {
-                        duration: 200,
-                        offset: -60,
-                    });
-                }, 100);
-
+            if (this.checkErrors(to, from)) {
                 return next(false);
             }
 
-            next();
+            return next();
         }
 
     }
