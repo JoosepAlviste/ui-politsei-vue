@@ -10,6 +10,7 @@ class Errors {
 
         this.person_data = { };
         this.event_info = { };
+        this.confirm = { };
         this.stolen_properties = [ ];
         this.perpetrators = [ ];
         this.witnesses = [ ];
@@ -22,6 +23,11 @@ class Errors {
         for (let field in this.form.event_info) {
             if (this.form.event_info.hasOwnProperty(field)) {
                 this.event_info[field] = '';
+            }
+        }
+        for (let field in this.form.confirm) {
+            if (this.form.confirm.hasOwnProperty(field)) {
+                this.confirm[field] = '';
             }
         }
     }

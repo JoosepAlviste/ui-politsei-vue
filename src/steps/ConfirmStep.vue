@@ -3,11 +3,25 @@
           @submit="$emit('form-was-submitted')">
 
         <card-section>
-            <h6 class="card-title text-center confirm-text mb-0">
+            <p class="card-title text-center confirm-text">
                 Kõik esitatud andmed on õiged. Olen teadlik, et valeandmete esitamine on karistatav.
-            </h6>
+            </p>
+
+            <div class="text-center">
+                <checkbox
+                        name="confirm-truth"
+                        label="Kinnitan andmete õigsust"
+                        :error="error('confirm-truth')"
+                        :input_value="confirm_truth"
+                        :required="true"
+                        @input-was-changed="onValueChanged('confirm-truth', $event)">
+                </checkbox>
+            </div>
+
         </card-section>
+
         <card-section>
+
             <div class="row">
                 <div class="form-group col-md-12 d-flex justify-content-center">
                     <label class="custom-control custom-checkbox">
@@ -71,23 +85,29 @@
                 next_step: '',
 
                 ok_with_deal: false,
-                info_e_file: false
+                info_e_file: false,
+                confirm_truth: false,
             };
         },
 
         watch: {
             ok_with_deal() {
-                this.form.options['ok-with-deal'] = this.ok_with_deal;
+                this.form.confirm['ok-with-deal'] = this.ok_with_deal;
             },
 
             info_e_file() {
-                this.form.options['info-e-file'] = this.info_e_file;
+                this.form.confirm['info-e-file'] = this.info_e_file;
+            },
+
+            confirm_truth() {
+                this.form.confirm['confirm-truth'] = this.confirm_truth;
+                this.validate('confirm-truth');
             }
         },
 
         mounted() {
-            this.ok_with_deal = this.form.options['ok-with-deal'];
-            this.info_e_file = this.form.options['info-e-file'];
+            this.ok_with_deal = this.form.confirm['ok-with-deal'];
+            this.info_e_file = this.form.confirm['info-e-file'];
         },
 
         beforeRouteLeave (to, from, next) {

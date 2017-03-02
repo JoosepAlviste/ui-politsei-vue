@@ -65,7 +65,9 @@ class Form {
             ],
             witnesses: [],
             perpetrators: [],
-            confirm_step: [],
+            confirm: [
+                'confirm-truth'
+            ],
         };
 
         // Run normal validation for fields if needed
@@ -226,6 +228,12 @@ class Form {
                     } else {
                         errorMessage = 'Kuupäev peab olema formaadis pp.kk.aaaa'
                     }
+                }
+            }
+        } else if (step === 'confirm') {
+            if (name === 'confirm-truth') {
+                if (!this[step][name]) {
+                    errorMessage = 'Kinnitamine on kohustuslik!';
                 }
             }
         }
@@ -660,9 +668,10 @@ class Form {
         this.perpetrators = [];
         this.witnesses = [];
 
-        this.options = {
+        this.confirm = {
             'ok-with-deal': false,
             'info-e-file': false,
+            'confirm-truth': false,
         }
     }
 }

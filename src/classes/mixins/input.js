@@ -7,7 +7,7 @@ module.exports = {
         class_name: { required: false, default: '' },
         help_text: { required: false, default: '' },
         input_value: { required: false, default: '' },
-        required: { required: false, default: '' },
+        required: { required: false, default: false },
         input_class: { required: false, default: '' },
         disabled: { required: false, default: false },
     },

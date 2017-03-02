@@ -1,6 +1,6 @@
 <template>
     <div class="form-group col-md-12" :class="[ errorClass ]">
-        <label class="custom-control custom-checkbox" :for="name">
+        <label class="custom-control custom-checkbox" :class="{ required: required }" :for="name">
 
             <input type="checkbox"
                    class="custom-control-input"
@@ -11,18 +11,18 @@
 
             <span class="custom-control-indicator"></span>
 
-            <span class="custom-control-description">{{ label }}</span>
-
-            <div v-if="hasError"
-                 class="form-control-feedback">
-                {{ error }}
-            </div>
-
-            <small v-if="hasHelp"
-                   class="form-text text-muted">
-                {{ help_text }}
-            </small>
+            <span class="custom-control-description no-danger-show">{{ label }}</span>
         </label>
+
+        <div v-if="hasError"
+             class="form-control-feedback">
+            {{ error }}
+        </div>
+
+        <small v-if="hasHelp"
+               class="form-text text-muted">
+            {{ help_text }}
+        </small>
     </div>
 </template>
 
