@@ -55,7 +55,7 @@ class Form {
 
         let normalValidationFields = {
             person_data: [
-                'first-name', 'last-name', 'zip-code', 'victim-registry-code', 'phone', 'email'
+                'first-name', 'last-name', 'zip-code', 'victim-registry-code', 'phone', 'email', 'contact-time'
             ],
             event_info: [
                 'event-location', 'event-description', 'pecuniary-loss'
@@ -94,6 +94,12 @@ class Form {
                     // Do validation only if the user has typed in 4 or more numbers
                     return this.validate(step, name, index);
                 }
+            } else if (name === 'special_indicators') {
+                errorMessage = 'dont-show-success';
+            }
+        } else if (step === 'perpetrators') {
+            if (name === 'special_indicators') {
+                errorMessage = 'dont-show-success';
             }
         }
 
@@ -171,6 +177,10 @@ class Form {
                 if (this.exists(this[ step ][ name ]) && !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(this[ step ][ name ])) {
                     errorMessage = "Sisestatud email ei ole korrektne";
                 } else if (!this.exists(this[ step ][ name ])) {
+                    errorMessage = 'dont-show-success';
+                }
+            } else if (name == 'contact-time') {
+                if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'dont-show-success';
                 }
             }

@@ -60,8 +60,7 @@
                             class_name="col"
                             :input_value="property.special_indicators"
                             :required="false"
-                            @input-was-changed="onInputChange('special_indicators', $event)"
-                            @input-was-blurred="onInputBlurred('special_indicators', $event)">
+                            @input-was-changed="onInputChange('special_indicators', $event)">
                     </form-comment>
                 </div>
                 <div class="row">
