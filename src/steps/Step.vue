@@ -29,11 +29,12 @@
                         Edasi
                     </router-link>
 
-                    <router-link v-else
-                                 to="submitted_step"
-                                 class="btn btn-success">
+                    <a v-else href="#"
+                       to="submitted_step"
+                       class="btn btn-success"
+                       @click.prevent="$emit('submit')">
                         Kinnita
-                    </router-link>
+                    </a>
 
                 </div>
 

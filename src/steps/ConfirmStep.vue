@@ -1,6 +1,6 @@
 <template>
     <step title="Kinnita avaldus"
-          @submit="$emit('form-was-submitted')">
+          @submit="onSubmitted()">
 
         <card-section>
             <p class="card-title text-center confirm-text">
@@ -12,7 +12,7 @@
                         name="confirm-truth"
                         label="Kinnitan andmete õigsust"
                         :error="error('confirm-truth')"
-                        :input_value="confirm_truth"
+                        :input_value="form.confirm['confirm-truth']"
                         :required="true"
                         @input-was-changed="onValueChanged('confirm-truth', $event)">
                 </checkbox>
@@ -115,6 +115,19 @@
         mounted() {
             this.ok_with_deal = this.form.confirm['ok-with-deal'];
             this.info_e_file = this.form.confirm['info-e-file'];
+        },
+
+        methods: {
+            onSubmitted() {
+                this.form.validateAll();
+
+                let errorStep = this.form.errors.hasAny();
+                if (errorStep !== null) {
+                    this.$router.push(errorStep);
+                } else {
+                    this.$router.push('submitted_step');
+                }
+            }
         },
 
         beforeRouteLeave (to, from, next) {

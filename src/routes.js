@@ -45,9 +45,9 @@ let routes = [
         title: 'Tunnistajad'
     },
     {
-        path: '/confirm_step',
+        path: '/confirm',
         component: ConfirmStep,
-        name: 'confirm_step',
+        name: 'confirm',
         title: 'Kinnita'
     },
     {

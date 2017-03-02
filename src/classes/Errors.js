@@ -75,6 +75,21 @@ class Errors {
 
         return false;
     }
+
+    hasAny() {
+
+        let firstError = null;
+        ['person_data', 'event_info', 'stolen_properties', 'perpetrators', 'witnesses', 'confirm'].some(step => {
+            if (this.has(step)) {
+                firstError = step;
+                return true;
+            }
+
+            return false;
+        });
+
+        return firstError;
+    }
 }
 
 export default Errors;
