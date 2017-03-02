@@ -63,8 +63,12 @@ class Form {
             stolen_properties: [
                 'name'
             ],
-            witnesses: [],
-            perpetrators: [],
+            witnesses: [
+                'first-name', 'last-name'
+            ],
+            perpetrators: [
+                'first-name', 'last-name'
+            ],
             confirm: [
                 'confirm-truth'
             ],
@@ -119,13 +123,36 @@ class Form {
                 if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'Eesnimi on kohustuslik!';
                 }
+                else if (!/^[^0-9]+$/.test(this[ step ][ name ])) {
+                    errorMessage = 'Nimi ei tohi olla ainult numbrid'
+                }
             } else if (name === 'last-name') {
                 if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'Perenimi on kohustuslik!';
                 }
+                else if (!/^[^0-9]+$/.test(this[ step ][ name ])) {
+                    errorMessage = 'Nimi ei tohi olla ainult numbrid'
+                }
             } else if (name === 'date-of-birth') {
                 if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'Sünniaeg on kohustuslik!';
+                } else {
+                    let checkedVal = this[ step ][ name ];
+                    // check format http://stackoverflow.com/questions/15491894/regex-to-validate-date-format-dd-mm-yyyy
+                    if (this.exists(checkedVal)) {
+                        if (/^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d$/.test(checkedVal)) {
+                            let dateArr = checkedVal.split(".");
+
+                            let date = new Date(dateArr[ 2 ], dateArr[ 1 ], dateArr[ 0 ]);
+                            if (date < new Date("1800-1-1")) {
+                                errorMessage = 'Sünnikuupäev peab olema hilisem kui 1800';
+                            } else if (date > new Date()) {
+                                errorMessage = 'Sünnikuupäev ei saa olla tulevikus';
+                            }
+                        } else {
+                            errorMessage = 'Kuupäev peab olema formaadis pp.kk.aaaa'
+                        }
+                    }
                 }
                 // TODO: Check if past etc.
             } else if (name === 'zip-code') {
@@ -199,17 +226,30 @@ class Form {
                 }
             }
         } else if (step === 'witnesses' || step === 'perpetrators') {
+            if (name == 'first_name' || name == 'last_name') {
+                if (this.exists(this[ step ][ index ][ name ]) && !/^[^0-9]+$/.test(this[ step ][ index ][ name ])) {
+                    errorMessage = 'Nimi ei tohi olla ainult numbrid'
+                } else if (!this.exists(this[ step ][ index ][ name ])) {
+                    errorMessage = 'dont-show-success';
+                }
+            }
             if (name == 'phone') {
                 if (this.exists(this[ step ][ index ][ name ]) && !/^[+0-9 ]{3,20}$/.test(this[ step ][ index ][ name ])) {
                     errorMessage = "Palun kasutage numbreid, tühikuid ning '+' märki. 3-20 märki"
+                } else if (!this.exists(this[ step ][ index ][ name ])) {
+                    errorMessage = 'dont-show-success';
                 }
-            } else if (name == 'email' && this.exists(this[ step ][ index ][ name ])) {
-                if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(this[ step ][ index ][ name ])) {
+            } else if (name == 'email') {
+                if (this.exists(this[ step ][ index ][ name ]) && !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(this[ step ][ index ][ name ])) {
                     errorMessage = "Ebakorrektne email"
+                } else if (!this.exists(this[ step ][ index ][ name ])) {
+                    errorMessage = 'dont-show-success';
                 }
             } else if (name == 'personal_code') {
                 if (!/^[1-6][0-9]{2}[0-1][0-9][0-9]{2}[0-9]{4}$/.test(this[ step ][ index ][ name ]) && this.exists(this[ step ][ index ][ name ])) {
                     errorMessage = "Ei vasta Eesti isikukoodile";
+                } else if (!this.exists(this[ step ][ index ][ name ])) {
+                    errorMessage = 'dont-show-success';
                 }
 
             } else if (name === 'date_of_birth') {
@@ -221,13 +261,15 @@ class Form {
 
                         let date = new Date(dateArr[ 2 ], dateArr[ 1 ], dateArr[ 0 ]);
                         if (date < new Date("1800-1-1")) {
-                            errorMessage = 'Ei saa olla sündinud varem kui 1800';
+                            errorMessage = 'SÜnnikuupäev peab olema hilisem kui 1800';
                         } else if (date > new Date()) {
-                            errorMessage = 'Ei saa olla sündinud tulevikus';
+                            errorMessage = 'Sünnikuupäev ei saa olla tulevikus';
                         }
                     } else {
                         errorMessage = 'Kuupäev peab olema formaadis pp.kk.aaaa'
                     }
+                } else {
+                    errorMessage = 'dont-show-success';
                 }
             }
         } else if (step === 'confirm') {

@@ -216,7 +216,8 @@ body {
 .steps-buttons {
   justify-content: space-between;
 
-  .btn-primary {
+  .btn-primary,
+  .btn-success {
     color: #ffffff;
     margin-left: auto;
 
@@ -225,6 +226,7 @@ body {
       color: #ffffff;
     }
   }
+
 }
 
 
