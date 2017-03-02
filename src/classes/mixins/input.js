@@ -9,6 +9,7 @@ module.exports = {
         input_value: { required: false, default: '' },
         required: { required: false, default: '' },
         input_class: { required: false, default: '' },
+        disabled: { required: false, default: false },
     },
 
     data() {

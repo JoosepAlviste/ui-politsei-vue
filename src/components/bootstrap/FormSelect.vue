@@ -5,7 +5,7 @@
             {{ label }}
         </label>
 
-        <select class="form-control" :id="name" :name="name" v-model="value">
+        <select class="form-control" :id="name" :name="name" v-model="value" :disabled="disabled">
             <option v-for="option in values" :value="option.value">
                 {{ option.text }}
             </option>

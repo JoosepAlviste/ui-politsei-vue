@@ -324,7 +324,7 @@ class Form {
 
     initializeCounties() {
         this.counties = [
-            { value: "Vali maakond", text: "Vali maakond" },
+            { value: null, text: "Vali maakond" },
             { value: "Harju maakond", text: "Harju maakond" },
             { value: "Hiiu maakond", text: "Hiiu maakond" },
             { value: "Ida-Viru maakond", text: "Ida-Viru maakond" },
@@ -355,7 +355,10 @@ class Form {
 
     initializeCountries() {
         this.countries = [
+            { value: null, text: "Vali riik..." },
             { value: "Eesti Vabariik", text: "Eesti Vabariik" },
+            { value: "Venemaa Föderatsioon", text: "Venemaa Föderatsioon" },
+            { value: "Määratlemata", text: "Määratlemata" },
             { value: "Afganistan", text: "Afganistan" },
             { value: "Ahvenamaa ", text: "Ahvenamaa " },
             { value: "Albaania ", text: "Albaania " },
@@ -612,12 +615,10 @@ class Form {
             { value: "Valgevene ", text: "Valgevene " },
             { value: "Wallis ja Futuna", text: "Wallis ja Futuna" },
             { value: "Vanuatu ", text: "Vanuatu " },
-            { value: "Venemaa Föderatsioon", text: "Venemaa Föderatsioon" },
             { value: "Venezuela", text: "Venezuela" },
             { value: "Vietnam", text: "Vietnam" },
             { value: "Ühendriikide hajasaared", text: "Ühendriikide hajasaared" },
             { value: "Mujal nimetamata territooriumid", text: "Mujal nimetamata territooriumid" },
-            { value: "Määratlemata", text: "Määratlemata" },
         ];
     }
 
@@ -638,7 +639,7 @@ class Form {
             'zip-code': '',
             'is-legal-person': false,
             'victim-registry-code': '',
-            'county': 'Vali maakond',
+            'county': null,
             'contact-option': 'email',
             'email': '',
             'phone': '',
@@ -647,7 +648,7 @@ class Form {
         this.event_info = {
             'event-date': '',
             'event-country': 'Eesti Vabariik',
-            'event-county': 'Vali maakond',
+            'event-county': null,
             'prefecture': 'Üldine kontakt',
             'event-location': '',
             'event-description': '',

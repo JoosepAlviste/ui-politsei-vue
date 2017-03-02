@@ -19,19 +19,29 @@
                     </label>
                 </div>
             </div>
+
             <div class="row">
                 <div class="form-group col-md-12 d-flex justify-content-center">
                     <label class="custom-control custom-checkbox">
+
                         <input type="checkbox" name="info-e-toimik"
                                class="custom-control-input"
                                v-model="info_e_file">
+
                         <span class="custom-control-indicator"></span>
+
                         <span class="custom-control-description">
-                            Soovin teavet <a href="https://www.e-toimik.ee/">E-Toimiku</a> kaudu
+                            Soovin teavet
+                            <a href="https://www.e-toimik.ee/" target="_blank">
+                                E-Toimiku
+                            </a>
+                            kaudu
                         </span>
+
                     </label>
                 </div>
             </div>
+
         </card-section>
     </step>
 </template>

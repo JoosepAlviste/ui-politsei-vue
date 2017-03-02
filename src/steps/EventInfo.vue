@@ -25,16 +25,17 @@
                         :input_value="get('event-country')"
                         :values="form.countries"
                         class_name="col-sm-8 col-md-4"
-                        @input-was-changed="onValueChanged('event-country', $event)">
+                        @input-was-changed="onCountryChanged">
                 </form-select>
-                <form-select v-if="get('event-country') == 'Eesti Vabariik'"
+                <form-select
                         name="event-county"
                         label="Maakond"
                         :error="error('event-county')"
                         :input_value="get('event-county')"
                         :values="form.counties"
                         class_name="col-sm-8 col-md-4"
-                        @input-was-changed="onValueChanged('event-country', $event)">
+                        :disabled="get('event-country') !== 'Eesti Vabariik'"
+                        @input-was-changed="onValueChanged('event-county', $event)">
                 </form-select>
             </div>
             <div class="row">
@@ -45,8 +46,9 @@
                         :input_value="get('prefecture')"
                         :values="form.prefectures"
                         class_name="col-sm-8 col-md-4"
-                        help_text='Valige "üldine kontakt", kui sündmus toimus mõnes välisriigis'
-                        @input-was-changed="onValueChanged('perfecture', $event)">
+                        help_text='Valige "üldine kontakt", kui te ei tea prefektuuri'
+                        :disabled="get('event-country') !== 'Eesti Vabariik'"
+                        @input-was-changed="onValueChanged('prefecture', $event)">
                 </form-select>
             </div>
             <div class="row">
@@ -120,6 +122,18 @@
                 next_step: 'stolen_properties',
                 this_step: 'event_info',
             };
+        },
+
+        methods: {
+            onCountryChanged(value) {
+                console.log('changed', value);
+                this.onValueChanged('event-country', value);
+
+                if (value !== 'Eesti Vabariik') {
+                    this.onValueChanged('prefecture', 'Üldine kontakt');
+                    this.onValueChanged('event-county', null);
+                }
+            }
         },
 
         beforeRouteLeave (to, from, next) {
