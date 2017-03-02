@@ -66,7 +66,7 @@
                 <div class="row">
                     <form-input
                             name="property_exists_time"
-                            label="Vara valdus olemas (viimati kannatanul/teatajal ese/asi olemas)"
+                            label="Vara viimati kannatanul/teatajal olemas"
                             :error="errors['property_exists_time']"
                             class_name="col-sm-6"
                             :input_value="property.property_exists_time"
@@ -79,7 +79,7 @@
                 <div class="row">
                     <form-input
                             name="property_lost_time"
-                            label="Vara valdusest väljaminek on tuvastatud"
+                            label="Vara kaotus tuvastatud"
                             :error="errors['property_lost_time']"
                             class_name="col-sm-6"
                             :input_value="property.property_lost_time"
