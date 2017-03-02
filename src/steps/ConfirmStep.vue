@@ -23,7 +23,7 @@
         <card-section>
 
             <div class="row">
-                <div class="form-group col-md-12 d-flex justify-content-center">
+                <div class="form-group col-md-12 d-flex justify-content-center options-div">
                     <label class="custom-control custom-checkbox">
                         <input type="checkbox" name="ok-with-deal"
                                class="custom-control-input"
@@ -31,6 +31,13 @@
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Olen nõus kokkuleppemenetlusega</span>
                     </label>
+                    <div class="wrapper">
+                        <svg fill="#292b2c" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"/>
+                        </svg>
+                        <div class="tooltip">Kokkuleppemenetlus on menetluse liik, mille käigus nõustuvad süüdistatav ja tema kaitsja süüdistuse sisu ja kuriteo kvalifikatsiooni, kuriteoga tekitatud kahju laadi ja suurusega ning jõuavad kokkuleppele prokuröri poolt kohtus nõutava karistuse liigis ja määras.</div>
+                    </div>
                 </div>
             </div>
 
