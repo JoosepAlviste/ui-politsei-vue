@@ -55,7 +55,7 @@ class Form {
 
         let normalValidationFields = {
             person_data: [
-                'first-name', 'last-name'
+                'first-name', 'last-name', 'zip-code', 'victim-registry-code', 'phone', 'email'
             ],
             event_info: [
                 'event-location', 'event-description', 'pecuniary-loss'
@@ -155,9 +155,23 @@ class Form {
                     }
                 }
                 // TODO: Check if past etc.
-            } else if (name === 'zip-code') {
-                if (!this.isNumeric(this[ step ][ name ])) {
-                    errorMessage = 'Postiindeks peab olema number!';
+            } else if (name === 'zip-code' || name === 'victim-registry-code') {
+                if (!this.exists(this[ step ][ name ])) {
+                    errorMessage = 'dont-show-success';
+                } else if (this.exists(this[ step ][ name ]) && !this.isNumeric(this[ step ][ name ])) {
+                    errorMessage = 'Väärtus peab olema numbriline!';
+                }
+            } else if (name == 'phone') {
+                if (this.exists(this[ step ][ name ]) && !/^[+0-9 ]{3,20}$/.test(this[ step ][ name ])) {
+                    errorMessage = "Palun kasutage numbreid, tühikuid ning '+' märki. 3-20 märki"
+                } else if (!this.exists(this[ step ][ name ])) {
+                    errorMessage = 'dont-show-success';
+                }
+            } else if (name == 'email')  {
+                if (this.exists(this[ step ][ name ]) && !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(this[ step ][ name ])) {
+                    errorMessage = "Sisestatud email ei ole korrektne";
+                } else if (!this.exists(this[ step ][ name ])) {
+                    errorMessage = 'dont-show-success';
                 }
             }
         } else if (step === 'event_info') {
@@ -241,13 +255,13 @@ class Form {
                 }
             } else if (name == 'email') {
                 if (this.exists(this[ step ][ index ][ name ]) && !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(this[ step ][ index ][ name ])) {
-                    errorMessage = "Ebakorrektne email"
+                    errorMessage = "Sisestatud email ei ole korrektne"
                 } else if (!this.exists(this[ step ][ index ][ name ])) {
                     errorMessage = 'dont-show-success';
                 }
             } else if (name == 'personal_code') {
                 if (!/^[1-6][0-9]{2}[0-1][0-9][0-9]{2}[0-9]{4}$/.test(this[ step ][ index ][ name ]) && this.exists(this[ step ][ index ][ name ])) {
-                    errorMessage = "Ei vasta Eesti isikukoodile";
+                    errorMessage = "Sisestatud väärtus ei vasta Eesti isikukoodile";
                 } else if (!this.exists(this[ step ][ index ][ name ])) {
                     errorMessage = 'dont-show-success';
                 }
@@ -261,7 +275,7 @@ class Form {
 
                         let date = new Date(dateArr[ 2 ], dateArr[ 1 ], dateArr[ 0 ]);
                         if (date < new Date("1800-1-1")) {
-                            errorMessage = 'SÜnnikuupäev peab olema hilisem kui 1800';
+                            errorMessage = 'Sünnikuupäev peab olema hilisem kui 1800';
                         } else if (date > new Date()) {
                             errorMessage = 'Sünnikuupäev ei saa olla tulevikus';
                         }
