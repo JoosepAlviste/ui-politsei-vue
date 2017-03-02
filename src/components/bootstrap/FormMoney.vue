@@ -7,6 +7,7 @@
           <span class="input-group-addon">€</span>
           <input type="number"
                  class="form-control"
+                 :class="inputClass"
                  :name="name"
                  :id="name"
                  v-model="value">
