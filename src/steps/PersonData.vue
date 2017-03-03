@@ -53,7 +53,7 @@
                         :input_value="get('citizenship')"
                         :required="true"
                         :values="form.countries"
-                        class_name="col-sm-8 col-md-4"
+                        class_name="col-sm-8 col-md-5"
                         @input-was-changed="onValueChanged('citizenship', $event)">
                 </form-select>
             </div>
@@ -121,6 +121,7 @@
                         class_name="col-sm-12 col-md-6"
                         input_class="col"
                         :input_value="get('email')"
+                        :required="get('contact-option') == 'email'"
                         @input-was-changed="onValueChanged('email', $event)"
                         @input-was-blurred="onInputBlurred('email', $event)">
                 </form-input>
@@ -131,6 +132,7 @@
                         class_name="col-sm-12 col-md-6"
                         input_class="col"
                         :input_value="get('phone')"
+                        :required="get('contact-option') == 'phone'"
                         @input-was-changed="onValueChanged('phone', $event)"
                         @input-was-blurred="onInputBlurred('phone', $event)">
                 </form-input>

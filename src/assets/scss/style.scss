@@ -392,8 +392,36 @@ body {
 
 @media (max-width: 768px) {
 
+  .step.card {
+    position: initial;
+  }
+
   .steps {
     padding: 0;
+  }
+
+  .step-tabs {
+    margin-bottom: -15px;
+
+    > li {
+
+      &:hover {
+        color: #f7f7f9;
+      }
+
+      &.is-active,
+      &.is-complete {
+        color: #f7f7f9;
+        
+        &:hover {
+          color: #f7f7f9;
+        }
+      }
+    }
+  }
+
+  .step-btn {
+    color: #f7f7f9;
   }
 
   .steps-buttons {
@@ -433,6 +461,14 @@ body {
 
   .list-group-item .card-block {
     padding: 0;
+  }
+
+  .wrapper {
+    display: none;
+  }
+
+  #app .options-div {
+    flex-direction: column;
   }
 }
 
