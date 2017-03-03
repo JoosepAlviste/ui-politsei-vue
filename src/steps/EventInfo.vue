@@ -24,7 +24,7 @@
                         :error="error('event-country')"
                         :input_value="get('event-country')"
                         :values="form.countries"
-                        class_name="col-sm-8 col-md-4"
+                        class_name="col-sm-8 col-md-5"
                         @input-was-changed="onCountryChanged">
                 </form-select>
                 <form-select

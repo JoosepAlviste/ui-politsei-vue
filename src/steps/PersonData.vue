@@ -53,7 +53,7 @@
                         :input_value="get('citizenship')"
                         :required="true"
                         :values="form.countries"
-                        class_name="col-sm-8 col-md-4"
+                        class_name="col-sm-8 col-md-5"
                         @input-was-changed="onValueChanged('citizenship', $event)">
                 </form-select>
             </div>

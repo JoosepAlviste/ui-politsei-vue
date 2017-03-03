@@ -627,8 +627,8 @@ class Form {
             { value: "Rwanda ", text: "Rwanda " },
             { value: "Saalomoni Saared", text: "Saalomoni Saared" },
             {
-                value: "Saint Helena, Ascension ja Tristan da Cunha (GBR",
-                text: "Saint Helena, Ascension ja Tristan da Cunha (GBR"
+                value: "Saint Helena, Ascension ja Tristan da Cunha (GBR)",
+                text: "Saint Helena, Ascension ja Tristan da Cunha (GBR)"
             },
             { value: "Saint Kitts ja Nevis", text: "Saint Kitts ja Nevis" },
             { value: "Saint Lucia", text: "Saint Lucia" },
