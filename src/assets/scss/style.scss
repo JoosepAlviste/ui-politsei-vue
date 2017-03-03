@@ -462,5 +462,13 @@ body {
   .list-group-item .card-block {
     padding: 0;
   }
+
+  .wrapper {
+    display: none;
+  }
+
+  #app .options-div {
+    flex-direction: column;
+  }
 }
 

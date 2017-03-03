@@ -29,7 +29,7 @@
                                class="custom-control-input"
                                v-model="ok_with_deal">
                         <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Olen nõus kokkuleppemenetlusega</span>
+                        <span class="custom-control-description">Olen nõus <br class="hidden-md-up">kokkuleppemenetlusega</span>
                     </label>
                     <div class="wrapper">
                         <svg fill="#292b2c" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
