@@ -64,10 +64,10 @@ class Form {
                 'name'
             ],
             witnesses: [
-                'first-name', 'last-name'
+                'first-name', 'last-name', 'email'
             ],
             perpetrators: [
-                'first-name', 'last-name'
+                'first-name', 'last-name', 'email'
             ],
             confirm: [
                 'confirm-truth'
@@ -84,6 +84,15 @@ class Form {
 
         let errorMessage = '';
         // Then do on the go validation
+        if (step === 'person_data'){
+            if (name === 'date-of-birth'){
+               if (/^.*[^\d. ].*$/.test(this[step][name])){
+                  errorMessage = "Võib sisaldada ainult numbreid, punkte ja tühikuid";
+               } else if (this[step][name].length < 10) {
+                  errorMessage = "dont-show-success";
+               }
+            }
+        }
         if (step === 'event_info'){
             if (name === 'pecuniary-loss'){
                 if (!this.exists(this[ step ][ name ])){
@@ -130,7 +139,9 @@ class Form {
                 }
             }
             if (name === 'date_of_birth'){
-                if (this[ step ][ index ][ name ].length >= 10 ){
+                if (/^.*[^\d. ].*$/.test(this[step][index][name])){
+                    errorMessage = "Võib sisaldada ainult numbreid, punkte ja tühikuid";
+                } else if (this[ step ][ index ][ name ].length >= 10 ){
                     return this.validate(step, name, index);
                 } else {
                     errorMessage = 'dont-show-success';
