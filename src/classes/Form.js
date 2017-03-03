@@ -58,7 +58,7 @@ class Form {
                 'first-name', 'last-name', 'zip-code', 'victim-registry-code', 'phone', 'email', 'contact-time'
             ],
             event_info: [
-                'event-location', 'event-description', 'pecuniary-loss'
+                'event-location', 'event-description'
             ],
             stolen_properties: [
                 'name'
@@ -84,6 +84,15 @@ class Form {
 
         let errorMessage = '';
         // Then do on the go validation
+        if (step === 'event_info'){
+            if (name === 'pecuniary-loss'){
+                if (!this.exists(this[ step ][ name ])){
+                    errorMessage = 'dont-show-success';
+                } else if (!this.isDecimal(this[ step ][ name ])){
+                    errorMessage = "Väärtus võib sisaldada vaid numbreid ja koma";
+                }
+            }
+        }
         if (step === 'stolen_properties') {
             if (name === 'year_of_acquiring') {
                 if (!this.isNumeric(this[ step ][ index ][ name ])) {
@@ -96,11 +105,38 @@ class Form {
                 }
             } else if (name === 'special_indicators') {
                 errorMessage = 'dont-show-success';
+            } else if (name === 'property_exists_time' || name === 'property_lost_time'){
+                if (this[ step ][ index ][ name ].length == 10 || this[ step ][ index ][ name ].length >= 16){
+                    return this.validate(step, name, index);
+                } else {
+                    errorMessage = 'dont-show-success';
+                }
+            } else if (name === 'value'){
+                if (!this.exists(this[ step ][ index ][ name ])){
+                    errorMessage = 'dont-show-success';
+                } else if (!this.isDecimal(this[ step ][ index ][ name ])){
+                    errorMessage = "Väärtus võib sisaldada vaid numbreid ja koma";
+                }
             }
         } else if (step === 'perpetrators') {
             if (name === 'special_indicators') {
                 errorMessage = 'dont-show-success';
             }
+        }
+        if (step === 'perpetrators' || step === 'witnesses'){
+            if (name === 'phone'){
+                if (!this.exists(this[ step ][ index ][ name ])){
+                    errorMessage = 'dont-show-success';
+                }
+            }
+            if (name === 'date_of_birth'){
+                if (this[ step ][ index ][ name ].length >= 10 ){
+                    return this.validate(step, name, index);
+                } else {
+                    errorMessage = 'dont-show-success';
+                }
+            }
+          
         }
 
         if (typeof index !== 'undefined') {
@@ -233,7 +269,7 @@ class Form {
                     }
                 }
             } else if ((name === 'property_exists_time' || name === 'property_lost_time') && this.exists(this[ step ][ index ][ name ])) {
-                let checkedVal = this[ step ][ index ][ name ];
+                let checkedVal = this[ step ][ index ][ name ].trim();
                 // check format http://stackoverflow.com/questions/15491894/regex-to-validate-date-format-dd-mm-yyyy
                 if ((!checkedVal) || /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d( [0-2]\d\:[0-5]\d)?$/.test(checkedVal)) {
 
@@ -246,7 +282,7 @@ class Form {
                         errorMessage = 'Kuupäev ei saa olla tulevikus';
                     }
                 } else {
-                    errorMessage = 'Kuupäev peab olema formaadis pp.kk.aaaa'
+                    errorMessage = 'Aeg peab olema formaadis pp.kk.aaaa (hh:mm)'
                 }
             }
         } else if (step === 'witnesses' || step === 'perpetrators') {
@@ -317,6 +353,9 @@ class Form {
 
     isNumeric(val) {
         return val === null || val.length === 0 || /^\d+$/.test(val);
+    }
+    isDecimal(val) {
+        return val === null || val.length === 0 || /^\d*([\.,]?\d+)$/.test(val) || /^(\d+[\.,]?)\d*$/.test(val);
     }
 
     addStolenProperty() {

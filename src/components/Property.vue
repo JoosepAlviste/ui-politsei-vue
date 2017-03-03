@@ -28,7 +28,7 @@
                     </form-input>
                 </div>
                 <div class="row">
-                    <form-number
+                    <form-input
                             :name="'property[' + nr + '][year_of_acquiring]'"
                             label="Soetamise aasta"
                             :error="errors['year_of_acquiring']"
@@ -38,7 +38,7 @@
                             :required="false"
                             @input-was-changed="onInputChange('year_of_acquiring', $event)"
                             @input-was-blurred="onInputBlurred('year_of_acquiring', $event)">
-                    </form-number>
+                    </form-input>
                 </div>
                 <div class="row">
                     <form-money
