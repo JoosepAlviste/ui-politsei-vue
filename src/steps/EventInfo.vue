@@ -91,6 +91,15 @@
                 </form-money>
             </div>
         </card-section>
+        <card-section>
+            <div class="row">
+                <file-input
+                        name="event-file"
+                        label="Lisa pilt/video/heli toimunust"
+                        class_name="col-md-6">
+                </file-input>
+            </div>
+        </card-section>
 
     </step>
 </template>
@@ -102,6 +111,7 @@
     import FormSelect from '../components/bootstrap/FormSelect.vue';
     import FormComment from '../components/bootstrap/FormComment.vue';
     import FormMoney from '../components/bootstrap/FormMoney.vue';
+    import FileInput from '../components/bootstrap/FileInput.vue';
 
     import StepGenericMixin from '../classes/mixins/stepGeneric';
     import StepMixin from '../classes/mixins/step';
@@ -110,7 +120,7 @@
         
         mixins: [ StepGenericMixin, StepMixin ],
         
-        components: { Step, CardSection, FormInput, FormSelect, FormComment, FormMoney },
+        components: { Step, CardSection, FormInput, FormSelect, FormComment, FormMoney, FileInput },
 
         props: {
             form: { required: true },

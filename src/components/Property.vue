@@ -90,6 +90,15 @@
                     </form-input>
                 </div>
             </card-section>
+            <card-section>
+                <div class="row">
+                    <file-input
+                            name="property-file"
+                            label="Lisa pilt/video varast"
+                            class_name="col-md-6">
+                    </file-input>
+                </div>
+            </card-section>
         </div>
 
     </div>
@@ -101,6 +110,7 @@
     import FormMoney from './bootstrap/FormMoney.vue';
     import FormNumber from './bootstrap/FormNumber.vue';
     import FormComment from './bootstrap/FormComment.vue';
+    import FileInput from './bootstrap/FileInput.vue';
 
     import StepListingItemMixin from '../classes/mixins/stepListingItem';
 
@@ -108,7 +118,7 @@
 
         mixins: [ StepListingItemMixin ],
 
-        components: { CardSection, FormInput, FormMoney, FormNumber, FormComment },
+        components: { CardSection, FormInput, FormMoney, FormNumber, FormComment, FileInput },
 
         props: {
             property: { required: true },

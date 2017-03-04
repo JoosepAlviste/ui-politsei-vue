@@ -58,7 +58,7 @@ class Form {
                 'first-name', 'last-name', 'zip-code', 'victim-registry-code', 'phone', 'email', 'contact-time'
             ],
             event_info: [
-                'event-location', 'event-description', 'event-date'
+                'event-location', 'event-description', 'event-date', 'pecuniary-loss'
             ],
             stolen_properties: [
                 'name', 'property_exists_time', 'property_lost_time'
