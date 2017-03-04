@@ -64,10 +64,10 @@ class Form {
                 'name', 'property_exists_time', 'property_lost_time'
             ],
             witnesses: [
-                'first-name', 'last-name', 'email'
+                'first-name', 'last-name', 'email', 'address'
             ],
             perpetrators: [
-                'first-name', 'last-name', 'email'
+                'first-name', 'last-name', 'email', 'address'
             ],
             confirm: [
                 'confirm-truth'
@@ -99,6 +99,10 @@ class Form {
                 if (this[ step ][ name ].includes('e')) {
                     errorMessage = 'Sisestatud postiindeks ei ole korrektne';
                 }
+            } else if (name == 'address') {
+                if (!/^.?[a-zõäöüA-ZÕÄÖÜ]+.?$/.test(this[ step ][ name ])) {
+                    errorMessage = 'Aadress peab sisaldama tähti';
+                }
             }
         }
         if (step === 'event_info'){
@@ -111,6 +115,10 @@ class Form {
             } else if (name === 'event-date' || name === 'property_exists_time' || name === 'property_lost_time') {
                 if (/^.*[^\d. ].*$/.test(this[step][index][name])) {
                     errorMessage = 'Kuupäev peab olema formaadis pp.kk.aaaa';
+                }
+            } else if (name === 'event-location' || name === 'event-description') {
+                if (!/^.?[a-zõäöüA-ZÕÄÖÜ]+.?$/.test(this[ step ][ name ])) {
+                    errorMessage = 'Väärtus peab sisaldama tähti';
                 }
             }
         }
@@ -154,8 +162,7 @@ class Form {
                         errorMessage = "Palun kasutage numbreid, tühikuid ning '+' märki. 3-20 märki";
                     }
                 }
-            }
-            if (name === 'date_of_birth'){
+            } else if (name === 'date_of_birth'){
                 if (/^.*[^\d. ].*$/.test(this[step][index][name])){
                     errorMessage = "Kuupäev peab olema formaadis pp.kk.aaaa";
                 } else if (this[ step ][ index ][ name ].length >= 10 ){
@@ -163,9 +170,17 @@ class Form {
                 } else {
                     errorMessage = 'dont-show-success';
                 }
-            } if (name === 'personal_code') {
+            } else if (name === 'personal_code') {
                 if ((this[ step ][ index ][ name ]).includes('e')) {
                     errorMessage = 'Sisestatud väärtus ei vasta Eesti isikukoodile';
+                }
+            } else if (name === 'address') {
+                if (!this.exists[ step ][ index ][ name ]) {
+                    errorMessage = 'dont-show-success';
+                } else {
+                    if (!/^.?[a-zõäöüA-ZÕÄÖÜ]+.?$/.test(this[ step ][ index ][ name ])) {
+                        errorMessage = 'Väärtus peab sisaldama tähti';
+                    }
                 }
             }
           
@@ -275,14 +290,20 @@ class Form {
             } else if (name === 'event-location') {
                 if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'Toimumise koht on kohustuslik!';
+                } else if (!/^.?[a-zõäöüA-ZÕÄÖÜ]+.?$/.test(this[ step ][ name ])) {
+                    errorMessage = 'Väärtus peab sisaldama tähti';
                 }
             } else if (name === 'event-description') {
                 if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'Toimunu kirjeldus on kohustuslik!';
+                } else if (!/^.?[a-zõäöüA-ZÕÄÖÜ]+.?$/.test(this[ step ][ name ])) {
+                    errorMessage = 'Väärtus peab sisaldama tähti';
                 }
             } else if (name === 'pecuniary-loss') {
                 if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'Tekitatud varaline kahju on kohustuslik!';
+                } else if (!this.isDecimal(this[ step ][ name ])){
+                    errorMessage = "Väärtus võib sisaldada vaid numbreid ja koma";
                 }
             }
         } else if (step === 'stolen_properties') {
@@ -304,21 +325,25 @@ class Form {
                 } else {
                     errorMessage = 'dont-show-success';
                 }
-            } else if ((name === 'property_exists_time' || name === 'property_lost_time') && this.exists(this[ step ][ index ][ name ])) {
-                let checkedVal = this[ step ][ index ][ name ].trim();
-                // check format http://stackoverflow.com/questions/15491894/regex-to-validate-date-format-dd-mm-yyyy
-                if ((!checkedVal) || /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d( [0-2]\d\:[0-5]\d)?$/.test(checkedVal)) {
+            } else if (name === 'property_exists_time' || name === 'property_lost_time') {
+                if (this.exists(this[ step ][ index ][ name ])) {
+                    let checkedVal = this[step][index][name].trim();
+                    // check format http://stackoverflow.com/questions/15491894/regex-to-validate-date-format-dd-mm-yyyy
+                    if ((!checkedVal) || /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d( [0-2]\d\:[0-5]\d)?$/.test(checkedVal)) {
 
-                    let dateArr = checkedVal.split(" ")[ 0 ].split(".");
+                        let dateArr = checkedVal.split(" ")[0].split(".");
 
-                    let date = new Date(dateArr[ 2 ], dateArr[ 1 ], dateArr[ 0 ]);
-                    if (date < new Date("1800-1-1")) {
-                        errorMessage = 'Kuupäev ei saa olla varem kui 01.01.1800';
-                    } else if (date > new Date()) {
-                        errorMessage = 'Kuupäev ei saa olla tulevikus';
+                        let date = new Date(dateArr[2], dateArr[1], dateArr[0]);
+                        if (date < new Date("1800-1-1")) {
+                            errorMessage = 'Kuupäev ei saa olla varem kui 01.01.1800';
+                        } else if (date > new Date()) {
+                            errorMessage = 'Kuupäev ei saa olla tulevikus';
+                        }
+                    } else {
+                        errorMessage = 'Aeg peab olema formaadis pp.kk.aaaa (hh:mm)'
                     }
                 } else {
-                    errorMessage = 'Aeg peab olema formaadis pp.kk.aaaa (hh:mm)'
+                    errorMessage = 'dont-show-success';
                 }
             } else if (name === 'value') {
                 if (!this.exists(this[ step ][ index ][ name ])) {
@@ -332,8 +357,7 @@ class Form {
                 } else if (!this.exists(this[ step ][ index ][ name ])) {
                     errorMessage = 'dont-show-success';
                 }
-            }
-            if (name == 'phone') {
+            } else if (name == 'phone') {
                 if (this.exists(this[ step ][ index ][ name ]) && !/^[+0-9 ]{3,20}$/.test(this[ step ][ index ][ name ])) {
                     errorMessage = "Palun kasutage numbreid, tühikuid ning '+' märki. 3-20 märki"
                 } else if (!this.exists(this[ step ][ index ][ name ])) {
@@ -367,6 +391,14 @@ class Form {
                         }
                     } else {
                         errorMessage = 'Kuupäev peab olema formaadis pp.kk.aaaa'
+                    }
+                } else {
+                    errorMessage = 'dont-show-success';
+                }
+            } else if (name === 'address') {
+                if (this.exists[ step ][ index ][ name ]) {
+                    if (!/^.?[a-zõäöüA-ZÕÄÖÜ]+.?$/.test(this[ step ][ index ][ name ])) {
+                        errorMessage = 'Väärtus peab sisaldama tähti';
                     }
                 } else {
                     errorMessage = 'dont-show-success';

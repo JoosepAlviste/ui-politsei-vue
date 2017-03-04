@@ -41,7 +41,7 @@
 
         data() {
             return {
-                next_step: 'confirm_step',
+                next_step: 'confirm',
                 previous_step: 'perpetrators',
                 this_step: 'witnesses',
             };

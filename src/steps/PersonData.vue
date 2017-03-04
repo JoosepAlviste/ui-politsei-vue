@@ -156,7 +156,7 @@
                         label="Kannatanu on juriidiline isik"
                         class_name="custom-control-input"
                         :input_value="get('is-legal-person', $event)"
-                        @input-was-changed="onValueChanged('is-legal-person', $event)">
+                        @input-was-changed="onLegalPersonChanged">
                 </checkbox>
             </div>
 
@@ -196,6 +196,16 @@
 
         props: {
             form: { required: true },
+        },
+
+        methods: {
+            onLegalPersonChanged(value) {
+                this.onValueChanged('is-legal-person', value);
+
+                if (value == false) {
+                    this.onValueChanged('victim-registry-code', '');
+                }
+            }
         },
 
         data() {

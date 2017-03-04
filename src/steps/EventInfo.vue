@@ -136,7 +136,6 @@
 
         methods: {
             onCountryChanged(value) {
-                console.log('changed', value);
                 this.onValueChanged('event-country', value);
 
                 if (value !== 'Eesti Vabariik') {
