@@ -58,10 +58,10 @@ class Form {
                 'first-name', 'last-name', 'zip-code', 'victim-registry-code', 'phone', 'email', 'contact-time'
             ],
             event_info: [
-                'event-location', 'event-description'
+                'event-location', 'event-description', 'event-date'
             ],
             stolen_properties: [
-                'name'
+                'name', 'property_exists_time', 'property_lost_time'
             ],
             witnesses: [
                 'first-name', 'last-name', 'email'
@@ -91,6 +91,14 @@ class Form {
                } else if (this[step][name].length < 10) {
                   errorMessage = "dont-show-success";
                }
+            } else if (name === 'person-code') {
+                if (this[ step ][ name ].includes('e')) {
+                    errorMessage = 'Sisestatud isikukood ei ole korrektne';
+                }
+            } else if (name === 'zip-code') {
+                if (this[ step ][ name ].includes('e')) {
+                    errorMessage = 'Sisestatud postiindeks ei ole korrektne';
+                }
             }
         }
         if (step === 'event_info'){
@@ -99,6 +107,10 @@ class Form {
                     errorMessage = 'dont-show-success';
                 } else if (!this.isDecimal(this[ step ][ name ])){
                     errorMessage = "Väärtus võib sisaldada vaid numbreid ja koma";
+                }
+            } else if (name === 'event-date' || name === 'property_exists_time' || name === 'property_lost_time') {
+                if (/^.*[^\d. ].*$/.test(this[step][index][name])) {
+                    errorMessage = 'Kuupäev peab olema formaadis pp.kk.aaaa';
                 }
             }
         }
@@ -127,7 +139,8 @@ class Form {
                     errorMessage = "Väärtus võib sisaldada vaid numbreid ja koma";
                 }
             }
-        } else if (step === 'perpetrators') {
+        }
+        if (step === 'perpetrators') {
             if (name === 'special_indicators') {
                 errorMessage = 'dont-show-success';
             }
@@ -136,15 +149,23 @@ class Form {
             if (name === 'phone'){
                 if (!this.exists(this[ step ][ index ][ name ])){
                     errorMessage = 'dont-show-success';
+                } else {
+                    if (this[ step ][ index ][ name ].includes('e')) {
+                        errorMessage = "Palun kasutage numbreid, tühikuid ning '+' märki. 3-20 märki";
+                    }
                 }
             }
             if (name === 'date_of_birth'){
                 if (/^.*[^\d. ].*$/.test(this[step][index][name])){
-                    errorMessage = "Võib sisaldada ainult numbreid, punkte ja tühikuid";
+                    errorMessage = "Kuupäev peab olema formaadis pp.kk.aaaa";
                 } else if (this[ step ][ index ][ name ].length >= 10 ){
                     return this.validate(step, name, index);
                 } else {
                     errorMessage = 'dont-show-success';
+                }
+            } if (name === 'personal_code') {
+                if ((this[ step ][ index ][ name ]).includes('e')) {
+                    errorMessage = 'Sisestatud väärtus ei vasta Eesti isikukoodile';
                 }
             }
           
@@ -177,14 +198,14 @@ class Form {
                     errorMessage = 'Eesnimi on kohustuslik!';
                 }
                 else if (!/^[^0-9]+$/.test(this[ step ][ name ])) {
-                    errorMessage = 'Nimi ei tohi olla ainult numbrid'
+                    errorMessage = 'Nimi ei tohi olla ainult numbrid';
                 }
             } else if (name === 'last-name') {
                 if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'Perenimi on kohustuslik!';
                 }
                 else if (!/^[^0-9]+$/.test(this[ step ][ name ])) {
-                    errorMessage = 'Nimi ei tohi olla ainult numbrid'
+                    errorMessage = 'Nimi ei tohi olla ainult numbrid';
                 }
             } else if (name === 'date-of-birth') {
                 if (!this.exists(this[ step ][ name ])) {
