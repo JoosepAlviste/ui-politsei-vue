@@ -320,6 +320,10 @@ class Form {
                 } else {
                     errorMessage = 'Aeg peab olema formaadis pp.kk.aaaa (hh:mm)'
                 }
+            } else if (name === 'value') {
+                if (!this.exists(this[ step ][ index ][ name ])) {
+                    errorMessage = 'dont-show-success';
+                }
             }
         } else if (step === 'witnesses' || step === 'perpetrators') {
             if (name == 'first_name' || name == 'last_name') {

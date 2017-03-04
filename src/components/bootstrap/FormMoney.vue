@@ -10,7 +10,9 @@
                  :class="inputClass"
                  :name="name"
                  :id="name"
-                 v-model="value">
+                 :required="true"
+                 v-model="value"
+                 @blur="$emit('input-was-blurred', value)">
         </div>
         <div v-if="hasError"
              class="form-control-feedback">
@@ -28,6 +30,6 @@
     import Input from '../../classes/mixins/input';
 
     export default {
-        mixins: [ Input ],
+        mixins: [ Input ]
     }
 </script>
