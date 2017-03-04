@@ -277,7 +277,11 @@ class Form {
                         errorMessage = 'Soetamise aasta peab olema suurem kui 1800';
                     } else if (checkedVal > currentYear) {
                         errorMessage = 'Vara ei saa olla soetatud hiljem kui ' + currentYear;
+                    } else if (checkedVal.includes('e')) {
+                        errorMessage = 'Soetamise aasta ei tohi sisaldada tähti';
                     }
+                } else {
+                    errorMessage = 'dont-show-success';
                 }
             } else if ((name === 'property_exists_time' || name === 'property_lost_time') && this.exists(this[ step ][ index ][ name ])) {
                 let checkedVal = this[ step ][ index ][ name ].trim();
