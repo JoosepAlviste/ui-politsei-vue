@@ -58,7 +58,7 @@ class Form {
                 'first-name', 'last-name', 'zip-code', 'victim-registry-code', 'phone', 'email', 'contact-time'
             ],
             event_info: [
-                'event-location', 'event-description', 'event-date', 'pecuniary-loss'
+                'event-location', 'event-description', 'pecuniary-loss'
             ],
             stolen_properties: [
                 'name', 'property_exists_time', 'property_lost_time'
@@ -84,15 +84,15 @@ class Form {
 
         let errorMessage = '';
         // Then do on the go validation
-        if (step === 'person_data'){
-            if (name === 'date-of-birth'){
-               if (/^.*[^\d.].*$/.test(this[step][name])){
-                  errorMessage = "Võib sisaldada ainult numbreid ja punkte";
-               } else if (this[step][name].length < 10) {
-                  errorMessage = "dont-show-success";
-               } else if (this[step][name].length >= 10) {
-                   return this.validate(step, name);
-               }
+        if (step === 'person_data') {
+            if (name === 'date-of-birth') {
+                if (/^.*[^\d.].*$/.test(this[ step ][ name ])) {
+                    errorMessage = "Võib sisaldada ainult numbreid ja punkte";
+                } else if (this[ step ][ name ].length < 10) {
+                    errorMessage = "dont-show-success";
+                } else if (this[ step ][ name ].length >= 10) {
+                    return this.validate(step, name);
+                }
             } else if (name === 'person-code') {
                 if (this[ step ][ name ].includes('e')) {
                     errorMessage = 'Sisestatud isikukood ei ole korrektne';
@@ -102,24 +102,28 @@ class Form {
                     errorMessage = 'Sisestatud postiindeks ei ole korrektne';
                 }
             } else if (name == 'address') {
-                if (!/^.?[a-zõäöüA-ZÕÄÖÜ]+.?$/.test(this[ step ][ name ])) {
+                if (/^[0-9]+$/.test(this[ step ][ name ])) {
                     errorMessage = 'Aadress peab sisaldama tähti';
                 }
             }
         }
-        if (step === 'event_info'){
-            if (name === 'pecuniary-loss'){
-                if (!this.exists(this[ step ][ name ])){
+        if (step === 'event_info') {
+            if (name === 'pecuniary-loss') {
+                if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'dont-show-success';
-                } else if (!this.isDecimal(this[ step ][ name ])){
+                } else if (!this.isDecimal(this[ step ][ name ])) {
                     errorMessage = "Väärtus võib sisaldada vaid numbreid ja koma";
                 }
             } else if (name === 'event-date' || name === 'property_exists_time' || name === 'property_lost_time') {
-                if (/^.*[^\d. ].*$/.test(this[step][index][name])) {
-                    errorMessage = 'Kuupäev peab olema formaadis pp.kk.aaaa';
+                if (/^.*[^\d.].*$/.test(this[ step ][ name ])) {
+                    errorMessage = "Võib sisaldada ainult numbreid ja punkte";
+                } else if (this[ step ][ name ].length < 10) {
+                    errorMessage = "dont-show-success";
+                } else if (this[ step ][ name ].length >= 10) {
+                    return this.validate(step, name);
                 }
             } else if (name === 'event-location' || name === 'event-description') {
-                if (!/^.?[a-zõäöüA-ZÕÄÖÜ]+.?$/.test(this[ step ][ name ])) {
+                if (/^[0-9]+$/.test(this[ step ][ name ])) {
                     errorMessage = 'Väärtus peab sisaldama tähti';
                 }
             }
@@ -136,16 +140,16 @@ class Form {
                 }
             } else if (name === 'special_indicators') {
                 errorMessage = 'dont-show-success';
-            } else if (name === 'property_exists_time' || name === 'property_lost_time'){
-                if (this[ step ][ index ][ name ].length == 10 || this[ step ][ index ][ name ].length >= 16){
+            } else if (name === 'property_exists_time' || name === 'property_lost_time') {
+                if (this[ step ][ index ][ name ].length == 10 || this[ step ][ index ][ name ].length >= 16) {
                     return this.validate(step, name, index);
                 } else {
                     errorMessage = 'dont-show-success';
                 }
-            } else if (name === 'value'){
-                if (!this.exists(this[ step ][ index ][ name ])){
+            } else if (name === 'value') {
+                if (!this.exists(this[ step ][ index ][ name ])) {
                     errorMessage = 'dont-show-success';
-                } else if (!this.isDecimal(this[ step ][ index ][ name ])){
+                } else if (!this.isDecimal(this[ step ][ index ][ name ])) {
                     errorMessage = "Väärtus võib sisaldada vaid numbreid ja koma";
                 }
             }
@@ -155,19 +159,19 @@ class Form {
                 errorMessage = 'dont-show-success';
             }
         }
-        if (step === 'perpetrators' || step === 'witnesses'){
-            if (name === 'phone'){
-                if (!this.exists(this[ step ][ index ][ name ])){
+        if (step === 'perpetrators' || step === 'witnesses') {
+            if (name === 'phone') {
+                if (!this.exists(this[ step ][ index ][ name ])) {
                     errorMessage = 'dont-show-success';
                 } else {
                     if (this[ step ][ index ][ name ].includes('e')) {
                         errorMessage = "Palun kasutage numbreid, tühikuid ning '+' märki. 3-20 märki";
                     }
                 }
-            } else if (name === 'date_of_birth'){
-                if (/^.*[^\d. ].*$/.test(this[step][index][name])){
+            } else if (name === 'date_of_birth') {
+                if (/^.*[^\d. ].*$/.test(this[ step ][ index ][ name ])) {
                     errorMessage = "Kuupäev peab olema formaadis pp.kk.aaaa";
-                } else if (this[ step ][ index ][ name ].length >= 10 ){
+                } else if (this[ step ][ index ][ name ].length >= 10) {
                     return this.validate(step, name, index);
                 } else {
                     errorMessage = 'dont-show-success';
@@ -180,12 +184,12 @@ class Form {
                 if (!this.exists[ step ][ index ][ name ]) {
                     errorMessage = 'dont-show-success';
                 } else {
-                    if (!/^.?[a-zõäöüA-ZÕÄÖÜ]+.?$/.test(this[ step ][ index ][ name ])) {
+                    if (/^[0-9]+$/.test(this[ step ][ index ][ name ])) {
                         errorMessage = 'Väärtus peab sisaldama tähti';
                     }
                 }
             }
-          
+
         }
 
         if (typeof index !== 'undefined') {
@@ -259,7 +263,7 @@ class Form {
                 } else if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'dont-show-success';
                 }
-            } else if (name == 'email')  {
+            } else if (name == 'email') {
                 if (this.exists(this[ step ][ name ]) && !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(this[ step ][ name ])) {
                     errorMessage = "Sisestatud email ei ole korrektne";
                 } else if (!this.exists(this[ step ][ name ])) {
@@ -279,7 +283,7 @@ class Form {
                 }
                 else if ((!checkedVal) || /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d$/.test(checkedVal)) {
                     let dateArr = checkedVal.split(".");
-                    let date = new Date(dateArr[ 2 ], dateArr[ 1 ], dateArr[ 0 ]);
+                    let date = new Date(dateArr[ 2 ], dateArr[ 1 ] - 1, dateArr[ 0 ]);
                     if (date.getFullYear() < currentDate.getFullYear() - 10) {
                         errorMessage = 'Sündmust, mis toimus rohkem kui 10 aastat tagasi, ei saa registreerida!';
                     }
@@ -293,19 +297,19 @@ class Form {
             } else if (name === 'event-location') {
                 if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'Toimumise koht on kohustuslik!';
-                } else if (!/^.?[a-zõäöüA-ZÕÄÖÜ]+.?$/.test(this[ step ][ name ])) {
+                } else if (/^[0-9]+$/.test(this[ step ][ name ])) {
                     errorMessage = 'Väärtus peab sisaldama tähti';
                 }
             } else if (name === 'event-description') {
                 if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'Toimunu kirjeldus on kohustuslik!';
-                } else if (!/^.?[a-zõäöüA-ZÕÄÖÜ]+.?$/.test(this[ step ][ name ])) {
+                } else if (/^[0-9]+$/.test(this[ step ][ name ])) {
                     errorMessage = 'Väärtus peab sisaldama tähti';
                 }
             } else if (name === 'pecuniary-loss') {
                 if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'Tekitatud varaline kahju on kohustuslik!';
-                } else if (!this.isDecimal(this[ step ][ name ])){
+                } else if (!this.isDecimal(this[ step ][ name ])) {
                     errorMessage = "Väärtus võib sisaldada vaid numbreid ja koma";
                 }
             }
@@ -330,13 +334,13 @@ class Form {
                 }
             } else if (name === 'property_exists_time' || name === 'property_lost_time') {
                 if (this.exists(this[ step ][ index ][ name ])) {
-                    let checkedVal = this[step][index][name].trim();
+                    let checkedVal = this[ step ][ index ][ name ].trim();
                     // check format http://stackoverflow.com/questions/15491894/regex-to-validate-date-format-dd-mm-yyyy
                     if ((!checkedVal) || /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d( [0-2]\d\:[0-5]\d)?$/.test(checkedVal)) {
 
-                        let dateArr = checkedVal.split(" ")[0].split(".");
+                        let dateArr = checkedVal.split(" ")[ 0 ].split(".");
 
-                        let date = new Date(dateArr[2], dateArr[1], dateArr[0]);
+                        let date = new Date(dateArr[ 2 ], dateArr[ 1 ], dateArr[ 0 ]);
                         if (date < new Date("1800-1-1")) {
                             errorMessage = 'Kuupäev ei saa olla varem kui 01.01.1800';
                         } else if (date > new Date()) {
@@ -400,7 +404,7 @@ class Form {
                 }
             } else if (name === 'address') {
                 if (this.exists[ step ][ index ][ name ]) {
-                    if (!/^.?[a-zõäöüA-ZÕÄÖÜ]+.?$/.test(this[ step ][ index ][ name ])) {
+                    if (/^[0-9]+$/.test(this[ step ][ index ][ name ])) {
                         errorMessage = 'Väärtus peab sisaldama tähti';
                     }
                 } else {
@@ -409,7 +413,7 @@ class Form {
             }
         } else if (step === 'confirm') {
             if (name === 'confirm-truth') {
-                if (!this[step][name]) {
+                if (!this[ step ][ name ]) {
                     errorMessage = 'Kinnitamine on kohustuslik!';
                 }
             }
@@ -429,6 +433,7 @@ class Form {
     isNumeric(val) {
         return val === null || val.length === 0 || /^\d+$/.test(val);
     }
+
     isDecimal(val) {
         return val === null || val.length === 0 || /^\d*([\.,]?\d+)$/.test(val) || /^(\d+[\.,]?)\d*$/.test(val);
     }
