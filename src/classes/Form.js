@@ -219,14 +219,14 @@ class Form {
                     errorMessage = 'Eesnimi on kohustuslik!';
                 }
                 else if (!/^[^0-9]+$/.test(this[ step ][ name ])) {
-                    errorMessage = 'Nimi ei tohi olla ainult numbrid';
+                    errorMessage = 'Nimi ei tohi sisaldada numbreid';
                 }
             } else if (name === 'last-name') {
                 if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'Perenimi on kohustuslik!';
                 }
                 else if (!/^[^0-9]+$/.test(this[ step ][ name ])) {
-                    errorMessage = 'Nimi ei tohi olla ainult numbrid';
+                    errorMessage = 'Nimi ei tohi sisaldada numbreid';
                 }
             } else if (name === 'date-of-birth') {
                 if (!this.exists(this[ step ][ name ])) {
