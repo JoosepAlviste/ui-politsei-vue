@@ -329,13 +329,16 @@ class Form {
             } else if (name === 'year_of_acquiring') {
                 let checkedVal = this[ step ][ index ][ name ];
                 if (checkedVal) {
-                    let currentYear = new Date().getFullYear();
-                    if (checkedVal < 1800) {
-                        errorMessage = 'Soetamise aasta peab olema suurem kui 1800';
-                    } else if (checkedVal > currentYear) {
-                        errorMessage = 'Vara ei saa olla soetatud hiljem kui ' + currentYear;
-                    } else if (checkedVal.includes('e')) {
-                        errorMessage = 'Soetamise aasta ei tohi sisaldada tähti.';
+                    if (!isNaN(parseFloat(checkedVal)) && isFinite(checkedVal)) {
+                        let currentYear = new Date().getFullYear();
+                        if (checkedVal < 1800) {
+                            errorMessage = 'Soetamise aasta peab olema suurem kui 1800';
+                        } else if (checkedVal > currentYear) {
+                            errorMessage = 'Vara ei saa olla soetatud hiljem kui ' + currentYear;
+                        }
+                    }
+                    else {
+                        errorMessage = 'Soetamise aasta ei tohi sisaldada tähti, sümboleid ega tühikuid';
                     }
                 } else {
                     errorMessage = 'dont-show-success';
