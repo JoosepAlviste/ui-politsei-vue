@@ -347,7 +347,7 @@ class Form {
                         } else {
                             date = new Date(dateArr[ 2 ], dateArr[ 1 ] - 1, dateArr[ 0 ]);
                         }
-                        
+
                         if (date < new Date("1800-1-1")) {
                             errorMessage = 'Kuupäev ei saa olla varem kui 01.01.1800';
                         } else if (date > new Date()) {
@@ -397,7 +397,7 @@ class Form {
                     if (/^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d$/.test(checkedVal)) {
                         let dateArr = checkedVal.split(".");
 
-                        let date = new Date(dateArr[ 2 ], dateArr[ 1 ], dateArr[ 0 ]);
+                        let date = new Date(dateArr[ 2 ], dateArr[ 1 ] - 1, dateArr[ 0 ]);
                         if (date < new Date("1800-1-1")) {
                             errorMessage = 'Sünnikuupäev peab olema hilisem kui 1800';
                         } else if (date > new Date()) {
