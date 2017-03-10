@@ -61,7 +61,7 @@ class Form {
                 'event-location', 'event-description', 'pecuniary-loss'
             ],
             stolen_properties: [
-                'name', 'property_exists_time', 'property_lost_time'
+                'name',
             ],
             witnesses: [
                 'first-name', 'last-name', 'email', 'address'
@@ -340,7 +340,7 @@ class Form {
 
                         let dateArr = checkedVal.split(" ")[ 0 ].split(".");
 
-                        let date = new Date(dateArr[ 2 ], dateArr[ 1 ], dateArr[ 0 ]);
+                        let date = new Date(dateArr[ 2 ], dateArr[ 1 ] - 1, dateArr[ 0 ]);
                         if (date < new Date("1800-1-1")) {
                             errorMessage = 'Kuupäev ei saa olla varem kui 01.01.1800';
                         } else if (date > new Date()) {
