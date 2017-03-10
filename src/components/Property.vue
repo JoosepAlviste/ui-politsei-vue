@@ -71,7 +71,7 @@
                             class_name="col-sm-6"
                             :input_value="property.property_exists_time"
                             :required="false"
-                            help_text="Formaadis pp.kk.aaaa hh:mm"
+                            help_text="Formaadis pp.kk.aaaa (hh:mm) - kellaaeg on valikuline"
                             @input-was-changed="onInputChange('property_exists_time', $event)"
                             @input-was-blurred="onInputBlurred('property_exists_time', $event)">
                     </form-input>
@@ -84,7 +84,7 @@
                             class_name="col-sm-6"
                             :input_value="property.property_lost_time"
                             :required="false"
-                            help_text="Formaadis pp.kk.aaaa hh:mm"
+                            help_text="Formaadis pp.kk.aaaa (hh:mm) - kellaaeg on valikuline"
                             @input-was-changed="onInputChange('property_lost_time', $event)"
                             @input-was-blurred="onInputBlurred('property_lost_time', $event)">
                     </form-input>
