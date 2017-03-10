@@ -86,10 +86,12 @@ class Form {
         // Then do on the go validation
         if (step === 'person_data'){
             if (name === 'date-of-birth'){
-               if (/^.*[^\d. ].*$/.test(this[step][name])){
-                  errorMessage = "Võib sisaldada ainult numbreid, punkte ja tühikuid";
+               if (/^.*[^\d.].*$/.test(this[step][name])){
+                  errorMessage = "Võib sisaldada ainult numbreid ja punkte";
                } else if (this[step][name].length < 10) {
                   errorMessage = "dont-show-success";
+               } else if (this[step][name].length >= 10) {
+                   return this.validate(step, name);
                }
             } else if (name === 'person-code') {
                 if (this[ step ][ name ].includes('e')) {
@@ -232,7 +234,8 @@ class Form {
                         if (/^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.]\d\d\d\d$/.test(checkedVal)) {
                             let dateArr = checkedVal.split(".");
 
-                            let date = new Date(dateArr[ 2 ], dateArr[ 1 ], dateArr[ 0 ]);
+                            let date = new Date(dateArr[ 2 ], parseInt(dateArr[ 1 ]) - 1, dateArr[ 0 ]);
+                            console.log(date, new Date());
                             if (date < new Date("1800-1-1")) {
                                 errorMessage = 'Sünnikuupäev peab olema hilisem kui 1800';
                             } else if (date > new Date()) {
