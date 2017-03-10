@@ -114,7 +114,7 @@ class Form {
                 } else if (!this.isDecimal(this[ step ][ name ])) {
                     errorMessage = "Väärtus võib sisaldada vaid numbreid ja koma";
                 }
-            } else if (name === 'event-date' || name === 'property_exists_time' || name === 'property_lost_time') {
+            } else if (name === 'event-date') {
                 if (/^.*[^\d.].*$/.test(this[ step ][ name ])) {
                     errorMessage = "Võib sisaldada ainult numbreid ja punkte";
                 } else if (this[ step ][ name ].length < 10) {
@@ -131,7 +131,7 @@ class Form {
         if (step === 'stolen_properties') {
             if (name === 'year_of_acquiring') {
                 if (!this.isNumeric(this[ step ][ index ][ name ])) {
-                    errorMessage = 'Soetamise aasta ei tohi sisaldada tähti';
+                    errorMessage = 'Soetamise aasta ei tohi sisaldada tähti, sümboleid ega tühikuid';
                 } else if (('' + this[ step ][ index ][ name ]).length < 4) {
                     errorMessage = 'dont-show-success';
                 } else if (('' + this[ step ][ index ][ name ]).length >= 4) {
@@ -151,6 +151,14 @@ class Form {
                     errorMessage = 'dont-show-success';
                 } else if (!this.isDecimal(this[ step ][ index ][ name ])) {
                     errorMessage = "Väärtus võib sisaldada vaid numbreid ja koma";
+                }
+            } else if (name === 'property_exists_time' || name === 'property_lost_time') {
+                if (/^.*[^\d.].*$/.test(this[ step ][ name ])) {
+                    errorMessage = "Võib sisaldada ainult numbreid ja punkte";
+                } else if (this[ step ][ name ].length < 10) {
+                    errorMessage = "dont-show-success";
+                } else if (this[ step ][ name ].length >= 10) {
+                    return this.validate(step, name);
                 }
             }
         }
@@ -327,7 +335,7 @@ class Form {
                     } else if (checkedVal > currentYear) {
                         errorMessage = 'Vara ei saa olla soetatud hiljem kui ' + currentYear;
                     } else if (checkedVal.includes('e')) {
-                        errorMessage = 'Soetamise aasta ei tohi sisaldada tähti';
+                        errorMessage = 'Soetamise aasta ei tohi sisaldada tähti.';
                     }
                 } else {
                     errorMessage = 'dont-show-success';
