@@ -189,7 +189,7 @@ class Form {
                     errorMessage = 'Sisestatud väärtus ei vasta Eesti isikukoodile';
                 }
             } else if (name === 'address') {
-                if (!this.exists[ step ][ index ][ name ]) {
+                if (!this.exists(this[ step ][ index ][ name ])) {
                     errorMessage = 'dont-show-success';
                 } else {
                     if (/^[0-9]+$/.test(this[ step ][ index ][ name ])) {
@@ -221,7 +221,6 @@ class Form {
 
         if (step === 'person_data') {
             if (name === 'first-name') {
-                // console.log(this.exists[step][name]);
                 if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'Eesnimi on kohustuslik!';
                 }
@@ -246,7 +245,6 @@ class Form {
                             let dateArr = checkedVal.split(".");
 
                             let date = new Date(dateArr[ 2 ], parseInt(dateArr[ 1 ]) - 1, dateArr[ 0 ]);
-                            console.log(date, new Date());
                             if (date < new Date("1800-1-1")) {
                                 errorMessage = 'Sünnikuupäev peab olema hilisem kui 1800';
                             } else if (date > new Date()) {
@@ -420,7 +418,7 @@ class Form {
                     errorMessage = 'dont-show-success';
                 }
             } else if (name === 'address') {
-                if (this.exists[ step ][ index ][ name ]) {
+                if (this.exists(this[step][ index ][ name ])) {
                     if (/^[0-9]+$/.test(this[ step ][ index ][ name ])) {
                         errorMessage = 'Väärtus peab sisaldama tähti';
                     }
