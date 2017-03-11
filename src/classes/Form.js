@@ -215,7 +215,6 @@ class Form {
             // Validate all on the given step
             this.validateAll(step);
         }
-
         let errorMessage = '';
 
         // TODO: Better way to validate?
@@ -272,7 +271,7 @@ class Form {
                     errorMessage = 'dont-show-success';
                 }
             } else if (name == 'email') {
-                if (this.exists(this[ step ][ name ]) && !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(this[ step ][ name ])) {
+                if (this.exists(this[ step ][ name ]) && !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this[ step ][ name ])) {
                     errorMessage = "Sisestatud email ei ole korrektne";
                 } else if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'dont-show-success';
@@ -389,7 +388,7 @@ class Form {
                     errorMessage = 'dont-show-success';
                 }
             } else if (name == 'email') {
-                if (this.exists(this[ step ][ index ][ name ]) && !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(this[ step ][ index ][ name ])) {
+                if (this.exists(this[ step ][ index ][ name ]) && !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this[ step ][ index ][ name ])) {
                     errorMessage = "Sisestatud email ei ole korrektne"
                 } else if (!this.exists(this[ step ][ index ][ name ])) {
                     errorMessage = 'dont-show-success';
@@ -447,7 +446,6 @@ class Form {
     exists(val) {
         return val !== null && ('' + val).length > 0;
     }
-
     isNumeric(val) {
         return val === null || val.length === 0 || /^\d+$/.test(val);
     }
