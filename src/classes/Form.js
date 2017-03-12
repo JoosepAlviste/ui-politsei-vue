@@ -172,8 +172,10 @@ class Form {
                 if (!this.exists(this[ step ][ index ][ name ])) {
                     errorMessage = 'dont-show-success';
                 } else {
-                    if (this[ step ][ index ][ name ].includes('e')) {
+                    if (/[^\d+]/.test(this[ step ][ index ][ name ])) {
                         errorMessage = "Palun kasutage numbreid, tühikuid ning '+' märki. 3-20 märki";
+                    } else if (this[ step ][ index ][ name ].length < 3){
+                        errorMessage = "dont-show-success"
                     }
                 }
             } else if (name === 'date_of_birth') {
@@ -185,8 +187,12 @@ class Form {
                     errorMessage = 'dont-show-success';
                 }
             } else if (name === 'personal_code') {
-                if ((this[ step ][ index ][ name ]).includes('e')) {
-                    errorMessage = 'Sisestatud väärtus ei vasta Eesti isikukoodile';
+                if (/[^\d]/.test(this[ step ][ index ][ name ])) {
+                    errorMessage = 'Sisestatud väärtus ei vasta Eesti isikukoodile (ei tohi sisaldada tähti)';
+                } else if (this[ step ][ index ][ name ].length < 11){
+                    errorMessage = 'dont-show-success'
+                } else {
+                    return this.validate(step, name, index)
                 }
             } else if (name === 'address') {
                 if (!this.exists(this[ step ][ index ][ name ])) {
