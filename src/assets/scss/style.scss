@@ -48,6 +48,20 @@ body {
     margin-bottom: 0;
     font-family: $title-font;
   }
+
+  svg {
+    fill: #666666;
+    margin-right: 5px;
+    height: 10px;
+    width: 10px;
+    transition: transform 0.15s linear;
+  }
+
+  &.is-open svg {
+    transform: rotate(180deg);
+  }
+
+
 }
 
 .removable-header:hover {
@@ -394,6 +408,15 @@ body {
 
 @media (max-width: 768px) {
 
+  .card.step.hidden {
+    display: none;
+  }
+
+  .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .step.card {
     position: initial;
   }
@@ -454,6 +477,7 @@ body {
 
     .card-title {
       margin-bottom: 0;
+      font-size: 1.6rem;
     }
 
     .close {

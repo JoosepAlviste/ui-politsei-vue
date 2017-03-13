@@ -277,6 +277,8 @@ class Form {
             } else if (name == 'email') {
                 if (this.exists(this[ step ][ name ]) && !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this[ step ][ name ])) {
                     errorMessage = "Sisestatud email ei ole korrektne";
+                } else if (!this.exists(this[ step ][ name ]) && this[step]['contact-option'] === 'email') {
+                    errorMessage = 'E-mail on kohustuslik!';
                 } else if (!this.exists(this[ step ][ name ])) {
                     errorMessage = 'dont-show-success';
                 }

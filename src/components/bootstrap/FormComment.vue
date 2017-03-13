@@ -9,7 +9,7 @@
                  :name="name"
                  :id="name"
                  v-model="value"
-                 @blur="$emit('input-was-blurred', value)"></textarea>
+                 @blur="$emit('input-was-blurred', value)" rows="5"></textarea>
         <div v-if="hasError"
              class="form-control-feedback">
             {{ error }}
